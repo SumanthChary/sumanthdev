@@ -1,24 +1,403 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+import { ImageFrame } from "@/components/ImageFrame";
+import { Reveal } from "@/components/Reveal";
+import { MagneticLink } from "@/components/MagneticLink";
+import { ContactSection, SiteFooter, SiteNav } from "@/components/SiteChrome";
+import { projects } from "@/data/projects";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Sumanth — Indie Builder & Growth Marketer" },
+      {
+        name: "description",
+        content:
+          "Solo AI products shipped end-to-end — design, code, payments and growth — plus paid campaigns run for real clients in Telangana, India.",
+      },
+      { property: "og:title", content: "Sumanth — Indie Builder & Growth Marketer" },
+      {
+        property: "og:description",
+        content:
+          "Solo AI products shipped end-to-end, plus paid growth campaigns for real clients. One person, both halves of the job.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const heroWords = ["I", "build", "the", "product."];
+const heroWords2 = ["Then", "I", "make", "it"];
+
+const tickerItems = [
+  { label: "PostPro AI — Live", live: true },
+  { label: "FlipScan AI — Growing", live: false },
+  { label: "LegalDeep AI — Building", live: false },
+  { label: "Sri Vastrika — Shipped in Lovable", live: true },
+  { label: "Renuka Septic — Site rebuilt", live: true },
+  { label: "3 client projects active", live: true },
+];
+
+function Dot({ live }: { live: boolean }) {
+  return (
+    <span
+      className={
+        live
+          ? "size-[5px] shrink-0 rounded-full bg-primary"
+          : "size-[5px] shrink-0 rounded-full border border-brown-soft"
+      }
+    />
+  );
+}
+
+function Home() {
+  return (
+    <>
+      <div className="grain" aria-hidden="true" />
+      <SiteNav />
+      <main>
+        <Hero />
+        <Ticker />
+        <Work />
+        <Clients />
+        <Growth />
+        <Stack />
+        <About />
+        <ContactSection />
+      </main>
+      <SiteFooter />
+    </>
+  );
+}
+
+function Hero() {
+  let i = 0;
+  const word = (w: string, accent = false) => {
+    const delay = 0.12 + i * 0.055;
+    i += 1;
+    return (
+      <span key={`${w}-${delay}`} className="inline-block overflow-hidden align-top">
+        <span
+          className={`animate-word-rise inline-block${accent ? " italic text-primary" : ""}`}
+          style={{ animationDelay: `${delay}s` }}
+        >
+          {w}
+        </span>{" "}
+      </span>
+    );
+  };
+
+  return (
+    <section
+      id="top"
+      className="relative flex min-h-svh items-center overflow-hidden pb-16 pt-28"
+    >
+      <div className="wrap grid w-full items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="order-2 lg:order-1">
+          <p
+            className="animate-fade-rise mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']"
+            style={{ animationDelay: "0.05s" }}
+          >
+            Indie builder · Growth marketer · Telangana, India
+          </p>
+          <h1 className="mb-7 mt-5 text-[clamp(2.5rem,6vw,4.8rem)] leading-[1.06]">
+            {heroWords.map((w) => word(w))}
+            <br />
+            {heroWords2.map((w) => word(w))}
+            {word("sell.", true)}
+          </h1>
+          <p
+            className="animate-fade-rise mb-9 max-w-[44ch] text-[clamp(1rem,1.5vw,1.12rem)] leading-[1.65] text-brown"
+            style={{ animationDelay: "0.5s" }}
+          >
+            Solo AI products shipped end-to-end — design, code, payments, and growth — plus paid
+            campaigns run for real clients. One person, both halves of the job.
+          </p>
+          <div
+            className="animate-fade-rise flex flex-wrap items-center gap-8"
+            style={{ animationDelay: "0.62s" }}
+          >
+            <MagneticLink href="#contact">Start a project</MagneticLink>
+            <a
+              href="#work"
+              className="border-b border-border-strong pb-1 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-brown transition-colors hover:border-primary hover:text-primary"
+            >
+              View the work
+            </a>
+          </div>
+        </div>
+        <Reveal className="order-1 lg:order-2" delay={200}>
+          <ImageFrame
+            label="Add: portrait or hero shot"
+            size="1200 × 1500 · natural light, plain background"
+            className="aspect-[16/10] w-full lg:aspect-[4/5]"
+          />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Ticker() {
   return (
     <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+      aria-hidden="true"
+      className="group overflow-hidden border-y border-border py-3.5"
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+      <div className="animate-ticker flex w-max group-hover:[animation-play-state:paused]">
+        {[0, 1].map((dup) => (
+          <div className="flex" key={dup}>
+            {tickerItems.map((t) => (
+              <span
+                key={`${dup}-${t.label}`}
+                className="flex items-center gap-2.5 whitespace-nowrap px-[30px] font-mono text-[0.72rem] tracking-[0.03em] text-brown"
+              >
+                <Dot live={t.live} />
+                {t.label}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
+  );
+}
+
+function Work() {
+  const [preview, setPreview] = useState<{ tint: string; label: string } | null>(null);
+  const pos = useRef({ x: 0, y: 0 });
+  const previewRef = useRef<HTMLDivElement>(null);
+  const target = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    let raf = 0;
+    const onMove = (e: MouseEvent) => {
+      target.current = { x: e.clientX, y: e.clientY };
+    };
+    const loop = () => {
+      pos.current.x += (target.current.x - pos.current.x) * 0.14;
+      pos.current.y += (target.current.y - pos.current.y) * 0.14;
+      if (previewRef.current) {
+        previewRef.current.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%)`;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    window.addEventListener("mousemove", onMove);
+    raf = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <section id="work" className="py-[clamp(80px,10vw,120px)]">
+      <div className="wrap">
+        <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+              Selected work
+            </p>
+            <h2 className="mt-3.5 text-[clamp(2rem,4vw,3rem)]">Work</h2>
+          </div>
+          <p className="m-0 max-w-[34ch] text-[0.95rem] leading-relaxed text-brown">
+            Six things I've built recently. Click a project to open its case study.
+          </p>
+        </Reveal>
+
+        <Reveal className="border-t border-border-strong">
+          {projects.map((p) => (
+            <Link
+              key={p.slug}
+              to="/work/$slug"
+              params={{ slug: p.slug }}
+              onMouseEnter={() => setPreview({ tint: p.tint, label: p.title })}
+              onMouseLeave={() => setPreview(null)}
+              className="group grid grid-cols-[40px_70px_1fr] items-center gap-x-5 gap-y-2 border-b border-border py-6 transition-[padding-left] duration-500 ease-[var(--ease-out-soft)] hover:pl-3.5 md:grid-cols-[64px_88px_1fr_auto_auto]"
+            >
+              <span className="font-mono text-[0.78rem] text-brown-soft">{p.index}</span>
+              <ImageFrame
+                label={p.title}
+                tint={p.tint}
+                compact
+                className="h-16 w-[88px] max-w-full shrink-0 rounded-md"
+              />
+              <div>
+                <h3 className="mb-1.5 text-[clamp(1.4rem,2.8vw,2.1rem)] transition-colors duration-300 group-hover:text-primary">
+                  {p.title}
+                </h3>
+                <p className="m-0 max-w-[46ch] text-[0.87rem] leading-snug text-brown">
+                  {p.description}
+                </p>
+              </div>
+              <span className="col-start-3 whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.06em] text-brown-soft md:col-auto">
+                {p.tag}
+              </span>
+              <span className="col-start-3 flex items-center gap-2 whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.05em] text-brown md:col-auto">
+                <Dot live={p.live} />
+                {p.status}
+              </span>
+            </Link>
+          ))}
+        </Reveal>
+      </div>
+
+      <div
+        ref={previewRef}
+        aria-hidden="true"
+        className={`pointer-events-none fixed left-0 top-0 z-40 hidden h-[150px] w-[230px] overflow-hidden rounded-md shadow-[var(--shadow-float)] transition-opacity duration-300 [@media(hover:hover)]:block ${
+          preview ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ backgroundImage: preview ? `var(${preview.tint})` : undefined }}
+      >
+        <div className="flex h-full w-full items-end p-3.5">
+          <span className="font-mono text-[0.68rem] uppercase tracking-[0.05em] text-on-dark">
+            {preview?.label}
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const clientLogos = [
+  "Sri Vastrika",
+  "Renuka Septic",
+  "PostPro AI",
+  "FlipScan AI",
+  "Healthcare Client",
+];
+
+function Clients() {
+  return (
+    <section id="clients" className="border-y border-border py-11">
+      <div className="wrap">
+        <p className="mono-label mb-6 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+          Clients & products
+        </p>
+        <Reveal className="flex flex-wrap items-center gap-5">
+          {clientLogos.map((c) => (
+            <ImageFrame
+              key={c}
+              label={c}
+              size="logo, white bg"
+              className="h-16 w-[150px] shrink-0 bg-background text-[0.58rem]"
+            />
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Growth() {
+  return (
+    <section id="growth" className="py-[clamp(80px,10vw,120px)]">
+      <div className="wrap grid gap-14 border-t border-border-strong pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-[70px]">
+        <Reveal>
+          <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+            The other half
+          </p>
+          <h2 className="mb-4 mt-3.5 text-[clamp(2rem,4vw,2.8rem)]">
+            Growth marketing, not just product.
+          </h2>
+          <p className="max-w-[50ch] text-[1.05rem] leading-[1.72] text-brown">
+            Alongside building products, I run paid digital campaigns for healthcare clients across
+            Telangana — hospitals that need patients to actually find and trust them. Same instinct
+            as the product work: ship, measure, iterate.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[0.76rem] tracking-[0.03em] text-foreground">
+            {["Google Ads", "Meta Ads", "Practo", "Truecaller", "ShareChat"].map((c, idx, arr) => (
+              <span key={c}>
+                {c}
+                {idx < arr.length - 1 && <span className="ml-5 text-brown-soft">·</span>}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal delay={120}>
+          <p className="mono-label mb-5 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+            Why it works together
+          </p>
+          <ul className="m-0 flex list-none flex-col gap-[18px] p-0">
+            {[
+              "Building the product means I understand what's actually being sold — no handoff gap between dev and marketing.",
+              "Running campaigns means the sites I build are made to convert, not just to look good.",
+              "One person, one accountable thread from first line of code to first paying customer.",
+            ].map((t) => (
+              <li
+                key={t}
+                className="relative pl-5 text-[0.94rem] leading-[1.55] text-brown before:absolute before:left-0 before:top-[0.6em] before:h-px before:w-[9px] before:bg-primary before:content-['']"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Stack() {
+  const tools = [
+    "Lovable",
+    "Netlify",
+    "Supabase",
+    "Dodo Payments",
+    "GitHub Copilot",
+    "Claude / Gemini",
+  ];
+  return (
+    <section id="stack" className="pb-[clamp(60px,8vw,100px)]">
+      <Reveal className="wrap">
+        <p className="mono-label mb-4 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+          Toolkit
+        </p>
+        <h2 className="mb-6 text-[clamp(1.6rem,3vw,2.2rem)]">Built with</h2>
+        <div className="flex flex-wrap font-mono text-[0.92rem] text-brown">
+          {tools.map((t, idx) => (
+            <span key={t} className="py-1">
+              {t}
+              {idx < tools.length - 1 && <span className="mx-4 text-brown-soft">·</span>}
+            </span>
+          ))}
+          <span className="animate-caret ml-2 inline-block h-[1em] w-[7px] self-center bg-primary" />
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" className="py-[clamp(80px,10vw,120px)]">
+      <div className="wrap grid items-center gap-14 lg:grid-cols-[0.62fr_1.38fr] lg:gap-[70px]">
+        <Reveal>
+          <ImageFrame
+            label="Add: headshot"
+            size="1000 × 1250 · candid or studio, plain background"
+            className="aspect-[4/5] w-full max-w-[240px] lg:max-w-none"
+          />
+        </Reveal>
+        <Reveal delay={120}>
+          <p className="mono-label mb-4 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+            About
+          </p>
+          <p className="mb-6 max-w-[20ch] font-serif text-[1.7rem] italic leading-[1.4] text-foreground">
+            “I'd rather ship something real than plan something perfect.”
+          </p>
+          <p className="max-w-[58ch] text-[1.02rem] leading-[1.75] text-brown">
+            Based in Ranga Reddy, Telangana, I build AI-powered products using AI-native tools —
+            Lovable, Netlify, Supabase, Dodo Payments — and run freelance growth work on the side,
+            mostly digital ad campaigns for healthcare clients. I work end to end: design the
+            interface, wire up the backend, connect payments, and then go find the people who'll
+            actually use it.
+          </p>
+        </Reveal>
+      </div>
+    </section>
   );
 }
