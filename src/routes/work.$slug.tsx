@@ -32,7 +32,8 @@ export const Route = createFileRoute("/work/$slug")({
 function CaseStudy() {
   const p = Route.useLoaderData();
   const idx = projects.findIndex((x) => x.slug === p.slug);
-  const next = projects[(idx + 1) % projects.length];
+  const next = projects[(idx + 1) % projects.length]!;
+  const [g0, g1, g2] = p.gallery as [typeof p.gallery[0], typeof p.gallery[0], typeof p.gallery[0]];
 
   return (
     <>
@@ -98,19 +99,19 @@ function CaseStudy() {
 
         <Reveal className="grid gap-5 md:grid-cols-2">
           <ImageFrame
-            label={`Add: ${p.gallery[0].label.replace("ADD: ", "")}`}
-            size={p.gallery[0].size}
+            label={g0.label}
+            size={g0.size}
             className="aspect-[4/5] w-full"
           />
           <div className="grid gap-5">
             <ImageFrame
-              label={p.gallery[1].label}
-              size={p.gallery[1].size}
+              label={g1.label}
+              size={g1.size}
               className="aspect-[16/10] w-full"
             />
             <ImageFrame
-              label={p.gallery[2].label}
-              size={p.gallery[2].size}
+              label={g2.label}
+              size={g2.size}
               className="aspect-[16/10] w-full"
             />
           </div>
