@@ -80,6 +80,14 @@
   --on-dark: oklch(0.984 0.004 95);
   --on-dark-muted: oklch(0.984 0.004 95 / 0.62);
 
+  /* project cover tints */
+  --cover-postpro: linear-gradient(135deg, oklch(0.618 0.203 34), oklch(0.24 0.03 45));
+  --cover-flipscan: linear-gradient(135deg, oklch(0.51 0.07 55), oklch(0.22 0.02 50));
+  --cover-legaldeep: linear-gradient(135deg, oklch(0.27 0.02 60), oklch(0.16 0.01 60));
+  --cover-airwrite: linear-gradient(135deg, oklch(0.78 0.11 45), oklch(0.5 0.09 45));
+  --cover-vastrika: linear-gradient(135deg, oklch(0.42 0.14 15), oklch(0.72 0.11 80));
+  --cover-renuka: linear-gradient(135deg, oklch(0.42 0.06 50), oklch(0.55 0.15 45));
+
   --shadow-float: 0 30px 60px -20px oklch(0.192 0.011 60 / 0.35);
 }
 
