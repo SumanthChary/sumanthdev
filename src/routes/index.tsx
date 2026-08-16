@@ -78,13 +78,13 @@ function Hero() {
     const delay = 0.12 + i * 0.055;
     i += 1;
     return (
-      <span key={`${w}-${delay}`} className="inline-block overflow-hidden align-top">
+      <span key={`${w}-${delay}`} className="mr-[0.24em] inline-block overflow-hidden align-top">
         <span
           className={`animate-word-rise inline-block${accent ? " italic text-primary" : ""}`}
           style={{ animationDelay: `${delay}s` }}
         >
           {w}
-        </span>{" "}
+        </span>
       </span>
     );
   };
