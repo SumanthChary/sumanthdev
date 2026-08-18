@@ -415,8 +415,6 @@ function Work() {
           </span>
         </div>
       </div>
-
-      </div>
     </section>
   );
 }
