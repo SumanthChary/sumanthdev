@@ -1,3 +1,11 @@
+import postproHero from "@/assets/postpro-hero.asset.json";
+import postproPricing from "@/assets/postpro-pricing.asset.json";
+import postproTryIt from "@/assets/postpro-tryit.asset.json";
+import postproComposer from "@/assets/postpro-composer.asset.json";
+import postproOutput from "@/assets/postpro-output.asset.json";
+
+export type GalleryItem = { label: string; size: string; src?: string; fit?: "cover" | "contain" };
+
 export type Project = {
   slug: string;
   index: string;
@@ -16,8 +24,12 @@ export type Project = {
   brief: string;
   approach: string;
   quote: string;
-  gallery: { label: string; size: string }[];
+  gallery: GalleryItem[];
   beforeAfter?: boolean;
+  /** real hero screenshot for the case study + social preview */
+  hero?: string;
+  /** optional closing full-width image */
+  closing?: { src: string; caption: string };
 };
 
 export const projects: Project[] = [
@@ -42,13 +54,18 @@ export const projects: Project[] = [
       "Kept the interactive hero rather than swapping it for a static image — an animated voice-match score does more convincing than a screenshot ever could. Everything behind it is deliberately plain: one accent colour, one typeface pairing, and a pricing page that answers the only two questions people actually have.",
     quote:
       "The product had to sound like you before it could sell itself. Everything else was in service of that.",
+    hero: postproHero.url,
     gallery: [
-      { label: "ADD: PRODUCT DETAIL", size: "1000 × 1250 · UI close-up" },
-      { label: "ADD: EDITOR VIEW", size: "1600 × 1000 · post composer" },
-      { label: "ADD: PRICING PAGE", size: "1600 × 1000 · plans & checkout" },
+      { label: "Try-it-live section", size: "UI close-up", src: postproTryIt.url },
+      { label: "Post composer with voice match", size: "Editor view", src: postproComposer.url },
+      { label: "Pricing plans", size: "Plans & checkout", src: postproPricing.url },
     ],
-    beforeAfter: true,
+    closing: {
+      src: postproOutput.url,
+      caption: "The output — same person, same topic, written in their own voice.",
+    },
   },
+
   {
     slug: "flipscan-ai",
     index: "02",

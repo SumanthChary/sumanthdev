@@ -78,14 +78,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sumanth — Indie Builder & Growth Marketer" },
+      { title: "Sumanth Chary — Indie AI Builder & Growth Marketer" },
       {
         name: "description",
         content:
           "Solo AI products shipped end-to-end — design, code, payments and growth — plus paid campaigns for real clients.",
       },
-      { name: "author", content: "Sumanth" },
+      { name: "author", content: "Sumanth Chary" },
+      { name: "theme-color", content: "#FAFAF7" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Sumanth Chary" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -100,7 +102,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "icon", href: "/icon-512.png", type: "image/png", sizes: "512x512" },
     ],
+
   }),
 
   shellComponent: RootShell,

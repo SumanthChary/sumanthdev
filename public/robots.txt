@@ -12,3 +12,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://sumanthdev.lovable.app/sitemap.xml
+
