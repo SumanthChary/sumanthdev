@@ -3,30 +3,96 @@ import { useEffect, useRef, useState } from "react";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
 import { MagneticLink } from "@/components/MagneticLink";
-import { ContactSection, SiteFooter, SiteNav } from "@/components/SiteChrome";
+import { ContactSection, ResumeButton, SiteFooter, SiteNav } from "@/components/SiteChrome";
 import { projects } from "@/data/projects";
+
+const SITE = "https://sumanthdev.lovable.app";
+const TITLE = "Sumanth Chary — Indie AI Builder & Growth Marketer";
+const DESCRIPTION =
+  "Solo-built AI products — design, code, payments and growth — plus paid ad campaigns for healthcare clients across Telangana, India. See the work and case studies.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sumanth — Indie Builder & Growth Marketer" },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
       {
-        name: "description",
+        name: "keywords",
         content:
-          "Solo AI products shipped end-to-end — design, code, payments and growth — plus paid campaigns run for real clients in Telangana, India.",
+          "Sumanth Chary, indie builder, AI SaaS developer, growth marketer, Lovable developer, Telangana, freelance web developer, Google Ads healthcare",
       },
-      { property: "og:title", content: "Sumanth — Indie Builder & Growth Marketer" },
-      {
-        property: "og:description",
-        content:
-          "Solo AI products shipped end-to-end, plus paid growth campaigns for real clients. One person, both halves of the job.",
-      },
+      { name: "author", content: "Sumanth Chary" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE}/` },
+      { property: "og:site_name", content: "Sumanth Chary" },
+      { property: "og:locale", content: "en_IN" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@SumanthChary07" },
+      { name: "twitter:creator", content: "@SumanthChary07" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+    ],
+    links: [{ rel: "canonical", href: `${SITE}/` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": `${SITE}/#person`,
+              name: "Sumanth Chary",
+              url: `${SITE}/`,
+              email: "mailto:sumanthcharyy@gmail.com",
+              jobTitle: "Indie AI Product Builder & Growth Marketer",
+              address: {
+                "@type": "PostalAddress",
+                addressRegion: "Telangana",
+                addressCountry: "IN",
+              },
+              knowsAbout: [
+                "AI SaaS development",
+                "UI/UX design",
+                "Frontend engineering",
+                "Growth marketing",
+                "Google Ads",
+                "Meta Ads",
+                "SEO",
+              ],
+              sameAs: [
+                "https://x.com/SumanthChary07",
+                "https://www.linkedin.com/in/sumanthchary",
+              ],
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE}/#website`,
+              url: `${SITE}/`,
+              name: TITLE,
+              description: DESCRIPTION,
+              inLanguage: "en",
+              publisher: { "@id": `${SITE}/#person` },
+            },
+            {
+              "@type": "ProfilePage",
+              "@id": `${SITE}/#profilepage`,
+              url: `${SITE}/`,
+              name: TITLE,
+              about: { "@id": `${SITE}/#person` },
+              isPartOf: { "@id": `${SITE}/#website` },
+            },
+          ],
+        }),
+      },
     ],
   }),
   component: Home,
 });
+
 
 const heroWords = ["I", "build", "the", "product."];
 const heroWords2 = ["Then", "I", "make", "it"];
