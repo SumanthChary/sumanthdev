@@ -184,10 +184,11 @@ function Hero() {
             campaigns run for real clients. One person, both halves of the job.
           </p>
           <div
-            className="animate-fade-rise flex flex-wrap items-center gap-8"
+            className="animate-fade-rise flex flex-wrap items-center gap-x-8 gap-y-4"
             style={{ animationDelay: "0.62s" }}
           >
             <MagneticLink href="#contact">Start a project</MagneticLink>
+            <ResumeButton />
             <a
               href="#work"
               className="border-b border-border-strong pb-1 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-brown transition-colors hover:border-primary hover:text-primary"
@@ -195,6 +196,7 @@ function Hero() {
               View the work
             </a>
           </div>
+
         </div>
         <Reveal className="order-1 lg:order-2" delay={200}>
           <ImageFrame
