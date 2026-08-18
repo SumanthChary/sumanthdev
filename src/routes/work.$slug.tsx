@@ -197,7 +197,7 @@ function CaseStudy() {
               src={p.closing.src}
               alt={`${p.title} — ${p.closing.caption}`}
               fit="contain"
-              className="w-full bg-frame p-3 sm:p-6"
+              className="max-h-[70svh] w-full bg-frame p-3 sm:p-6"
             />
             <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-brown-soft">
               {p.closing.caption}
