@@ -353,29 +353,40 @@ function Work() {
               key={p.slug}
               to="/work/$slug"
               params={{ slug: p.slug }}
-              onMouseEnter={() => setPreview({ tint: p.tint, label: p.title })}
+              onMouseEnter={() =>
+                setPreview({ tint: p.tint, label: p.title, src: p.hero ?? null })
+              }
               onMouseLeave={() => setPreview(null)}
-              className="group grid grid-cols-[40px_70px_1fr] items-center gap-x-5 gap-y-2 border-b border-border py-6 transition-[padding-left] duration-500 ease-[var(--ease-out-soft)] hover:pl-3.5 md:grid-cols-[64px_88px_1fr_auto_auto]"
+              className="group grid grid-cols-[76px_minmax(0,1fr)] items-center gap-x-4 gap-y-2 border-b border-border py-5 transition-[padding-left] duration-500 ease-[var(--ease-out-soft)] hover:pl-3.5 md:grid-cols-[64px_88px_1fr_auto_auto] md:gap-x-5 md:py-6"
             >
-              <span className="font-mono text-[0.78rem] text-brown-soft">{p.index}</span>
+              <span className="hidden font-mono text-[0.78rem] text-brown-soft md:block">
+                {p.index}
+              </span>
               <ImageFrame
                 label={p.title}
                 tint={p.tint}
+                src={p.hero}
+                alt={`${p.title} preview`}
                 compact
-                className="h-16 w-[88px] max-w-full shrink-0 rounded-md"
+                className="h-14 w-[76px] max-w-full shrink-0 rounded-md md:h-16 md:w-[88px]"
               />
-              <div>
-                <h3 className="mb-1.5 text-[clamp(1.4rem,2.8vw,2.1rem)] transition-colors duration-300 group-hover:text-primary">
+              <div className="min-w-0">
+                <h3 className="mb-1 text-[clamp(1.2rem,5vw,2.1rem)] leading-tight transition-colors duration-300 group-hover:text-primary">
                   {p.title}
                 </h3>
-                <p className="m-0 max-w-[46ch] text-[0.87rem] leading-snug text-brown">
+                <p className="m-0 hidden max-w-[46ch] text-[0.87rem] leading-snug text-brown sm:block">
                   {p.description}
                 </p>
               </div>
-              <span className="col-start-3 whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.06em] text-brown-soft md:col-auto">
+              <span className="col-span-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.64rem] uppercase tracking-[0.06em] text-brown-soft md:col-span-1 md:col-auto md:whitespace-nowrap">
                 {p.tag}
+                <span className="flex items-center gap-2 text-brown md:hidden">
+                  <span aria-hidden="true">·</span>
+                  <Dot live={p.live} />
+                  {p.status}
+                </span>
               </span>
-              <span className="col-start-3 flex items-center gap-2 whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.05em] text-brown md:col-auto">
+              <span className="hidden items-center gap-2 whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.05em] text-brown md:flex">
                 <Dot live={p.live} />
                 {p.status}
               </span>
@@ -387,16 +398,24 @@ function Work() {
       <div
         ref={previewRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed left-0 top-0 z-40 hidden h-[150px] w-[230px] overflow-hidden rounded-md shadow-[var(--shadow-float)] transition-opacity duration-300 [@media(hover:hover)]:block ${
+        className={`pointer-events-none fixed left-0 top-0 z-40 hidden h-[150px] w-[230px] overflow-hidden rounded-md bg-cover bg-top shadow-[var(--shadow-float)] transition-opacity duration-300 [@media(hover:hover)]:block ${
           preview ? "opacity-100" : "opacity-0"
         }`}
-        style={{ backgroundImage: preview ? `var(${preview.tint})` : undefined }}
+        style={{
+          backgroundImage: preview
+            ? preview.src
+              ? `url(${preview.src})`
+              : `var(${preview.tint})`
+            : undefined,
+        }}
       >
-        <div className="flex h-full w-full items-end p-3.5">
+        <div className="flex h-full w-full items-end bg-gradient-to-t from-foreground/70 to-transparent p-3.5">
           <span className="font-mono text-[0.68rem] uppercase tracking-[0.05em] text-on-dark">
             {preview?.label}
           </span>
         </div>
+      </div>
+
       </div>
     </section>
   );
