@@ -8,7 +8,8 @@ type ImageFrameProps = {
   tint?: string;
   compact?: boolean;
   /** Real image URL — when present, renders the image instead of the placeholder */
-  src?: string;
+  src?: string | undefined;
+
   alt?: string;
   /** object-fit behaviour for real images */
   fit?: "cover" | "contain";
