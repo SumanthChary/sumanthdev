@@ -306,7 +306,12 @@ function Skills() {
 
 function Work() {
 
-  const [preview, setPreview] = useState<{ tint: string; label: string } | null>(null);
+  const [preview, setPreview] = useState<{
+    tint: string;
+    label: string;
+    src: string | null;
+  } | null>(null);
+
   const pos = useRef({ x: 0, y: 0 });
   const previewRef = useRef<HTMLDivElement>(null);
   const target = useRef({ x: 0, y: 0 });
