@@ -304,6 +304,7 @@ function Skills() {
   );
 }
 
+function Work() {
 
   const [preview, setPreview] = useState<{ tint: string; label: string } | null>(null);
   const pos = useRef({ x: 0, y: 0 });
