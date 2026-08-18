@@ -127,12 +127,14 @@ function Home() {
         <Hero />
         <Ticker />
         <Work />
+        <Skills />
         <Clients />
         <Growth />
         <Stack />
         <About />
         <ContactSection />
       </main>
+
       <SiteFooter />
     </>
   );
