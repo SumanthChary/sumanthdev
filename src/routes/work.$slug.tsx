@@ -74,15 +74,18 @@ function CaseStudy() {
           ))}
         </div>
 
-        <Reveal className="mt-12">
+        <Reveal className="mt-10 sm:mt-12">
           <ImageFrame
             label="Add: product hero screenshot"
             size="1920 × 1080 · full dashboard or landing view"
-            className="aspect-video w-full"
+            src={p.hero}
+            alt={`${p.title} — product hero`}
+            loading="eager"
+            className="aspect-[16/10] w-full sm:aspect-video"
           />
         </Reveal>
 
-        <Reveal className="grid gap-10 py-16 md:grid-cols-2 md:gap-16">
+        <Reveal className="grid gap-8 py-12 md:grid-cols-2 md:gap-16 md:py-16">
           <div>
             <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-primary">
               The brief
@@ -101,17 +104,23 @@ function CaseStudy() {
           <ImageFrame
             label={g0.label}
             size={g0.size}
+            src={g0.src}
+            alt={`${p.title} — ${g0.label}`}
             className="aspect-[4/5] w-full"
           />
           <div className="grid gap-5">
             <ImageFrame
               label={g1.label}
               size={g1.size}
+              src={g1.src}
+              alt={`${p.title} — ${g1.label}`}
               className="aspect-[16/10] w-full"
             />
             <ImageFrame
               label={g2.label}
               size={g2.size}
+              src={g2.src}
+              alt={`${p.title} — ${g2.label}`}
               className="aspect-[16/10] w-full"
             />
           </div>
@@ -132,11 +141,27 @@ function CaseStudy() {
           </Reveal>
         )}
 
-        <Reveal className="mx-auto max-w-[640px] py-24 text-center">
+        {p.closing && (
+          <Reveal className="mt-5">
+            <ImageFrame
+              label={p.closing.caption}
+              src={p.closing.src}
+              alt={`${p.title} — ${p.closing.caption}`}
+              fit="contain"
+              className="w-full bg-frame p-3 sm:p-6"
+            />
+            <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-brown-soft">
+              {p.closing.caption}
+            </p>
+          </Reveal>
+        )}
+
+        <Reveal className="mx-auto max-w-[640px] py-16 text-center sm:py-24">
           <p className="font-serif text-[clamp(1.5rem,3vw,2rem)] italic leading-[1.45] text-foreground">
             “{p.quote}”
           </p>
         </Reveal>
+
       </main>
 
       <section className="bg-foreground py-24 text-center text-on-dark">
