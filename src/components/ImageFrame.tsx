@@ -7,9 +7,51 @@ type ImageFrameProps = {
   /** CSS gradient var name, e.g. "--cover-postpro" */
   tint?: string;
   compact?: boolean;
+  /** Real image URL — when present, renders the image instead of the placeholder */
+  src?: string;
+  alt?: string;
+  /** object-fit behaviour for real images */
+  fit?: "cover" | "contain";
+  /** vertical focus for cover images */
+  position?: string;
+  loading?: "lazy" | "eager";
 };
 
-export function ImageFrame({ label, size, className, tint, compact }: ImageFrameProps) {
+export function ImageFrame({
+  label,
+  size,
+  className,
+  tint,
+  compact,
+  src,
+  alt,
+  fit = "cover",
+  position = "center top",
+  loading = "lazy",
+}: ImageFrameProps) {
+  if (src) {
+    return (
+      <div
+        className={cn(
+          "overflow-hidden rounded-lg border border-border bg-frame",
+          className,
+        )}
+      >
+        <img
+          src={src}
+          alt={alt ?? label}
+          loading={loading}
+          decoding="async"
+          className={cn(
+            "h-full w-full",
+            fit === "cover" ? "object-cover" : "object-contain",
+          )}
+          style={{ objectPosition: position }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       aria-hidden="true"
