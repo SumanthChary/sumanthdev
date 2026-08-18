@@ -235,7 +235,76 @@ function Ticker() {
   );
 }
 
-function Work() {
+const skillGroups = [
+  {
+    label: "Design",
+    items: [
+      "UI/UX Design",
+      "Design Systems",
+      "Brand Identity",
+      "Figma",
+      "Motion Design",
+      "Visual Systems",
+    ],
+  },
+  {
+    label: "Build",
+    items: [
+      "SaaS Development",
+      "Frontend Engineering",
+      "API Integration",
+      "No-Code",
+      "Framer",
+      "Webflow",
+    ],
+  },
+  {
+    label: "Create",
+    items: ["Video Editing", "Content Writing", "Brand Strategy", "Scripting", "Social Media"],
+  },
+];
+
+function Skills() {
+  return (
+    <section id="skills" className="py-[clamp(64px,9vw,110px)]">
+      <div className="wrap">
+        <Reveal className="mb-10">
+          <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+            Capabilities
+          </p>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,3rem)]">What I do</h2>
+        </Reveal>
+
+        <Reveal className="border-t border-border-strong">
+          {skillGroups.map((g) => (
+            <div
+              key={g.label}
+              className="grid gap-3 border-b border-border py-7 sm:grid-cols-[110px_minmax(0,1fr)] sm:gap-8 sm:py-8"
+            >
+              <h3 className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-brown-soft sm:pt-1">
+                {g.label}
+              </h3>
+              <ul className="m-0 flex list-none flex-wrap items-center gap-x-3 gap-y-2 p-0 text-[1rem] leading-snug text-foreground sm:gap-x-4 sm:text-[1.08rem]">
+                {g.items.map((s, idx) => (
+                  <li key={s} className="flex items-center gap-3 sm:gap-4">
+                    {s}
+                    {idx < g.items.length - 1 && (
+                      <span aria-hidden="true" className="text-brown-soft/60">
+                        /
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+
   const [preview, setPreview] = useState<{ tint: string; label: string } | null>(null);
   const pos = useRef({ x: 0, y: 0 });
   const previewRef = useRef<HTMLDivElement>(null);
