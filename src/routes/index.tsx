@@ -160,9 +160,10 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-svh items-center overflow-hidden pb-16 pt-28"
+      className="relative flex min-h-svh items-center overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-28"
     >
-      <div className="wrap grid w-full items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="wrap grid w-full items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+
         <div className="order-2 lg:order-1">
           <p
             className="animate-fade-rise mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']"
