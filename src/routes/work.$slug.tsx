@@ -10,22 +10,71 @@ export const Route = createFileRoute("/work/$slug")({
     if (!project) throw notFound();
     return project;
   },
-  head: ({ loaderData }) => {
+  head: ({ params, loaderData }) => {
+    const SITE = "https://sumanthdev.lovable.app";
+    const url = `${SITE}/work/${params.slug}`;
     const title = loaderData
-      ? `${loaderData.title} — Case study — Sumanth`
-      : "Case study — Sumanth";
-    const description = loaderData?.description ?? "Case study by Sumanth.";
+      ? `${loaderData.title} — ${loaderData.category} case study — Sumanth Chary`
+      : "Case study — Sumanth Chary";
+    const description = loaderData?.description ?? "Case study by Sumanth Chary.";
+    const image = loaderData?.hero ? `${SITE}${loaderData.hero}` : null;
     return {
       meta: [
         { title },
         { name: "description", content: description },
+        { name: "robots", content: "index, follow, max-image-preview:large" },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        { property: "og:site_name", content: "Sumanth Chary" },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:creator", content: "@SumanthChary07" },
+        ...(image
+          ? [
+              { property: "og:image", content: image },
+              { name: "twitter:image", content: image },
+            ]
+          : []),
       ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: loaderData
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "CreativeWork",
+                name: loaderData.title,
+                headline: title,
+                description,
+                url,
+                ...(image ? { image } : {}),
+                keywords: loaderData.stack,
+                creator: {
+                  "@type": "Person",
+                  name: "Sumanth Chary",
+                  url: `${SITE}/`,
+                },
+              }),
+            },
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+                  { "@type": "ListItem", position: 2, name: "Work", item: `${SITE}/#work` },
+                  { "@type": "ListItem", position: 3, name: loaderData.title, item: url },
+                ],
+              }),
+            },
+          ]
+        : [],
     };
   },
+
   component: CaseStudy,
 });
 
