@@ -215,6 +215,20 @@ export const projects: Project[] = [
     approach:
       "Rebuilt around a persistent call button and a contact form that actually delivers, with real photos of the crew and equipment instead of stock imagery. Local SEO basics done properly beat anything clever here.",
     quote: "For a local service business, the whole design brief is: make it easy to call.",
+    client: {
+      serviceLine: "Local service site rebuild + local SEO",
+      delivered: [
+        "Full site rebuild, mobile-first",
+        "Persistent call button & working enquiry form",
+        "Real photography of crew and equipment",
+        "Local SEO & Google Business setup",
+      ],
+      outcomes: [
+        "Enquiries land in an inbox instead of disappearing",
+        "Loads and reads properly on the phones customers actually use",
+        "Shows up for the searches people make in a hurry",
+      ],
+    },
     gallery: [
       { label: "ADD: NEW HOMEPAGE", size: "1000 × 1250 · mobile view" },
       { label: "ADD: SERVICES SECTION", size: "1600 × 1000 · rebuilt page" },
