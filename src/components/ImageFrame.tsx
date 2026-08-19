@@ -31,6 +31,7 @@ export function ImageFrame({
   fit = "cover",
   position = "center top",
   loading = "lazy",
+  auto,
 }: ImageFrameProps) {
   if (src) {
     return (
@@ -46,10 +47,11 @@ export function ImageFrame({
           loading={loading}
           decoding="async"
           className={cn(
-            "h-full w-full",
-            fit === "cover" ? "object-cover" : "object-contain",
+            "w-full",
+            auto ? "h-auto object-contain" : "h-full",
+            !auto && (fit === "cover" ? "object-cover" : "object-contain"),
           )}
-          style={{ objectPosition: position }}
+          style={auto ? undefined : { objectPosition: position }}
         />
       </div>
     );
