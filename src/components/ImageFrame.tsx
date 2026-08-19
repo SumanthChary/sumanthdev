@@ -16,6 +16,8 @@ type ImageFrameProps = {
   /** vertical focus for cover images */
   position?: string;
   loading?: "lazy" | "eager";
+  /** render the real image at its natural aspect ratio (no crop) */
+  auto?: boolean;
 };
 
 export function ImageFrame({
