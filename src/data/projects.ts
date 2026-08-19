@@ -174,6 +174,20 @@ export const projects: Project[] = [
     approach:
       "Logo first, then a Shopify theme built around large product photography and maroon-and-gold rather than the site's usual orange — the client's own colours, deliberately. Collection structure and metadata written for search from day one.",
     quote: "Premium isn't a colour palette. It's how much space you're willing to give the product.",
+    client: {
+      serviceLine: "E-commerce brand + storefront build",
+      delivered: [
+        "Logo & brand mark",
+        "Shopify storefront, custom theme",
+        "Product & collection structure",
+        "On-page SEO from day one",
+      ],
+      outcomes: [
+        "A label that finally looks as premium as its products",
+        "Owner can add products without touching a developer",
+        "Collections built to be found on search, not just browsed",
+      ],
+    },
     gallery: [
       { label: "ADD: PRODUCT PAGE", size: "1000 × 1250 · saree detail" },
       { label: "ADD: HOMEPAGE", size: "1600 × 1000 · storefront" },
