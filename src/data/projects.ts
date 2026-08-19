@@ -30,6 +30,15 @@ export type Project = {
   hero?: string;
   /** optional closing full-width image */
   closing?: { src: string; caption: string };
+  /** client engagements get a dedicated block on the home page */
+  client?: {
+    /** one-line service framing, e.g. "E-commerce brand build" */
+    serviceLine: string;
+    /** what the client actually walked away with */
+    delivered: string[];
+    /** plain-language outcomes */
+    outcomes: string[];
+  };
 };
 
 export const projects: Project[] = [
