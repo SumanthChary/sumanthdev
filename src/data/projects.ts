@@ -30,6 +30,15 @@ export type Project = {
   hero?: string;
   /** optional closing full-width image */
   closing?: { src: string; caption: string };
+  /** client engagements get a dedicated block on the home page */
+  client?: {
+    /** one-line service framing, e.g. "E-commerce brand build" */
+    serviceLine: string;
+    /** what the client actually walked away with */
+    delivered: string[];
+    /** plain-language outcomes */
+    outcomes: string[];
+  };
 };
 
 export const projects: Project[] = [
@@ -165,6 +174,20 @@ export const projects: Project[] = [
     approach:
       "Logo first, then a Shopify theme built around large product photography and maroon-and-gold rather than the site's usual orange — the client's own colours, deliberately. Collection structure and metadata written for search from day one.",
     quote: "Premium isn't a colour palette. It's how much space you're willing to give the product.",
+    client: {
+      serviceLine: "E-commerce brand + storefront build",
+      delivered: [
+        "Logo & brand mark",
+        "Shopify storefront, custom theme",
+        "Product & collection structure",
+        "On-page SEO from day one",
+      ],
+      outcomes: [
+        "A label that finally looks as premium as its products",
+        "Owner can add products without touching a developer",
+        "Collections built to be found on search, not just browsed",
+      ],
+    },
     gallery: [
       { label: "ADD: PRODUCT PAGE", size: "1000 × 1250 · saree detail" },
       { label: "ADD: HOMEPAGE", size: "1600 × 1000 · storefront" },
@@ -192,6 +215,20 @@ export const projects: Project[] = [
     approach:
       "Rebuilt around a persistent call button and a contact form that actually delivers, with real photos of the crew and equipment instead of stock imagery. Local SEO basics done properly beat anything clever here.",
     quote: "For a local service business, the whole design brief is: make it easy to call.",
+    client: {
+      serviceLine: "Local service site rebuild + local SEO",
+      delivered: [
+        "Full site rebuild, mobile-first",
+        "Persistent call button & working enquiry form",
+        "Real photography of crew and equipment",
+        "Local SEO & Google Business setup",
+      ],
+      outcomes: [
+        "Enquiries land in an inbox instead of disappearing",
+        "Loads and reads properly on the phones customers actually use",
+        "Shows up for the searches people make in a hurry",
+      ],
+    },
     gallery: [
       { label: "ADD: NEW HOMEPAGE", size: "1000 × 1250 · mobile view" },
       { label: "ADD: SERVICES SECTION", size: "1600 × 1000 · rebuilt page" },
