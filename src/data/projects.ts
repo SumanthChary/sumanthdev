@@ -1,8 +1,8 @@
-import postproHero from "@/assets/postpro-hero.asset.json";
-import postproPricing from "@/assets/postpro-pricing.asset.json";
-import postproTryIt from "@/assets/postpro-tryit.asset.json";
-import postproComposer from "@/assets/postpro-composer.asset.json";
-import postproOutput from "@/assets/postpro-output.asset.json";
+import postproHero from "@/assets/media/postpro-hero.webp";
+import postproPricing from "@/assets/media/postpro-pricing.webp";
+import postproTryIt from "@/assets/media/postpro-tryit.webp";
+import postproComposer from "@/assets/media/postpro-composer.webp";
+import postproOutput from "@/assets/media/postpro-output.webp";
 
 export type GalleryItem = { label: string; size: string; src?: string; fit?: "cover" | "contain" };
 
@@ -63,14 +63,14 @@ export const projects: Project[] = [
       "Kept the interactive hero rather than swapping it for a static image — an animated voice-match score does more convincing than a screenshot ever could. Everything behind it is deliberately plain: one accent colour, one typeface pairing, and a pricing page that answers the only two questions people actually have.",
     quote:
       "The product had to sound like you before it could sell itself. Everything else was in service of that.",
-    hero: postproHero.url,
+    hero: postproHero,
     gallery: [
-      { label: "Try-it-live section", size: "UI close-up", src: postproTryIt.url },
-      { label: "Post composer with voice match", size: "Editor view", src: postproComposer.url },
-      { label: "Pricing plans", size: "Plans & checkout", src: postproPricing.url },
+      { label: "Try-it-live section", size: "UI close-up", src: postproTryIt },
+      { label: "Post composer with voice match", size: "Editor view", src: postproComposer },
+      { label: "Pricing plans", size: "Plans & checkout", src: postproPricing },
     ],
     closing: {
-      src: postproOutput.url,
+      src: postproOutput,
       caption: "The output — same person, same topic, written in their own voice.",
     },
   },

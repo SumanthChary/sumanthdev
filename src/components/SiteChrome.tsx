@@ -1,9 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import resume from "@/assets/resume.asset.json";
 
-export const RESUME_URL = resume.url;
+export const RESUME_URL = "/Sumanth-Chary-Resume.pdf";
 export const EMAIL = "sumanthcharyy@gmail.com";
 export const X_HANDLE = "SumanthChary07";
 export const LINKEDIN = "linkedin.com/in/sumanthchary";
