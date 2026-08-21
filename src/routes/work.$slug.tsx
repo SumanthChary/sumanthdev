@@ -130,7 +130,8 @@ function CaseStudy() {
             src={p.hero}
             alt={`${p.title} — product hero`}
             loading="eager"
-            className="aspect-[16/10] w-full sm:aspect-video"
+            auto={!!p.hero}
+            className={p.hero ? "w-full" : "aspect-[16/10] w-full sm:aspect-video"}
           />
         </Reveal>
 
