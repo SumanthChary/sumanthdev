@@ -15,10 +15,12 @@ export function Wordmark({ to = "/" }: { to?: string }) {
   );
 }
 
+export const GITHUB = "github.com/SumanthChary";
+
 const navLinks = [
   { href: "/#work", label: "Work" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#clients", label: "Clients" },
+  { href: "/#client-work", label: "Clients" },
+  { href: "/#lab", label: "Lab" },
   { href: "/#growth", label: "Growth" },
   { href: "/#about", label: "About" },
 ];
@@ -187,6 +189,14 @@ export function ContactSection() {
               className="text-on-dark-muted hover:text-primary"
             >
               {LINKEDIN}
+            </a>
+            <a
+              href={`https://${GITHUB}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-on-dark-muted hover:text-primary"
+            >
+              {GITHUB}
             </a>
           </div>
         </div>

@@ -149,13 +149,14 @@ function CaseStudy() {
           </div>
         </Reveal>
 
-        <Reveal className="grid gap-5 md:grid-cols-2">
+        <Reveal className="grid gap-5 md:grid-cols-2 md:items-start">
           <ImageFrame
             label={g0.label}
             size={g0.size}
             src={g0.src}
             alt={`${p.title} — ${g0.label}`}
-            className="aspect-[4/5] w-full"
+            auto={!!g0.src}
+            className={g0.src ? "w-full" : "aspect-[4/5] w-full"}
           />
           <div className="grid gap-5">
             <ImageFrame
@@ -163,14 +164,16 @@ function CaseStudy() {
               size={g1.size}
               src={g1.src}
               alt={`${p.title} — ${g1.label}`}
-              className="aspect-[16/10] w-full"
+              auto={!!g1.src}
+              className={g1.src ? "w-full" : "aspect-[16/10] w-full"}
             />
             <ImageFrame
               label={g2.label}
               size={g2.size}
               src={g2.src}
               alt={`${p.title} — ${g2.label}`}
-              className="aspect-[16/10] w-full"
+              auto={!!g2.src}
+              className={g2.src ? "w-full" : "aspect-[16/10] w-full"}
             />
           </div>
         </Reveal>

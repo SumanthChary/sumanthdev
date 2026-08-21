@@ -24,8 +24,10 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Sumanth Chary, indie builder, AI SaaS developer, growth marketer, Lovable developer, Telangana, freelance web developer, Google Ads healthcare",
+          "Sumanth Chary, indie AI builder, AI SaaS developer, AI agents developer, growth marketer Hyderabad, Lovable developer, freelance web developer Hyderabad, Google Ads healthcare, Shopify store developer India",
       },
+      { name: "geo.region", content: "IN-TG" },
+      { name: "geo.placename", content: "Hyderabad" },
       { name: "author", content: "Sumanth Chary" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: TITLE },
