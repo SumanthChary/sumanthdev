@@ -752,7 +752,7 @@ function About() {
             “I'd rather ship something real than plan something perfect.”
           </p>
           <p className="max-w-[58ch] text-[1.02rem] leading-[1.75] text-brown">
-            Based in Ranga Reddy, Telangana, I build AI-powered products using AI-native tools —
+            Based in Hyderabad, Telangana, I build AI-powered products using AI-native tools —
             Lovable, Netlify, Supabase, Dodo Payments — and run freelance growth work on the side,
             mostly digital ad campaigns for healthcare clients. I work end to end: design the
             interface, wire up the backend, connect payments, and then go find the people who'll

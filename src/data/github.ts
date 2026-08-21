@@ -21,7 +21,6 @@ export const repos: Repo[] = [
   { name: "particle", blurb: "Canvas particle playground", kind: "Experiment" },
   { name: "handy", blurb: "Hand-gesture control lab", kind: "Experiment" },
   { name: "kanyaraasi", blurb: "Regional content web app", kind: "Web" },
-  { name: "saritha", blurb: "Small business site", kind: "Web" },
   { name: "srivastrika", blurb: "Client storefront", kind: "Client" },
   { name: "nextjs-boilerplate", blurb: "Personal starter kit", kind: "Tooling" },
 ];

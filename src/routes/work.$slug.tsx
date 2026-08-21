@@ -11,7 +11,7 @@ export const Route = createFileRoute("/work/$slug")({
     return project;
   },
   head: ({ params, loaderData }) => {
-    const SITE = "https://sumanthdev.lovable.app";
+    const SITE = "https://sumanthdev.me";
     const url = `${SITE}/work/${params.slug}`;
     const title = loaderData
       ? `${loaderData.title} — ${loaderData.category} case study — Sumanth Chary`
