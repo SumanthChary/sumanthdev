@@ -24,8 +24,10 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Sumanth Chary, indie builder, AI SaaS developer, growth marketer, Lovable developer, Telangana, freelance web developer, Google Ads healthcare",
+          "Sumanth Chary, indie AI builder, AI SaaS developer, AI agents developer, growth marketer Hyderabad, Lovable developer, freelance web developer Hyderabad, Google Ads healthcare, Shopify store developer India",
       },
+      { name: "geo.region", content: "IN-TG" },
+      { name: "geo.placename", content: "Hyderabad" },
       { name: "author", content: "Sumanth Chary" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: TITLE },
@@ -62,9 +64,12 @@ export const Route = createFileRoute("/")({
               jobTitle: "Indie AI Product Builder & Growth Marketer",
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "Hyderabad",
                 addressRegion: "Telangana",
                 addressCountry: "IN",
               },
+              worksFor: { "@type": "Organization", name: "Independent" },
+              homeLocation: { "@type": "Place", name: "Hyderabad, Telangana, India" },
               knowsAbout: [
                 "AI SaaS development",
                 "AI agents and automations",
@@ -190,7 +195,7 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-svh items-center overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-28"
+      className="relative flex items-center overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-28 lg:min-h-svh"
     >
       <div className="wrap grid w-full items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
 
@@ -199,7 +204,7 @@ function Hero() {
             className="animate-fade-rise mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']"
             style={{ animationDelay: "0.05s" }}
           >
-            Indie builder · Growth marketer · Telangana, India
+            Indie builder · Growth marketer · Hyderabad, India
           </p>
           <h1 className="mb-7 mt-5 text-[clamp(2.5rem,6vw,4.8rem)] leading-[1.06]">
             {heroWords.map((w) => word(w))}
@@ -752,7 +757,7 @@ function About() {
             “I'd rather ship something real than plan something perfect.”
           </p>
           <p className="max-w-[58ch] text-[1.02rem] leading-[1.75] text-brown">
-            Based in Ranga Reddy, Telangana, I build AI-powered products using AI-native tools —
+            Based in Hyderabad, Telangana, I build AI-powered products using AI-native tools —
             Lovable, Netlify, Supabase, Dodo Payments — and run freelance growth work on the side,
             mostly digital ad campaigns for healthcare clients. I work end to end: design the
             interface, wire up the backend, connect payments, and then go find the people who'll
