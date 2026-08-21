@@ -64,9 +64,12 @@ export const Route = createFileRoute("/")({
               jobTitle: "Indie AI Product Builder & Growth Marketer",
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "Hyderabad",
                 addressRegion: "Telangana",
                 addressCountry: "IN",
               },
+              worksFor: { "@type": "Organization", name: "Independent" },
+              homeLocation: { "@type": "Place", name: "Hyderabad, Telangana, India" },
               knowsAbout: [
                 "AI SaaS development",
                 "AI agents and automations",
