@@ -6,6 +6,9 @@ export const RESUME_URL = "/Sumanth-Chary-Resume.pdf";
 export const EMAIL = "sumanthcharyy@gmail.com";
 export const X_HANDLE = "SumanthChary07";
 export const LINKEDIN = "linkedin.com/in/sumanthchary";
+export const PHONE = "+91 8125228079";
+export const PHONE_RAW = "+918125228079";
+export const WHATSAPP = "https://wa.me/918125228079";
 
 export function Wordmark({ to = "/" }: { to?: string }) {
   return (
