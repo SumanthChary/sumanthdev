@@ -3,7 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
 import { MagneticLink } from "@/components/MagneticLink";
-import { ContactSection, ResumeButton, SiteFooter, SiteNav } from "@/components/SiteChrome";
+import {
+  ContactSection,
+  PHONE,
+  PHONE_RAW,
+  ResumeButton,
+  SiteFooter,
+  SiteNav,
+  WHATSAPP,
+} from "@/components/SiteChrome";
 import { projects } from "@/data/projects";
 import { GITHUB_URL, repos } from "@/data/github";
 import portrait from "@/assets/media/sumanth-portrait.webp";
@@ -61,6 +69,16 @@ export const Route = createFileRoute("/")({
               url: `${SITE}/`,
               image: OG_IMAGE,
               email: "mailto:sumanthcharyy@gmail.com",
+              telephone: "+918125228079",
+              alternateName: ["Sumanth Dev", "Sumanth"],
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+918125228079",
+                email: "sumanthcharyy@gmail.com",
+                contactType: "business enquiries",
+                areaServed: "IN",
+                availableLanguage: ["English", "Telugu", "Hindi"],
+              },
               jobTitle: "Indie AI Product Builder & Growth Marketer",
               address: {
                 "@type": "PostalAddress",
@@ -161,6 +179,7 @@ function Home() {
         <Ticker />
         <Work />
         <ClientWork />
+        <Proof />
         <Skills />
         <Stack />
         <Lab />
@@ -343,6 +362,116 @@ function Skills() {
               </ul>
             </div>
           ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+const proofPoints = [
+  {
+    stat: "6",
+    label: "products & client sites shipped",
+    note: "Two live storefronts, three AI products, one experiment — all built end to end by me.",
+  },
+  {
+    stat: "100%",
+    label: "solo — design to deployment",
+    note: "No agency layer. The person you message is the person writing the code.",
+  },
+  {
+    stat: "< 24h",
+    label: "reply time on calls & WhatsApp",
+    note: "Reachable on " + PHONE + " during IST hours, every working day.",
+  },
+  {
+    stat: "2 wks",
+    label: "typical first shipped version",
+    note: "A real, live URL you can open — not a slide deck or a Figma file.",
+  },
+];
+
+/** Trust block — the reasons someone should feel safe hiring a solo builder. */
+function Proof() {
+  return (
+    <section
+      id="proof"
+      className="border-t border-border-strong py-[clamp(64px,9vw,110px)]"
+    >
+      <div className="wrap">
+        <Reveal className="mb-10 max-w-[52ch]">
+          <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+            Why people trust me with it
+          </p>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">
+            Everything here is live and checkable.
+          </h2>
+          <p className="mt-4 text-[0.98rem] leading-relaxed text-brown">
+            Every project on this page has a public URL, a GitHub repo, or a business you can ring
+            up. Open them, poke around, then message me — I'd rather be verified than believed.
+          </p>
+        </Reveal>
+
+        <Reveal className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {proofPoints.map((p) => (
+            <div key={p.label} className="bg-background p-6">
+              <p className="m-0 font-serif text-[2.4rem] leading-none text-primary">{p.stat}</p>
+              <p className="mt-3 font-mono text-[0.64rem] uppercase tracking-[0.12em] text-foreground">
+                {p.label}
+              </p>
+              <p className="mt-2.5 text-[0.86rem] leading-snug text-brown">{p.note}</p>
+            </div>
+          ))}
+        </Reveal>
+
+        <Reveal className="mt-8 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="rounded-xl border border-border p-6 sm:p-8">
+            <h3 className="mb-5 font-mono text-[0.64rem] uppercase tracking-[0.14em] text-primary">
+              How a project runs
+            </h3>
+            <ol className="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
+              {[
+                ["01", "One call", "20 minutes on the phone or WhatsApp. What you sell, who buys it, what's in the way."],
+                ["02", "Fixed scope & price", "Written down before anything starts. No hourly surprises."],
+                ["03", "Live in ~2 weeks", "You get a real URL early and watch it improve, not a reveal at the end."],
+                ["04", "Growth after launch", "SEO, ads, and iteration — the part most builders hand back to you."],
+              ].map(([n, t, d]) => (
+                <li key={n} className="flex gap-3.5">
+                  <span className="font-mono text-[0.7rem] text-brown-soft">{n}</span>
+                  <span>
+                    <span className="block text-[1rem] text-foreground">{t}</span>
+                    <span className="mt-1 block text-[0.86rem] leading-snug text-brown">{d}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="flex flex-col justify-between gap-6 rounded-xl border border-primary/40 bg-frame/60 p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <FaceBadge className="size-12 shrink-0" />
+              <p className="m-0 text-[0.98rem] leading-relaxed text-foreground">
+                Prefer talking to typing? Call or WhatsApp me directly — same number, same person,
+                no form in between.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <a
+                href={`tel:${PHONE_RAW}`}
+                className="rounded-full bg-foreground px-6 py-3.5 text-center font-mono text-[0.74rem] tracking-[0.04em] text-background transition-colors duration-300 hover:bg-primary"
+              >
+                {PHONE}
+              </a>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-border-strong px-6 py-3.5 text-center font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
+              >
+                Message on WhatsApp ↗
+              </a>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
