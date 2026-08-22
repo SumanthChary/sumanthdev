@@ -6,6 +6,9 @@ export const RESUME_URL = "/Sumanth-Chary-Resume.pdf";
 export const EMAIL = "sumanthcharyy@gmail.com";
 export const X_HANDLE = "SumanthChary07";
 export const LINKEDIN = "linkedin.com/in/sumanthchary";
+export const PHONE = "+91 8125228079";
+export const PHONE_RAW = "+918125228079";
+export const WHATSAPP = "https://wa.me/918125228079";
 
 export function Wordmark({ to = "/" }: { to?: string }) {
   return (
@@ -153,6 +156,10 @@ export function ContactSection() {
         <h2 className="mb-9 max-w-[15ch] text-[clamp(2.1rem,6vw,4.4rem)] leading-[1.08] text-on-dark">
           Have something worth shipping?
         </h2>
+        <p className="mb-8 max-w-[46ch] text-[0.95rem] leading-relaxed text-on-dark-muted">
+          Tell me what you want built. I reply within a day, usually the same evening IST — and
+          you always talk to me, not an agency account manager.
+        </p>
         <div className="flex flex-col gap-8 border-t border-on-dark-muted/25 pt-8 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
@@ -160,6 +167,15 @@ export function ContactSection() {
               className="inline-block rounded-full bg-primary px-7 py-4 text-center font-mono text-[0.78rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:bg-on-dark"
             >
               Start a project
+            </a>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-on-dark-muted/40 px-7 py-4 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-on-dark transition-colors duration-300 hover:border-primary hover:text-primary"
+            >
+              WhatsApp me
+              <span aria-hidden="true">↗</span>
             </a>
             <a
               href={RESUME_URL}
@@ -173,6 +189,9 @@ export function ContactSection() {
           <div className="flex flex-col gap-2.5 break-words font-mono text-[0.84rem] sm:text-[0.88rem]">
             <a href={`mailto:${EMAIL}`} className="text-on-dark-muted hover:text-primary">
               {EMAIL}
+            </a>
+            <a href={`tel:${PHONE_RAW}`} className="text-on-dark-muted hover:text-primary">
+              {PHONE} — call or WhatsApp
             </a>
             <a
               href={`https://x.com/${X_HANDLE}`}
