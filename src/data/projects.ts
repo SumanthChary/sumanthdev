@@ -3,6 +3,10 @@ import postproPricing from "@/assets/media/postpro-pricing.webp";
 import postproTryIt from "@/assets/media/postpro-tryit.webp";
 import postproComposer from "@/assets/media/postpro-composer.webp";
 import postproOutput from "@/assets/media/postpro-output.webp";
+import vastrikaHome from "@/assets/media/vastrika-home.webp";
+import vastrikaArrivals from "@/assets/media/vastrika-arrivals.webp";
+import vastrikaProduct from "@/assets/media/vastrika-product.webp";
+import vastrikaLogo from "@/assets/media/vastrika-logo.webp";
 
 export type GalleryItem = { label: string; size: string; src?: string; fit?: "cover" | "contain" };
 
