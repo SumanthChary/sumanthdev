@@ -62,6 +62,7 @@ export const projects: Project[] = [
     role: "Design, development, growth",
     stack: "Lovable · Supabase · Dodo Payments",
     statusLong: "Live at postproai.app",
+    liveUrl: "https://postproai.app",
     category: "SaaS product",
     brief:
       "LinkedIn rewards consistent, well-written posts — but most people don't have the time or the voice for it. PostPro AI needed to sound like the person using it, not like a template generator, and needed the landing page itself to prove that in the first ten seconds.",
@@ -166,14 +167,15 @@ export const projects: Project[] = [
     titleLead: "Sri",
     titleAccent: "Vastrika",
     description:
-      "Premium e-commerce build for an Indian nighties & sarees label. Logo, Shopify, SEO.",
+      "Premium e-commerce build for an Indian nighties & sarees label — live at srivastrika.store.",
     tag: "Client — E-commerce",
     status: "Live",
     live: true,
     tint: "--cover-vastrika",
     role: "Brand, storefront, SEO",
     stack: "Shopify · Custom theme",
-    statusLong: "Live storefront",
+    statusLong: "Live at srivastrika.store",
+    liveUrl: "https://srivastrika.store",
     category: "Client — e-commerce",
     brief:
       "A growing nighties and sarees label with real products and no storefront to match them. The brand needed to look premium in a category where most competitors look like a catalogue dump.",
@@ -194,11 +196,16 @@ export const projects: Project[] = [
         "Collections built to be found on search, not just browsed",
       ],
     },
+    hero: vastrikaHome,
     gallery: [
-      { label: "ADD: PRODUCT PAGE", size: "1000 × 1250 · saree detail" },
-      { label: "ADD: HOMEPAGE", size: "1600 × 1000 · storefront" },
-      { label: "ADD: BRAND MARK", size: "1600 × 1000 · logo on stock" },
+      { label: "Product page — Rosewood Rose Kanchipuram", size: "Detail, care & COD", src: vastrikaProduct },
+      { label: "New arrivals grid", size: "Collection view", src: vastrikaArrivals },
+      { label: "Brand mark", size: "Logo & wordmark", src: vastrikaLogo, fit: "contain" },
     ],
+    closing: {
+      src: vastrikaLogo,
+      caption: "The mark the whole storefront was built around.",
+    },
   },
   {
     slug: "renuka-septic",
