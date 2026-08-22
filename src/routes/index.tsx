@@ -183,7 +183,6 @@ function Home() {
         <Skills />
         <Stack />
         <Lab />
-        <Clients />
         <Growth />
         <About />
         <ContactSection />
@@ -687,36 +686,6 @@ function ClientWork() {
           >
             Work with me
           </a>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-const clientLogos = [
-  "Sri Vastrika",
-  "Renuka Septic",
-  "PostPro AI",
-  "FlipScan AI",
-  "Healthcare Client",
-];
-
-function Clients() {
-  return (
-    <section id="clients" className="border-y border-border py-11">
-      <div className="wrap">
-        <p className="mono-label mb-6 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-          Clients & products
-        </p>
-        <Reveal className="flex flex-wrap items-center gap-5">
-          {clientLogos.map((c) => (
-            <ImageFrame
-              key={c}
-              label={c}
-              size="logo, white bg"
-              className="h-16 w-[150px] shrink-0 bg-background text-[0.58rem]"
-            />
-          ))}
         </Reveal>
       </div>
     </section>
