@@ -32,6 +32,8 @@ export type Project = {
   beforeAfter?: boolean;
   /** real hero screenshot for the case study + social preview */
   hero?: string;
+  /** public URL people can open and verify */
+  liveUrl?: string;
   /** optional closing full-width image */
   closing?: { src: string; caption: string };
   /** client engagements get a dedicated block on the home page */
