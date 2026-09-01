@@ -138,9 +138,9 @@ const tickerItems = [
   { label: "PostPro AI — Live", live: true },
   { label: "FlipScan AI — Growing", live: false },
   { label: "LegalDeep AI — Building", live: false },
-  { label: "Sri Vastrika — Shipped in Lovable", live: true },
-  { label: "Renuka Septic — Site rebuilt", live: true },
-  { label: "3 client projects active", live: true },
+  { label: "Sri Vastrika — Shopify store, live", live: true },
+  { label: "30-min intro calls open", live: true },
+  { label: "Booking new client work", live: true },
 ];
 
 function Dot({ live }: { live: boolean }) {
