@@ -529,7 +529,7 @@ function Work() {
             <h2 className="mt-3.5 text-[clamp(2rem,4vw,3rem)]">Work</h2>
           </div>
           <p className="m-0 max-w-[34ch] text-[0.95rem] leading-relaxed text-brown">
-            Six things I've built recently. Click a project to open its case study.
+            {projects.length} things I've built recently. Click a project to open its case study.
           </p>
         </Reveal>
 
