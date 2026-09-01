@@ -9,6 +9,7 @@ export const LINKEDIN = "linkedin.com/in/sumanthchary";
 export const PHONE = "+91 8125228079";
 export const PHONE_RAW = "+918125228079";
 export const WHATSAPP = "https://wa.me/918125228079";
+export const CALENDLY = "https://calendly.com/sumanthcharyy/30min";
 
 export function Wordmark({ to = "/" }: { to?: string }) {
   return (
