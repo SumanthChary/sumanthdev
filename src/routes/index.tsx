@@ -450,11 +450,19 @@ function Proof() {
             <div className="flex items-start gap-4">
               <FaceBadge className="size-12 shrink-0" />
               <p className="m-0 text-[0.98rem] leading-relaxed text-foreground">
-                Prefer talking to typing? Call or WhatsApp me directly — same number, same person,
-                no form in between.
+                Prefer talking to typing? Book a free 30-minute call on my calendar — or just
+                ring me. Same number, same person, no form in between.
               </p>
             </div>
             <div className="flex flex-col gap-3">
+              <a
+                href={CALENDLY}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-primary px-6 py-3.5 text-center font-mono text-[0.74rem] uppercase tracking-[0.04em] text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
+              >
+                Book a 30-min call ↗
+              </a>
               <a
                 href={`tel:${PHONE_RAW}`}
                 className="rounded-full bg-foreground px-6 py-3.5 text-center font-mono text-[0.74rem] tracking-[0.04em] text-background transition-colors duration-300 hover:bg-primary"
