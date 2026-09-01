@@ -211,48 +211,6 @@ export const projects: Project[] = [
       caption: "The mark the whole storefront was built around.",
     },
   },
-  {
-    slug: "renuka-septic",
-    index: "06",
-    title: "Renuka Septic Tank Cleaners",
-    titleLead: "Renuka",
-    titleAccent: "Septic",
-    description:
-      "Full site rebuild for a local service business — working contact flow, real photography.",
-    tag: "Client — Local Service",
-    status: "Shipped",
-    live: true,
-    tint: "--cover-renuka",
-    role: "Design, development, local SEO",
-    stack: "Lovable · Netlify",
-    statusLong: "Shipped",
-    category: "Client — local service",
-    brief:
-      "A local service business whose old site didn't load properly on a phone and had no working way to call or enquire — the two things every visitor was there to do.",
-    approach:
-      "Rebuilt around a persistent call button and a contact form that actually delivers, with real photos of the crew and equipment instead of stock imagery. Local SEO basics done properly beat anything clever here.",
-    quote: "For a local service business, the whole design brief is: make it easy to call.",
-    client: {
-      serviceLine: "Local service site rebuild + local SEO",
-      delivered: [
-        "Full site rebuild, mobile-first",
-        "Persistent call button & working enquiry form",
-        "Real photography of crew and equipment",
-        "Local SEO & Google Business setup",
-      ],
-      outcomes: [
-        "Enquiries land in an inbox instead of disappearing",
-        "Loads and reads properly on the phones customers actually use",
-        "Shows up for the searches people make in a hurry",
-      ],
-    },
-    gallery: [
-      { label: "ADD: NEW HOMEPAGE", size: "1000 × 1250 · mobile view" },
-      { label: "ADD: SERVICES SECTION", size: "1600 × 1000 · rebuilt page" },
-      { label: "ADD: TEAM PHOTO", size: "1600 × 1000 · crew & equipment" },
-    ],
-    beforeAfter: true,
-  },
 ];
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
