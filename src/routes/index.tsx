@@ -4,6 +4,7 @@ import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
 import { MagneticLink } from "@/components/MagneticLink";
 import {
+  CALENDLY,
   ContactSection,
   PHONE,
   PHONE_RAW,
@@ -17,6 +18,8 @@ import { GITHUB_URL, repos } from "@/data/github";
 import portrait from "@/assets/media/sumanth-portrait.webp";
 import desk from "@/assets/media/sumanth-desk.webp";
 import face from "@/assets/media/sumanth-face.webp";
+import luffyWalk from "@/assets/media/luffy-walk.webp";
+import luffyIdle from "@/assets/media/luffy-idle.webp";
 
 const SITE = "https://sumanthdev.me";
 const OG_IMAGE = `${SITE}/og-cover.jpg`;
