@@ -700,6 +700,7 @@ function ClientWork() {
                     {p.status}
                   </span>
                 </div>
+                </div>
               </article>
             </Reveal>
           ))}
