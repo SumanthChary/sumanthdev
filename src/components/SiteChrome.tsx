@@ -205,6 +205,14 @@ export function ContactSection() {
               {PHONE} — call or WhatsApp
             </a>
             <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-on-dark-muted hover:text-primary"
+            >
+              calendly.com/sumanthcharyy — 30 min
+            </a>
+            <a
               href={`https://x.com/${X_HANDLE}`}
               target="_blank"
               rel="noopener noreferrer"
