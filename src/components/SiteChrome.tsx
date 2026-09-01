@@ -158,16 +158,26 @@ export function ContactSection() {
           Have something worth shipping?
         </h2>
         <p className="mb-8 max-w-[46ch] text-[0.95rem] leading-relaxed text-on-dark-muted">
-          Tell me what you want built. I reply within a day, usually the same evening IST — and
-          you always talk to me, not an agency account manager.
+          Tell me what you want built. Grab a 30-minute call on my calendar, or message me — I
+          reply within a day, usually the same evening IST, and you always talk to me, not an
+          agency account manager.
         </p>
         <div className="flex flex-col gap-8 border-t border-on-dark-muted/25 pt-8 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
-              href={`mailto:${EMAIL}`}
-              className="inline-block rounded-full bg-primary px-7 py-4 text-center font-mono text-[0.78rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:bg-on-dark"
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-center font-mono text-[0.78rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:bg-on-dark"
             >
-              Start a project
+              Book a 30-min call
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-block rounded-full border border-on-dark-muted/40 px-7 py-4 text-center font-mono text-[0.78rem] uppercase tracking-[0.05em] text-on-dark transition-colors duration-300 hover:border-primary hover:text-primary"
+            >
+              Email me
             </a>
             <a
               href={WHATSAPP}
