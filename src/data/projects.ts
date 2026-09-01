@@ -40,6 +40,10 @@ export type Project = {
   client?: {
     /** one-line service framing, e.g. "E-commerce brand build" */
     serviceLine: string;
+    /** platform badge, e.g. "Shopify" */
+    platform?: string;
+    /** brand mark shown on the home-page client card */
+    logo?: string;
     /** what the client actually walked away with */
     delivered: string[];
     /** plain-language outcomes */
