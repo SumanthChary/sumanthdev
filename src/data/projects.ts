@@ -40,6 +40,10 @@ export type Project = {
   client?: {
     /** one-line service framing, e.g. "E-commerce brand build" */
     serviceLine: string;
+    /** platform badge, e.g. "Shopify" */
+    platform?: string;
+    /** brand mark shown on the home-page client card */
+    logo?: string;
     /** what the client actually walked away with */
     delivered: string[];
     /** plain-language outcomes */
@@ -167,32 +171,35 @@ export const projects: Project[] = [
     titleLead: "Sri",
     titleAccent: "Vastrika",
     description:
-      "Premium e-commerce build for an Indian nighties & sarees label — live at srivastrika.store.",
-    tag: "Client — E-commerce",
+      "Shopify storefront + brand identity for an Indian nighties & sarees label — live at srivastrika.store.",
+    tag: "Client — Shopify store",
     status: "Live",
     live: true,
     tint: "--cover-vastrika",
-    role: "Brand, storefront, SEO",
-    stack: "Shopify · Custom theme",
+    role: "Brand, Shopify storefront, SEO",
+    stack: "Shopify · Custom theme · Liquid",
     statusLong: "Live at srivastrika.store",
     liveUrl: "https://srivastrika.store",
-    category: "Client — e-commerce",
+    category: "Client — Shopify e-commerce",
     brief:
-      "A growing nighties and sarees label with real products and no storefront to match them. The brand needed to look premium in a category where most competitors look like a catalogue dump.",
+      "A growing nighties and sarees label with real products and no storefront to match them. The brand needed to look premium on Shopify, in a category where most competitors look like a catalogue dump.",
     approach:
-      "Logo first, then a Shopify theme built around large product photography and maroon-and-gold rather than the site's usual orange — the client's own colours, deliberately. Collection structure and metadata written for search from day one.",
+      "Logo first, then a custom Shopify theme built around large product photography and maroon-and-gold rather than the site's usual orange — the client's own colours, deliberately. Collections, variants, COD and shipping rules configured so the owner runs the store alone; metadata written for search from day one.",
     quote: "Premium isn't a colour palette. It's how much space you're willing to give the product.",
     client: {
-      serviceLine: "E-commerce brand + storefront build",
+      serviceLine: "Shopify store build + brand identity",
+      platform: "Shopify",
+      logo: vastrikaLogo,
       delivered: [
         "Logo & brand mark",
-        "Shopify storefront, custom theme",
-        "Product & collection structure",
+        "Custom Shopify theme, built not bought",
+        "Product, variant & collection structure",
+        "COD, shipping & checkout configured",
         "On-page SEO from day one",
       ],
       outcomes: [
         "A label that finally looks as premium as its products",
-        "Owner can add products without touching a developer",
+        "Owner adds products and runs orders without a developer",
         "Collections built to be found on search, not just browsed",
       ],
     },
@@ -206,48 +213,6 @@ export const projects: Project[] = [
       src: vastrikaLogo,
       caption: "The mark the whole storefront was built around.",
     },
-  },
-  {
-    slug: "renuka-septic",
-    index: "06",
-    title: "Renuka Septic Tank Cleaners",
-    titleLead: "Renuka",
-    titleAccent: "Septic",
-    description:
-      "Full site rebuild for a local service business — working contact flow, real photography.",
-    tag: "Client — Local Service",
-    status: "Shipped",
-    live: true,
-    tint: "--cover-renuka",
-    role: "Design, development, local SEO",
-    stack: "Lovable · Netlify",
-    statusLong: "Shipped",
-    category: "Client — local service",
-    brief:
-      "A local service business whose old site didn't load properly on a phone and had no working way to call or enquire — the two things every visitor was there to do.",
-    approach:
-      "Rebuilt around a persistent call button and a contact form that actually delivers, with real photos of the crew and equipment instead of stock imagery. Local SEO basics done properly beat anything clever here.",
-    quote: "For a local service business, the whole design brief is: make it easy to call.",
-    client: {
-      serviceLine: "Local service site rebuild + local SEO",
-      delivered: [
-        "Full site rebuild, mobile-first",
-        "Persistent call button & working enquiry form",
-        "Real photography of crew and equipment",
-        "Local SEO & Google Business setup",
-      ],
-      outcomes: [
-        "Enquiries land in an inbox instead of disappearing",
-        "Loads and reads properly on the phones customers actually use",
-        "Shows up for the searches people make in a hurry",
-      ],
-    },
-    gallery: [
-      { label: "ADD: NEW HOMEPAGE", size: "1000 × 1250 · mobile view" },
-      { label: "ADD: SERVICES SECTION", size: "1600 × 1000 · rebuilt page" },
-      { label: "ADD: TEAM PHOTO", size: "1600 × 1000 · crew & equipment" },
-    ],
-    beforeAfter: true,
   },
 ];
 
