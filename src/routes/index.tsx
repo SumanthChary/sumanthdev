@@ -369,9 +369,9 @@ function Skills() {
 
 const proofPoints = [
   {
-    stat: "6",
-    label: "products & client sites shipped",
-    note: "Two live storefronts, three AI products, one experiment — all built end to end by me.",
+    stat: "5",
+    label: "products & client builds shipped",
+    note: "A live Shopify storefront, three AI products, one experiment — all built end to end by me.",
   },
   {
     stat: "100%",
