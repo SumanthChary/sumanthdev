@@ -616,12 +616,43 @@ function ClientWork() {
           </p>
         </Reveal>
 
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-5">
           {clientProjects.map((p, i) => (
             <Reveal key={p.slug} delay={i * 90}>
-              <article className="flex h-full flex-col rounded-xl border border-border bg-frame/50 p-6 transition-colors duration-300 hover:border-primary sm:p-8">
+              <article className="grid h-full gap-7 rounded-xl border border-border bg-frame/50 p-6 transition-colors duration-300 hover:border-primary sm:p-8 lg:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:gap-10">
+                <div className="flex flex-col gap-4">
+                  {p.client!.logo && (
+                    <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-border bg-background p-6">
+                      <img
+                        src={p.client!.logo}
+                        alt={`${p.title} brand mark`}
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-full w-full object-contain"
+                      />
+                    </div>
+                  )}
+                  {p.client!.platform && (
+                    <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
+                      Built on {p.client!.platform}
+                    </span>
+                  )}
+                  {p.liveUrl && (
+                    <a
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-fit border-b border-border-strong pb-1 font-mono text-[0.7rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                    >
+                      Visit the live store ↗
+                    </a>
+                  )}
+                </div>
+
+                <div className="flex min-w-0 flex-col">
                 <p className="mono-label mb-3 text-brown-soft">{p.client!.serviceLine}</p>
                 <h3 className="mb-4 text-[clamp(1.5rem,3vw,2rem)] leading-tight">{p.title}</h3>
+
 
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
