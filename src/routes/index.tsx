@@ -648,6 +648,17 @@ function ClientWork() {
             <Reveal key={p.slug} delay={i * 90}>
               <article className="grid h-full gap-7 rounded-xl border border-border bg-frame/50 p-6 transition-colors duration-300 hover:border-primary sm:p-8 lg:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:gap-10">
                 <div className="flex flex-col gap-4">
+                  {p.hero && (
+                    <div className="overflow-hidden rounded-lg border border-border bg-frame">
+                      <img
+                        src={p.hero}
+                        alt={`${p.title} storefront homepage`}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-52 w-full object-cover object-top lg:h-64"
+                      />
+                    </div>
+                  )}
                   {p.client!.platform === "Shopify" && (
                     <div className="flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3.5">
                       <ShopifyMark className="size-7 shrink-0" />
