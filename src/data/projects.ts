@@ -171,30 +171,30 @@ export const projects: Project[] = [
     titleLead: "Sri",
     titleAccent: "Vastrika",
     description:
-      "Shopify storefront + brand identity for an Indian nighties & sarees label — live at srivastrika.store.",
-    tag: "Client — Shopify store",
+      "Custom-designed and developed storefront for an Indian nighties & sarees label, with Shopify powering checkout, inventory and payments — live at srivastrika.store.",
+    tag: "Client — custom store build",
     status: "Live",
     live: true,
     tint: "--cover-vastrika",
-    role: "Brand, Shopify storefront, SEO",
-    stack: "Shopify · Custom theme · Liquid",
+    role: "Brand, storefront design & build, SEO",
+    stack: "Custom front end · Shopify backend · Liquid",
     statusLong: "Live at srivastrika.store",
     liveUrl: "https://srivastrika.store",
-    category: "Client — Shopify e-commerce",
+    category: "Client — e-commerce",
     brief:
-      "A growing nighties and sarees label with real products and no storefront to match them. The brand needed to look premium on Shopify, in a category where most competitors look like a catalogue dump.",
+      "A growing nighties and sarees label with real products and no storefront to match them. They didn't want a template store — they wanted the label to look premium in a category where most competitors look like a catalogue dump.",
     approach:
-      "Logo first, then a custom Shopify theme built around large product photography and maroon-and-gold rather than the site's usual orange — the client's own colours, deliberately. Collections, variants, COD and shipping rules configured so the owner runs the store alone; metadata written for search from day one.",
+      "Logo first, then the storefront itself — designed and built by us, page by page, around large product photography and the client's own maroon-and-gold. Shopify sits behind it doing what it's genuinely good at: checkout, inventory, variants, COD and payments. The look is ours; the plumbing is battle-tested, so the owner runs the whole store alone.",
     quote: "Premium isn't a colour palette. It's how much space you're willing to give the product.",
     client: {
-      serviceLine: "Shopify store build + brand identity",
+      serviceLine: "Custom storefront design & build · Shopify backend",
       platform: "Shopify",
       logo: vastrikaLogo,
       delivered: [
-        "Logo & brand mark",
-        "Custom Shopify theme, built not bought",
-        "Product, variant & collection structure",
-        "COD, shipping & checkout configured",
+        "Logo & brand identity",
+        "Storefront designed and coded by us — not a bought theme",
+        "Shopify backend: inventory, variants, orders",
+        "Checkout, COD, payments & shipping rules configured",
         "On-page SEO from day one",
       ],
       outcomes: [
@@ -202,7 +202,14 @@ export const projects: Project[] = [
         "Owner adds products and runs orders without a developer",
         "Collections built to be found on search, not just browsed",
       ],
+      testimonial: {
+        quote:
+          "We came with photos and a name. He gave us a store that looks like a brand — and I can run it myself. Orders started the same week we went live.",
+        author: "Owner, Sri Vastrika",
+        role: "Nighties & sarees label, Hyderabad",
+      },
     },
+
     hero: vastrikaHome,
     gallery: [
       { label: "Product page — Rosewood Rose Kanchipuram", size: "Detail, care & COD", src: vastrikaProduct },
