@@ -48,7 +48,10 @@ export type Project = {
     delivered: string[];
     /** plain-language outcomes */
     outcomes: string[];
+    /** short client review shown on the home page */
+    testimonial?: { quote: string; author: string; role: string };
   };
+
 };
 
 export const projects: Project[] = [
