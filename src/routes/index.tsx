@@ -608,6 +608,22 @@ function Work() {
   );
 }
 
+/** Minimal Shopify bag mark, drawn in currentColor-free brand green. */
+function ShopifyMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      <path
+        fill="oklch(0.63 0.14 145)"
+        d="M15.3 3.4a.5.5 0 0 0-.45-.4c-.2 0-1.6.1-1.6.1l-1.1-1.1a.5.5 0 0 0-.55-.1L10.9 2.3C10.5 1.2 9.8.5 8.9.5c-1.6 0-2.9 1.9-3.4 4.3l-1.4.4c-.7.2-.75.25-.85 1L2 20.6l12.1 2.3 5.2-1.3S15.35 3.7 15.3 3.4ZM10.1 2.6l-1.4.45C8.8 1.9 9.2 1.4 9.6 1.4c.3.2.45.7.5 1.2Zm-2 .65-2 .6c.35-1.5 1.1-2.7 1.9-3.1-.1.5-.15 1.35 0 2.5Z"
+      />
+      <path
+        fill="oklch(0.98 0 0)"
+        d="M13.4 10.6l-.7 2.1s-.7-.35-1.5-.3c-1.2.05-1.2.8-1.2.95.05.9 2.5 1.15 2.65 3.35.1 1.7-.9 2.9-2.4 3-1.8.1-2.8-.95-2.8-.95l.4-1.6s1 .75 1.8.7c.5-.05.7-.45.7-.75-.1-1.2-2.05-1.1-2.2-3.1-.1-1.7 1-3.4 3.4-3.55 1-.05 1.85.15 1.85.15Z"
+      />
+    </svg>
+  );
+}
+
 /** Client engagements, framed for people deciding whether to hire me. */
 function ClientWork() {
   const clientProjects = projects.filter((p) => p.client);
