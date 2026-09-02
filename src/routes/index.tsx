@@ -608,6 +608,22 @@ function Work() {
   );
 }
 
+/** Minimal Shopify bag mark, drawn in currentColor-free brand green. */
+function ShopifyMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      <path
+        fill="oklch(0.63 0.14 145)"
+        d="M15.3 3.4a.5.5 0 0 0-.45-.4c-.2 0-1.6.1-1.6.1l-1.1-1.1a.5.5 0 0 0-.55-.1L10.9 2.3C10.5 1.2 9.8.5 8.9.5c-1.6 0-2.9 1.9-3.4 4.3l-1.4.4c-.7.2-.75.25-.85 1L2 20.6l12.1 2.3 5.2-1.3S15.35 3.7 15.3 3.4ZM10.1 2.6l-1.4.45C8.8 1.9 9.2 1.4 9.6 1.4c.3.2.45.7.5 1.2Zm-2 .65-2 .6c.35-1.5 1.1-2.7 1.9-3.1-.1.5-.15 1.35 0 2.5Z"
+      />
+      <path
+        fill="oklch(0.98 0 0)"
+        d="M13.4 10.6l-.7 2.1s-.7-.35-1.5-.3c-1.2.05-1.2.8-1.2.95.05.9 2.5 1.15 2.65 3.35.1 1.7-.9 2.9-2.4 3-1.8.1-2.8-.95-2.8-.95l.4-1.6s1 .75 1.8.7c.5-.05.7-.45.7-.75-.1-1.2-2.05-1.1-2.2-3.1-.1-1.7 1-3.4 3.4-3.55 1-.05 1.85.15 1.85.15Z"
+      />
+    </svg>
+  );
+}
+
 /** Client engagements, framed for people deciding whether to hire me. */
 function ClientWork() {
   const clientProjects = projects.filter((p) => p.client);
@@ -632,18 +648,29 @@ function ClientWork() {
             <Reveal key={p.slug} delay={i * 90}>
               <article className="grid h-full gap-7 rounded-xl border border-border bg-frame/50 p-6 transition-colors duration-300 hover:border-primary sm:p-8 lg:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:gap-10">
                 <div className="flex flex-col gap-4">
-                  {p.client!.logo && (
-                    <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-border bg-background p-6">
+                  {p.hero && (
+                    <div className="overflow-hidden rounded-lg border border-border bg-frame">
                       <img
-                        src={p.client!.logo}
-                        alt={`${p.title} brand mark`}
+                        src={p.hero}
+                        alt={`${p.title} storefront homepage`}
                         loading="lazy"
                         decoding="async"
-                        className="max-h-full w-full object-contain"
+                        className="h-52 w-full object-cover object-top lg:h-64"
                       />
                     </div>
                   )}
-                  {p.client!.platform && (
+                  {p.client!.platform === "Shopify" && (
+                    <div className="flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3.5">
+                      <ShopifyMark className="size-7 shrink-0" />
+                      <span className="font-mono text-[0.66rem] uppercase leading-tight tracking-[0.1em] text-brown">
+                        Built on Shopify
+                        <small className="mt-1 block text-[0.92em] normal-case tracking-[0.02em] text-brown-soft">
+                          Custom theme, not a template
+                        </small>
+                      </span>
+                    </div>
+                  )}
+                  {p.client!.platform && p.client!.platform !== "Shopify" && (
                     <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
                       Built on {p.client!.platform}
                     </span>

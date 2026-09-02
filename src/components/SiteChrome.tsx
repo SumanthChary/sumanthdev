@@ -198,19 +198,8 @@ export function ContactSection() {
             </a>
           </div>
           <div className="flex flex-col gap-2.5 break-words font-mono text-[0.84rem] sm:text-[0.88rem]">
-            <a href={`mailto:${EMAIL}`} className="text-on-dark-muted hover:text-primary">
-              {EMAIL}
-            </a>
             <a href={`tel:${PHONE_RAW}`} className="text-on-dark-muted hover:text-primary">
-              {PHONE} — call or WhatsApp
-            </a>
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-on-dark-muted hover:text-primary"
-            >
-              calendly.com/sumanthcharyy — 30 min
+              {PHONE} — call direct
             </a>
             <a
               href={`https://x.com/${X_HANDLE}`}
