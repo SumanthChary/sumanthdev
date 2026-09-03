@@ -934,15 +934,26 @@ function About() {
     <section id="about" className="py-[clamp(80px,10vw,120px)]">
       <div className="wrap grid items-center gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-[70px]">
         <Reveal className="relative">
-          <ImageFrame
-            label="Sumanth Chary at work"
-            src={desk}
-            alt="Sumanth Chary working on a laptop by a café window"
-            position="center 30%"
-            className="aspect-[4/5] w-full max-w-[260px] lg:max-w-none"
-          />
-          <FaceBadge className="absolute -bottom-4 left-[200px] size-12 shadow-[var(--shadow-float)] lg:left-auto lg:right-[-14px]" />
+          <div className="rounded-xl border border-dashed border-border-strong bg-frame p-6">
+            <FaceBadge className="size-16" />
+            <ul className="m-0 mt-6 flex list-none flex-col gap-0 p-0">
+              {[
+                ["Based in", "Hyderabad, IST"],
+                ["Works", "End to end, solo"],
+                ["Ships in", "Weeks, not quarters"],
+                ["You talk to", "Me. Always."],
+              ].map(([k, v]) => (
+                <li key={k} className="border-b border-border py-3 last:border-b-0">
+                  <span className="block font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
+                    {k}
+                  </span>
+                  <span className="mt-1 block text-[0.95rem] text-foreground">{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
+
         <Reveal delay={120}>
           <p className="mono-label mb-4 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
             About
