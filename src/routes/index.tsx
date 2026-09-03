@@ -752,6 +752,31 @@ function ClientWork() {
                   </div>
                 </div>
 
+                {p.client!.testimonial && (
+                  <figure className="mt-7 rounded-lg border border-border bg-background p-5 sm:p-6">
+                    <div className="mb-3 flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span className="text-brown-soft">Client review</span>
+                    </div>
+                    <blockquote className="m-0 font-serif text-[1.12rem] italic leading-[1.55] text-foreground sm:text-[1.22rem]">
+                      “{p.client!.testimonial.quote}”
+                    </blockquote>
+                    <figcaption className="mt-4 flex items-center gap-3 font-mono text-[0.66rem] uppercase tracking-[0.06em] text-brown">
+                      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border bg-frame text-[0.85rem] not-italic">
+                        🪡
+                      </span>
+                      <span>
+                        {p.client!.testimonial.author}
+                        <small className="mt-0.5 block text-[0.92em] normal-case tracking-[0.02em] text-brown-soft">
+                          {p.client!.testimonial.role}
+                        </small>
+                      </span>
+                    </figcaption>
+                  </figure>
+                )}
+
+
+
                 <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
                   <Link
                     to="/work/$slug"
