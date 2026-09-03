@@ -15,8 +15,6 @@ import {
 } from "@/components/SiteChrome";
 import { projects } from "@/data/projects";
 import { GITHUB_URL, repos } from "@/data/github";
-import portrait from "@/assets/media/sumanth-portrait.webp";
-import desk from "@/assets/media/sumanth-desk.webp";
 import face from "@/assets/media/sumanth-face.webp";
 import luffyWalk from "@/assets/media/luffy-walk.webp";
 import luffyIdle from "@/assets/media/luffy-idle.webp";
@@ -256,16 +254,42 @@ function Hero() {
 
         </div>
         <Reveal className="relative order-1 lg:order-2" delay={200}>
-          <ImageFrame
-            label="Sumanth Chary"
-            src={portrait}
-            alt="Sumanth Chary, indie AI builder, working by a window"
-            loading="eager"
-            position="center 28%"
-            className="aspect-[16/11] w-full sm:aspect-[4/5]"
-          />
-          <FaceBadge className="absolute -bottom-4 -left-3 size-14 shadow-[var(--shadow-float)] sm:size-16 lg:-left-6" />
+          <div className="relative overflow-hidden rounded-xl border border-border-strong bg-frame p-7 shadow-[var(--shadow-float)] sm:p-8">
+            <div className="flex items-center gap-4">
+              <FaceBadge className="size-16 shrink-0 sm:size-20" />
+              <div>
+                <p className="m-0 font-serif text-[1.5rem] italic leading-tight text-foreground">
+                  Sumanth Chary
+                </p>
+                <p className="m-0 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-brown-soft">
+                  Hyderabad, India · IST
+                </p>
+              </div>
+            </div>
+            <dl className="mt-7 grid grid-cols-2 gap-x-5 gap-y-5 border-t border-border pt-6">
+              {[
+                { k: "Products shipped", v: "5" },
+                { k: "Reply time", v: "< 24h" },
+                { k: "Built solo", v: "100%" },
+                { k: "Open slots", v: "2 / month" },
+              ].map((s) => (
+                <div key={s.k}>
+                  <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
+                    {s.k}
+                  </dt>
+                  <dd className="m-0 mt-1 font-serif text-[1.6rem] leading-none text-foreground">
+                    {s.v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-7 border-t border-border pt-5 text-[0.9rem] leading-relaxed text-brown">
+              Design, code, payments and growth — same person from the first call to the launch
+              tweet.
+            </p>
+          </div>
         </Reveal>
+
       </div>
     </section>
   );
@@ -663,13 +687,14 @@ function ClientWork() {
                     <div className="flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3.5">
                       <ShopifyMark className="size-7 shrink-0" />
                       <span className="font-mono text-[0.66rem] uppercase leading-tight tracking-[0.1em] text-brown">
-                        Built on Shopify
+                        Shopify backend
                         <small className="mt-1 block text-[0.92em] normal-case tracking-[0.02em] text-brown-soft">
-                          Custom theme, not a template
+                          Front end designed &amp; built by us
                         </small>
                       </span>
                     </div>
                   )}
+
                   {p.client!.platform && p.client!.platform !== "Shopify" && (
                     <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
                       Built on {p.client!.platform}
@@ -724,6 +749,31 @@ function ClientWork() {
                     </ul>
                   </div>
                 </div>
+
+                {p.client!.testimonial && (
+                  <figure className="mt-7 rounded-lg border border-border bg-background p-5 sm:p-6">
+                    <div className="mb-3 flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
+                      <span aria-hidden="true">★★★★★</span>
+                      <span className="text-brown-soft">Client review</span>
+                    </div>
+                    <blockquote className="m-0 font-serif text-[1.12rem] italic leading-[1.55] text-foreground sm:text-[1.22rem]">
+                      “{p.client!.testimonial.quote}”
+                    </blockquote>
+                    <figcaption className="mt-4 flex items-center gap-3 font-mono text-[0.66rem] uppercase tracking-[0.06em] text-brown">
+                      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border bg-frame text-[0.85rem] not-italic">
+                        🪡
+                      </span>
+                      <span>
+                        {p.client!.testimonial.author}
+                        <small className="mt-0.5 block text-[0.92em] normal-case tracking-[0.02em] text-brown-soft">
+                          {p.client!.testimonial.role}
+                        </small>
+                      </span>
+                    </figcaption>
+                  </figure>
+                )}
+
+
 
                 <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
                   <Link
@@ -908,15 +958,26 @@ function About() {
     <section id="about" className="py-[clamp(80px,10vw,120px)]">
       <div className="wrap grid items-center gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-[70px]">
         <Reveal className="relative">
-          <ImageFrame
-            label="Sumanth Chary at work"
-            src={desk}
-            alt="Sumanth Chary working on a laptop by a café window"
-            position="center 30%"
-            className="aspect-[4/5] w-full max-w-[260px] lg:max-w-none"
-          />
-          <FaceBadge className="absolute -bottom-4 left-[200px] size-12 shadow-[var(--shadow-float)] lg:left-auto lg:right-[-14px]" />
+          <div className="rounded-xl border border-dashed border-border-strong bg-frame p-6">
+            <FaceBadge className="size-16" />
+            <ul className="m-0 mt-6 flex list-none flex-col gap-0 p-0">
+              {[
+                ["Based in", "Hyderabad, IST"],
+                ["Works", "End to end, solo"],
+                ["Ships in", "Weeks, not quarters"],
+                ["You talk to", "Me. Always."],
+              ].map(([k, v]) => (
+                <li key={k} className="border-b border-border py-3 last:border-b-0">
+                  <span className="block font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
+                    {k}
+                  </span>
+                  <span className="mt-1 block text-[0.95rem] text-foreground">{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
+
         <Reveal delay={120}>
           <p className="mono-label mb-4 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
             About
