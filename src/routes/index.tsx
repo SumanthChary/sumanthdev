@@ -689,13 +689,14 @@ function ClientWork() {
                     <div className="flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3.5">
                       <ShopifyMark className="size-7 shrink-0" />
                       <span className="font-mono text-[0.66rem] uppercase leading-tight tracking-[0.1em] text-brown">
-                        Built on Shopify
+                        Shopify backend
                         <small className="mt-1 block text-[0.92em] normal-case tracking-[0.02em] text-brown-soft">
-                          Custom theme, not a template
+                          Front end designed &amp; built by us
                         </small>
                       </span>
                     </div>
                   )}
+
                   {p.client!.platform && p.client!.platform !== "Shopify" && (
                     <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 px-3.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
                       Built on {p.client!.platform}
