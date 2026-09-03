@@ -15,8 +15,6 @@ import {
 } from "@/components/SiteChrome";
 import { projects } from "@/data/projects";
 import { GITHUB_URL, repos } from "@/data/github";
-import portrait from "@/assets/media/sumanth-portrait.webp";
-import desk from "@/assets/media/sumanth-desk.webp";
 import face from "@/assets/media/sumanth-face.webp";
 import luffyWalk from "@/assets/media/luffy-walk.webp";
 import luffyIdle from "@/assets/media/luffy-idle.webp";
