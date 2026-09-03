@@ -256,16 +256,42 @@ function Hero() {
 
         </div>
         <Reveal className="relative order-1 lg:order-2" delay={200}>
-          <ImageFrame
-            label="Sumanth Chary"
-            src={portrait}
-            alt="Sumanth Chary, indie AI builder, working by a window"
-            loading="eager"
-            position="center 28%"
-            className="aspect-[16/11] w-full sm:aspect-[4/5]"
-          />
-          <FaceBadge className="absolute -bottom-4 -left-3 size-14 shadow-[var(--shadow-float)] sm:size-16 lg:-left-6" />
+          <div className="relative overflow-hidden rounded-xl border border-border-strong bg-frame p-7 shadow-[var(--shadow-float)] sm:p-8">
+            <div className="flex items-center gap-4">
+              <FaceBadge className="size-16 shrink-0 sm:size-20" />
+              <div>
+                <p className="m-0 font-serif text-[1.5rem] italic leading-tight text-foreground">
+                  Sumanth Chary
+                </p>
+                <p className="m-0 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-brown-soft">
+                  Hyderabad, India · IST
+                </p>
+              </div>
+            </div>
+            <dl className="mt-7 grid grid-cols-2 gap-x-5 gap-y-5 border-t border-border pt-6">
+              {[
+                { k: "Products shipped", v: "5" },
+                { k: "Reply time", v: "< 24h" },
+                { k: "Built solo", v: "100%" },
+                { k: "Open slots", v: "2 / month" },
+              ].map((s) => (
+                <div key={s.k}>
+                  <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
+                    {s.k}
+                  </dt>
+                  <dd className="m-0 mt-1 font-serif text-[1.6rem] leading-none text-foreground">
+                    {s.v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-7 border-t border-border pt-5 text-[0.9rem] leading-relaxed text-brown">
+              Design, code, payments and growth — same person from the first call to the launch
+              tweet.
+            </p>
+          </div>
         </Reveal>
+
       </div>
     </section>
   );
