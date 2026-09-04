@@ -190,6 +190,7 @@ function Home() {
       </main>
 
       <SiteFooter />
+      <LuffyPet />
     </>
   );
 }
