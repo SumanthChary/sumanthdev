@@ -198,9 +198,6 @@ export function ContactSection() {
             </a>
           </div>
           <div className="flex flex-col gap-2.5 break-words font-mono text-[0.84rem] sm:text-[0.88rem]">
-            <a href={`tel:${PHONE_RAW}`} className="text-on-dark-muted hover:text-primary">
-              {PHONE} — call direct
-            </a>
             <a
               href={`https://x.com/${X_HANDLE}`}
               target="_blank"

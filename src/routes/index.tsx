@@ -16,8 +16,7 @@ import {
 import { projects } from "@/data/projects";
 import { GITHUB_URL, repos } from "@/data/github";
 import face from "@/assets/media/sumanth-face.webp";
-import luffyWalk from "@/assets/media/luffy-walk.webp";
-import luffyIdle from "@/assets/media/luffy-idle.webp";
+import { LuffyPet } from "@/components/LuffyPet";
 
 const SITE = "https://sumanthdev.me";
 const OG_IMAGE = `${SITE}/og-cover.jpg`;
@@ -190,6 +189,7 @@ function Home() {
       </main>
 
       <SiteFooter />
+      <LuffyPet />
     </>
   );
 }
@@ -271,7 +271,7 @@ function Hero() {
                 { k: "Products shipped", v: "5" },
                 { k: "Reply time", v: "< 24h" },
                 { k: "Built solo", v: "100%" },
-                { k: "Open slots", v: "2 / month" },
+                { k: "First live build", v: "~2 wks" },
               ].map((s) => (
                 <div key={s.k}>
                   <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
