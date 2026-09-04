@@ -42,7 +42,9 @@ export function LuffyPet() {
         aria-pressed={on}
         className="fixed bottom-5 left-5 z-[70] inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/90 px-4 py-2.5 font-mono text-[0.64rem] uppercase tracking-[0.1em] text-brown shadow-[var(--shadow-float)] backdrop-blur transition-colors duration-300 hover:border-primary hover:text-primary"
       >
-        <span aria-hidden="true">{on ? "✦" : "🍖"}</span>
+        <span aria-hidden="true" className="text-primary">
+          {on ? "✕" : "✦"}
+        </span>
         {on ? "Send Luffy home" : "Free the pet"}
       </button>
 
