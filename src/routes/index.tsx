@@ -271,7 +271,7 @@ function Hero() {
                 { k: "Products shipped", v: "5" },
                 { k: "Reply time", v: "< 24h" },
                 { k: "Built solo", v: "100%" },
-                { k: "Open slots", v: "2 / month" },
+                { k: "First live build", v: "~2 wks" },
               ].map((s) => (
                 <div key={s.k}>
                   <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
