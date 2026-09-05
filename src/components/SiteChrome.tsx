@@ -197,6 +197,15 @@ export function ContactSection() {
               Download resume
               <span aria-hidden="true">↓</span>
             </a>
+            <a
+              href={FIVER}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-on-dark-muted/40 px-7 py-4 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-on-dark transition-colors duration-300 hover:border-primary hover:text-primary"
+            >
+              Hire on Fiverr
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
           <div className="flex flex-col gap-2.5 break-words font-mono text-[0.84rem] sm:text-[0.88rem]">
             <a
