@@ -186,6 +186,7 @@ function Home() {
         <Lab />
         <Growth />
         <About />
+        <Faq />
         <ContactSection />
       </main>
 
