@@ -490,13 +490,7 @@ function Proof() {
               >
                 Book a 30-min call ↗
               </a>
-              <a
-                href={`tel:${PHONE_RAW}`}
-                className="rounded-full bg-foreground px-6 py-3.5 text-center font-mono text-[0.74rem] tracking-[0.04em] text-background transition-colors duration-300 hover:bg-primary"
-              >
-                {PHONE}
-              </a>
-              <a
+              <
                 href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
