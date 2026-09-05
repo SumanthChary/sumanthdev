@@ -477,8 +477,8 @@ function Proof() {
             <div className="flex items-start gap-4">
               <FaceBadge className="size-12 shrink-0" />
               <p className="m-0 text-[0.98rem] leading-relaxed text-foreground">
-                Prefer talking to typing? Book a free 30-minute call on my calendar — or just
-                ring me. Same number, same person, no form in between.
+                Prefer talking to typing? Take 30 minutes of my calendar, or send one WhatsApp
+                message. You'll get an honest yes, no, or “here's a cheaper way to do it.”
               </p>
             </div>
             <div className="flex flex-col gap-3">
