@@ -993,3 +993,154 @@ function About() {
     </section>
   );
 }
+
+const packages = [
+  {
+    name: "Landing page that sells",
+    price: "from ₹18,000",
+    time: "5–7 days",
+    for: "One page, one offer — built to turn ad clicks into enquiries.",
+    includes: ["Copy written with you", "Custom design, no template", "Mobile-first build", "Analytics + lead capture"],
+  },
+  {
+    name: "Online store",
+    price: "from ₹45,000",
+    time: "2–3 weeks",
+    for: "A storefront that looks like a brand, with Shopify doing the boring parts.",
+    includes: ["Logo / brand polish", "Custom storefront design & build", "Checkout, COD, shipping", "SEO from day one"],
+    featured: true,
+  },
+  {
+    name: "AI product or automation",
+    price: "from ₹75,000",
+    time: "3–5 weeks",
+    for: "A working v1 with real users — auth, payments, and the AI part that matters.",
+    includes: ["Product & flow design", "Full-stack build", "Payments wired in", "Two weeks of fixes after launch"],
+  },
+];
+
+/** Money talk, up front — the section most freelancers hide. */
+function Investment() {
+  return (
+    <section id="investment" className="border-t border-border-strong py-[clamp(64px,9vw,110px)]">
+      <div className="wrap">
+        <Reveal className="mb-10 max-w-[54ch]">
+          <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+            What it costs
+          </p>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">
+            Priced before we start. Never by the hour.
+          </h2>
+          <p className="mt-4 text-[0.98rem] leading-relaxed text-brown">
+            Real numbers, so you know in ten seconds whether we're a fit. Scope is written down
+            first; the price on that page is the price you pay.
+          </p>
+        </Reveal>
+
+        <div className="grid gap-5 lg:grid-cols-3">
+          {packages.map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}>
+              <article
+                className={`flex h-full flex-col rounded-xl border p-6 transition-colors duration-300 hover:border-primary sm:p-7 ${
+                  p.featured ? "border-primary/50 bg-frame/60" : "border-border"
+                }`}
+              >
+                <h3 className="text-[1.35rem] leading-tight">{p.name}</h3>
+                <p className="mt-3 font-serif text-[2rem] leading-none text-primary">{p.price}</p>
+                <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-brown-soft">
+                  Typically {p.time}
+                </p>
+                <p className="mt-4 text-[0.92rem] leading-relaxed text-brown">{p.for}</p>
+                <ul className="m-0 mt-5 flex list-none flex-col gap-2 border-t border-border p-0 pt-5 text-[0.88rem] leading-snug text-foreground">
+                  {p.includes.map((it) => (
+                    <li
+                      key={it}
+                      className="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:h-px before:w-2 before:bg-primary before:content-['']"
+                    >
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="mt-6 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
+          {[
+            ["Payments", "50% to start, 50% on launch. Bigger builds split into milestones."],
+            ["Ownership", "Code, domain, accounts — all in your name. No lock-in, ever."],
+            ["After launch", "Two weeks of fixes included. Then monthly care only if you want it."],
+          ].map(([k, v]) => (
+            <div key={k} className="bg-background p-6">
+              <p className="m-0 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-primary">
+                {k}
+              </p>
+              <p className="mt-2 text-[0.92rem] leading-relaxed text-brown">{v}</p>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+const faqs = [
+  [
+    "Why one person instead of an agency?",
+    "Because nothing gets lost in translation. The person who hears your idea is the one designing it, coding it and running the ads — and you can message him directly.",
+  ],
+  [
+    "I'm not technical. Is that a problem?",
+    "It's the normal case. You talk about customers and products; I handle the rest and show you a live link every few days instead of jargon.",
+  ],
+  [
+    "What if I don't like the design?",
+    "You see direction early, not at the end. Two rounds of changes are built into every project, and nothing goes live until you're happy with it.",
+  ],
+  [
+    "Can you also get me customers?",
+    "Yes — that's the second half of what I do. Google and Meta ads, SEO and landing pages that were designed to convert in the first place.",
+  ],
+  [
+    "How do we start?",
+    "One 30-minute call. You'll leave it with a scope, a price and a date — no obligation, no pitch deck.",
+  ],
+];
+
+function Faq() {
+  return (
+    <section id="faq" className="border-t border-border-strong py-[clamp(64px,9vw,110px)]">
+      <div className="wrap grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <Reveal>
+          <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+            Before you message
+          </p>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.6rem)]">The honest answers</h2>
+          <div className="mt-6 flex items-center gap-3">
+            <FaceBadge className="size-11" />
+            <p className="m-0 text-[0.9rem] leading-snug text-brown">
+              Still unsure? Ask me the awkward question directly.
+            </p>
+          </div>
+        </Reveal>
+        <Reveal className="border-t border-border-strong" delay={100}>
+          {faqs.map(([q, a]) => (
+            <details key={q} className="group border-b border-border py-5">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-[1.05rem] leading-snug text-foreground transition-colors hover:text-primary [&::-webkit-details-marker]:hidden">
+                {q}
+                <span
+                  aria-hidden="true"
+                  className="mt-1 shrink-0 font-mono text-primary transition-transform duration-300 group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="m-0 mt-3 max-w-[62ch] text-[0.94rem] leading-relaxed text-brown">{a}</p>
+            </details>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
