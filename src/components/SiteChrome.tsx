@@ -232,6 +232,14 @@ export function ContactSection() {
             >
               {GITHUB}
             </a>
+            <a
+              href={FIVER}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-on-dark-muted hover:text-primary"
+            >
+              fiverr.com/s/61bpX5q
+            </a>
           </div>
         </div>
       </div>
