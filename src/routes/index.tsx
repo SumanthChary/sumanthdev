@@ -490,7 +490,7 @@ function Proof() {
               >
                 Book a 30-min call ↗
               </a>
-              <
+              <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noopener noreferrer"
