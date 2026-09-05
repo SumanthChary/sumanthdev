@@ -180,6 +180,7 @@ function Home() {
         <Work />
         <ClientWork />
         <Proof />
+        <Investment />
         <Skills />
         <Stack />
         <Lab />
