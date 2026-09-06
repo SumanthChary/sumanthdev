@@ -7,6 +7,8 @@ import {
   CALENDLY,
   ContactSection,
   PHONE,
+  FIVER,
+
   
   ResumeButton,
   SiteFooter,
@@ -1080,6 +1082,33 @@ function Investment() {
             </div>
           ))}
         </Reveal>
+
+        <Reveal className="mt-6 flex flex-col gap-4 rounded-xl border border-dashed border-frame-border bg-frame/50 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="m-0 max-w-[62ch] text-[0.92rem] leading-relaxed text-brown">
+            These are starting points, not sealed quotes. The final number depends on scope,
+            rounds of changes and timeline — you'll get an exact figure, in writing, after one
+            30-minute call. Smaller one-off jobs are welcome too.
+          </p>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-foreground px-6 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-colors duration-300 hover:bg-primary"
+            >
+              Get an exact quote ↗
+            </a>
+            <a
+              href={FIVER}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-border-strong px-6 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
+            >
+              Or hire on Fiverr ↗
+            </a>
+          </div>
+        </Reveal>
+
       </div>
     </section>
   );
