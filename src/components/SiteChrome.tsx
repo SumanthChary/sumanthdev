@@ -150,7 +150,11 @@ export function SiteNav() {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="bg-foreground py-[clamp(72px,10vw,120px)] text-on-dark">
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-foreground py-[clamp(72px,10vw,120px)] text-on-dark"
+    >
+      <div aria-hidden="true" className="night-bloom pointer-events-none absolute inset-0" />
       <div className="wrap">
         <p className="mono-label mb-4 flex items-center gap-2.5 text-primary before:h-px before:w-3.5 before:bg-primary before:content-['']">
           Get in touch

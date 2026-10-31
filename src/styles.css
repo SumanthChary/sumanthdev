@@ -88,6 +88,15 @@
   --cover-vastrika: linear-gradient(135deg, oklch(0.42 0.14 15), oklch(0.72 0.11 80));
 
   --shadow-float: 0 30px 60px -20px oklch(0.192 0.011 60 / 0.35);
+
+  /* pastel gradient blooms — decorative cards, chips and badges (never project previews) */
+  --bloom-peach: linear-gradient(135deg, oklch(0.905 0.055 45) 0%, oklch(0.965 0.028 80) 100%);
+  --bloom-sun: linear-gradient(135deg, oklch(0.915 0.07 85) 0%, oklch(0.965 0.04 60) 100%);
+  --bloom-rose: linear-gradient(150deg, oklch(0.925 0.055 350) 0%, oklch(0.972 0.028 312) 100%);
+  --bloom-lilac: linear-gradient(150deg, oklch(0.925 0.05 300) 0%, oklch(0.968 0.032 268) 100%);
+  --bloom-mint: linear-gradient(150deg, oklch(0.915 0.05 165) 0%, oklch(0.962 0.032 195) 100%);
+  --bloom-sky: linear-gradient(150deg, oklch(0.915 0.05 240) 0%, oklch(0.962 0.032 262) 100%);
+  --shadow-bloom: 0 24px 55px -26px oklch(0.45 0.09 345 / 0.35);
 }
 
 @layer base {
@@ -142,6 +151,29 @@
   opacity: 0.03;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* pastel gradient washes, applied as background-image utilities */
+@utility bloom-peach { background-image: var(--bloom-peach); }
+@utility bloom-sun { background-image: var(--bloom-sun); }
+@utility bloom-rose { background-image: var(--bloom-rose); }
+@utility bloom-lilac { background-image: var(--bloom-lilac); }
+@utility bloom-mint { background-image: var(--bloom-mint); }
+@utility bloom-sky { background-image: var(--bloom-sky); }
+
+/* soft multi-gradient wash behind the hero */
+@utility hero-aurora {
+  background-image:
+    radial-gradient(40rem 26rem at 10% 12%, oklch(0.93 0.06 350 / 0.5), transparent 66%),
+    radial-gradient(32rem 22rem at 88% 22%, oklch(0.92 0.07 85 / 0.42), transparent 62%),
+    radial-gradient(36rem 26rem at 72% 96%, oklch(0.92 0.05 300 / 0.34), transparent 66%);
+}
+
+/* sunset glow behind the dark contact section */
+@utility night-bloom {
+  background-image:
+    radial-gradient(28rem 20rem at 86% 0%, oklch(0.618 0.203 34 / 0.32), transparent 70%),
+    radial-gradient(32rem 22rem at 4% 100%, oklch(0.68 0.1 330 / 0.25), transparent 70%);
 }
 
 /* mono label styling used for eyebrows, tags, nav, captions */
