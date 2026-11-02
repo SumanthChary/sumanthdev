@@ -27,6 +27,10 @@ export type Project = {
   category: string;
   brief: string;
   approach: string;
+  /** the honest outcome, in one line — no invented numbers */
+  result: string;
+  /** optional repo link shown on the case study */
+  repo?: string;
   quote: string;
   gallery: GalleryItem[];
   beforeAfter?: boolean;
@@ -48,10 +52,7 @@ export type Project = {
     delivered: string[];
     /** plain-language outcomes */
     outcomes: string[];
-    /** short client review shown on the home page */
-    testimonial?: { quote: string; author: string; role: string };
   };
-
 };
 
 export const projects: Project[] = [
@@ -75,6 +76,7 @@ export const projects: Project[] = [
       "LinkedIn rewards consistent, well-written posts — but most people don't have the time or the voice for it. PostPro AI needed to sound like the person using it, not like a template generator, and needed the landing page itself to prove that in the first ten seconds.",
     approach:
       "Kept the interactive hero rather than swapping it for a static image — an animated voice-match score does more convincing than a screenshot ever could. Everything behind it is deliberately plain: one accent colour, one typeface pairing, and a pricing page that answers the only two questions people actually have.",
+    result: "Live at postproai.app — designed, built and run by one person, end to end.",
     quote:
       "The product had to sound like you before it could sell itself. Everything else was in service of that.",
     hero: postproHero,
@@ -88,7 +90,6 @@ export const projects: Project[] = [
       caption: "The output — same person, same topic, written in their own voice.",
     },
   },
-
   {
     slug: "flipscan-ai",
     index: "02",
@@ -107,13 +108,10 @@ export const projects: Project[] = [
     brief:
       "Resellers guess at pricing constantly, and a wrong guess costs either the sale or the margin. FlipScan needed to turn a photo and a few details into a defensible number, fast enough to use while standing in a thrift aisle.",
     approach:
-      "Built the scan flow mobile-first with a single input step, then layered comparable listings underneath the estimate so the number always shows its work. Growth is running on the same loop as the product: ship, measure, iterate.",
+      "Built the scan flow mobile-first with a single input step, then layered comparable listings underneath the estimate so the number always shows its work. The whole flow was designed for one-handed use in the real world, not for a demo desk.",
+    result: "Growing with early users — the estimate flow is live and iterating.",
     quote: "A price is only useful if the person reading it believes where it came from.",
-    gallery: [
-      { label: "ADD: SCAN FLOW", size: "1000 × 1250 · mobile capture" },
-      { label: "ADD: ESTIMATE RESULT", size: "1600 × 1000 · price breakdown" },
-      { label: "ADD: COMPARABLES LIST", size: "1600 × 1000 · listing matches" },
-    ],
+    gallery: [],
   },
   {
     slug: "legaldeep-ai",
@@ -122,24 +120,21 @@ export const projects: Project[] = [
     titleLead: "LegalDeep",
     titleAccent: "AI",
     description: "AI legal document analyzer — summarizes contracts, flags risk clauses.",
-    tag: "SaaS Product",
-    status: "Building",
+    tag: "SaaS Product · Founded, built & sold",
+    status: "Built & sold",
     live: false,
     tint: "--cover-legaldeep",
-    role: "Design, development",
+    role: "Founder — design, development",
     stack: "Lovable · Supabase · Claude",
-    statusLong: "In build",
+    statusLong: "Founded, built and sold",
     category: "SaaS product",
     brief:
       "Small businesses sign contracts they haven't fully read. LegalDeep needed to surface the three clauses that actually matter without pretending to be a lawyer.",
     approach:
       "A document view with inline risk flags rather than a separate report — the analysis lives where the text lives. Conservative language throughout, and every flag links back to the exact paragraph it came from.",
+    result: "Founded, built and sold — a complete product taken from idea to handover.",
     quote: "Confidence in a legal tool comes from restraint, not from claiming more than it knows.",
-    gallery: [
-      { label: "ADD: DOCUMENT VIEW", size: "1000 × 1250 · inline flags" },
-      { label: "ADD: RISK SUMMARY", size: "1600 × 1000 · clause overview" },
-      { label: "ADD: UPLOAD FLOW", size: "1600 × 1000 · first-run state" },
-    ],
+    gallery: [],
   },
   {
     slug: "airwrite",
@@ -154,18 +149,16 @@ export const projects: Project[] = [
     tint: "--cover-airwrite",
     role: "Design, development",
     stack: "React · MediaPipe · Canvas",
-    statusLong: "Launched",
+    statusLong: "Launched — code on GitHub",
     category: "Experiment",
+    repo: "https://github.com/SumanthChary/airwrite",
     brief:
       "An experiment in input: what happens when the cursor is your fingertip? AirWrite tracks a hand through the webcam and turns pinch gestures into strokes on a canvas.",
     approach:
       "Smoothing was the whole project. Raw landmark data is jittery, so the stroke path runs through a velocity-aware filter before it ever hits the canvas — the difference between a toy and something that feels like drawing.",
+    result: "Launched — the full source is public on GitHub.",
     quote: "Most novel interfaces fail on latency, not on the idea.",
-    gallery: [
-      { label: "ADD: DRAWING IN USE", size: "1000 × 1250 · hand + canvas" },
-      { label: "ADD: TRACKING OVERLAY", size: "1600 × 1000 · landmarks" },
-      { label: "ADD: FINISHED SKETCH", size: "1600 × 1000 · output" },
-    ],
+    gallery: [],
   },
   {
     slug: "sri-vastrika",
@@ -188,6 +181,8 @@ export const projects: Project[] = [
       "A growing nighties and sarees label with real products and no storefront to match them. They didn't want a template store — they wanted the label to look premium in a category where most competitors look like a catalogue dump.",
     approach:
       "Logo first, then the storefront itself — designed and built by us, page by page, around large product photography and the client's own maroon-and-gold. Shopify sits behind it doing what it's genuinely good at: checkout, inventory, variants, COD and payments. The look is ours; the plumbing is battle-tested, so the owner runs the whole store alone.",
+    result:
+      "Live at srivastrika.store — the owner adds products and runs orders without a developer.",
     quote: "Premium isn't a colour palette. It's how much space you're willing to give the product.",
     client: {
       serviceLine: "Custom storefront design & build · Shopify backend",
@@ -205,14 +200,7 @@ export const projects: Project[] = [
         "Owner adds products and runs orders without a developer",
         "Collections built to be found on search, not just browsed",
       ],
-      testimonial: {
-        quote:
-          "We came with photos and a name. He gave us a store that looks like a brand — and I can run it myself. Orders started the same week we went live.",
-        author: "Owner, Sri Vastrika",
-        role: "Nighties & sarees label, Hyderabad",
-      },
     },
-
     hero: vastrikaHome,
     gallery: [
       { label: "Product page — Rosewood Rose Kanchipuram", size: "Detail, care & COD", src: vastrikaProduct },
