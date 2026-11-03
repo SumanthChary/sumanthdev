@@ -6,25 +6,24 @@ import { MagneticLink } from "@/components/MagneticLink";
 import {
   CALENDLY,
   ContactSection,
-  PHONE,
   FIVER,
-
-  
   ResumeButton,
   SiteFooter,
   SiteNav,
   WHATSAPP,
 } from "@/components/SiteChrome";
 import { projects } from "@/data/projects";
-import { GITHUB_URL, repos } from "@/data/github";
+import { GITHUB_URL, langColor, repoFilters, repos } from "@/data/github";
+import { ContributionHeatmap } from "@/components/ContributionHeatmap";
+import { TechMarquee } from "@/components/TechMarquee";
 import face from "@/assets/media/sumanth-face.webp";
 import { LuffyPet } from "@/components/LuffyPet";
 
 const SITE = "https://sumanthdev.me";
 const OG_IMAGE = `${SITE}/og-cover.jpg`;
-const TITLE = "Sumanth Chary — Indie AI Builder & Growth Marketer";
+const TITLE = "Sumanth Chary — Indie AI Product Builder";
 const DESCRIPTION =
-  "Solo-built AI products — design, code, payments and growth — plus paid ad campaigns for healthcare clients across Telangana, India. See the work and case studies.";
+  "Founder who ships AI products end to end — design, code, payments, growth. Built & sold LegalDeep AI, runs PostPro AI, ships client stores. See the work and case studies.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,10 +33,9 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Sumanth Chary, indie AI builder, AI SaaS developer, AI agents developer, growth marketer Hyderabad, Lovable developer, freelance web developer Hyderabad, Google Ads healthcare, Shopify store developer India",
+          "Sumanth Chary, Sumanth Dev, indie AI product builder, AI SaaS developer India, AI agents developer, freelance web developer India, GEO SEO, Shopify storefront developer, Vertex AI, Lovable developer",
       },
-      { name: "geo.region", content: "IN-TG" },
-      { name: "geo.placename", content: "Hyderabad" },
+      { name: "geo.region", content: "IN" },
       { name: "author", content: "Sumanth Chary" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: TITLE },
@@ -49,7 +47,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Sumanth Chary — I build the product. Then I make it sell." },
+      { property: "og:image:alt", content: "Sumanth Chary — Indie AI Product Builder" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@SumanthChary07" },
       { name: "twitter:creator", content: "@SumanthChary07" },
@@ -81,24 +79,24 @@ export const Route = createFileRoute("/")({
                 areaServed: "IN",
                 availableLanguage: ["English", "Telugu", "Hindi"],
               },
-              jobTitle: "Indie AI Product Builder & Growth Marketer",
+              jobTitle: "Indie AI Product Builder",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Hyderabad",
-                addressRegion: "Telangana",
                 addressCountry: "IN",
               },
               worksFor: { "@type": "Organization", name: "Independent" },
-              homeLocation: { "@type": "Place", name: "Hyderabad, Telangana, India" },
+              homeLocation: { "@type": "Place", name: "India" },
               knowsAbout: [
                 "AI SaaS development",
                 "AI agents and automations",
                 "UI/UX design",
-                "Frontend engineering",
-                "Growth marketing",
-                "Google Ads",
-                "Meta Ads",
+                "Product management",
+                "Business analysis",
+                "Data analysis",
+                "Generative engine optimization",
                 "SEO",
+                "Full-stack engineering",
+                "Vertex AI prompt design",
               ],
               sameAs: [
                 "https://x.com/SumanthChary07",
@@ -132,15 +130,14 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-
 const heroWords = ["I", "build", "the", "product."];
 const heroWords2 = ["Then", "I", "make", "it"];
 
 const tickerItems = [
-  { label: "PostPro AI — Live", live: true },
-  { label: "FlipScan AI — Growing", live: false },
-  { label: "LegalDeep AI — Building", live: false },
-  { label: "Sri Vastrika — Shopify store, live", live: true },
+  { label: "PostPro AI — live at postproai.app", live: true },
+  { label: "LegalDeep AI — founded, built & sold", live: false },
+  { label: "FlipScan AI — growing with early users", live: false },
+  { label: "Sri Vastrika — client store, live", live: true },
   { label: "30-min intro calls open", live: true },
   { label: "Booking new client work", live: true },
 ];
@@ -154,6 +151,27 @@ function Dot({ live }: { live: boolean }) {
           : "size-[5px] shrink-0 rounded-full border border-brown-soft"
       }
     />
+  );
+}
+
+/** blue-and-white verified mark, shown next to the name */
+function VerifiedBadge({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      role="img"
+      aria-label="Verified"
+      className={className}
+    >
+      <path
+        fill="oklch(0.6 0.17 255)"
+        d="M12 1.7l2.6 1.9 3.2-.3 1.2 3 2.9 1.5-.9 3.2.9 3.2-2.9 1.5-1.2 3-3.2-.3-2.6 1.9-2.6-1.9-3.2.3-1.2-3-2.9-1.5.9-3.2-.9-3.2 2.9-1.5 1.2-3 3.2.3 2.6-1.9z"
+      />
+      <path
+        fill="oklch(0.984 0.004 95)"
+        d="M10.6 15.9l-3-3 1.4-1.4 1.6 1.6 4.4-4.4 1.4 1.4-5.8 5.8z"
+      />
+    </svg>
   );
 }
 
@@ -179,15 +197,16 @@ function Home() {
       <main>
         <Hero />
         <Ticker />
+        <TechMarquee />
         <Work />
         <ClientWork />
+        <Lab />
+        <Experience />
         <Proof />
-        <Investment />
         <Skills />
         <Stack />
-        <Lab />
-        <Growth />
         <About />
+        <Investment />
         <Faq />
         <ContactSection />
       </main>
@@ -221,13 +240,13 @@ function Hero() {
       className="relative flex items-center overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-28 lg:min-h-svh"
     >
       <div className="wrap grid w-full items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-
-        <div className="order-2 lg:order-1">
+        {/* headline and CTAs come first on every screen — mobile visitors read before they scroll */}
+        <div>
           <p
             className="animate-fade-rise mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']"
             style={{ animationDelay: "0.05s" }}
           >
-            Indie builder · Growth marketer · Hyderabad, India
+            Indie AI Product Builder · 19 · India
           </p>
           <h1 className="mb-7 mt-5 text-[clamp(2.5rem,6vw,4.8rem)] leading-[1.06]">
             {heroWords.map((w) => word(w))}
@@ -239,15 +258,17 @@ function Hero() {
             className="animate-fade-rise mb-9 max-w-[44ch] text-[clamp(1rem,1.5vw,1.12rem)] leading-[1.65] text-brown"
             style={{ animationDelay: "0.5s" }}
           >
-            Solo AI products shipped end-to-end — design, code, payments, and growth — plus paid
-            campaigns run for real clients. One person, both halves of the job.
+            Solo-built AI products and client stores — design, code, payments, growth. Founded,
+            built and sold LegalDeep AI. One person, the whole pipeline.
           </p>
           <div
             className="animate-fade-rise flex flex-wrap items-center gap-x-8 gap-y-4"
             style={{ animationDelay: "0.62s" }}
           >
-            <MagneticLink href="#contact">Start a project</MagneticLink>
-            <ResumeButton />
+            <MagneticLink href="#contact" className="btn-shine">
+              Start a project
+            </MagneticLink>
+            <ResumeButton className="btn-shine" />
             <a
               href="#work"
               className="border-b border-border-strong pb-1 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-brown transition-colors hover:border-primary hover:text-primary"
@@ -255,18 +276,19 @@ function Hero() {
               View the work
             </a>
           </div>
-
         </div>
-        <Reveal className="relative order-1 lg:order-2" delay={200}>
+
+        <Reveal delay={200}>
           <div className="relative overflow-hidden rounded-xl border border-border-strong bg-frame p-7 shadow-[var(--shadow-float)] sm:p-8">
             <div className="flex items-center gap-4">
               <FaceBadge className="size-16 shrink-0 sm:size-20" />
-              <div>
-                <p className="m-0 font-serif text-[1.5rem] italic leading-tight text-foreground">
+              <div className="min-w-0">
+                <p className="m-0 flex flex-wrap items-center gap-x-2 gap-y-1 font-serif text-[1.5rem] italic leading-tight text-foreground">
                   Sumanth Chary
+                  <VerifiedBadge className="size-[1.15em] shrink-0" />
                 </p>
                 <p className="m-0 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-brown-soft">
-                  Hyderabad, India · IST
+                  19 · India · IST
                 </p>
               </div>
             </div>
@@ -288,12 +310,11 @@ function Hero() {
               ))}
             </dl>
             <p className="mt-7 border-t border-border pt-5 text-[0.9rem] leading-relaxed text-brown">
-              Design, code, payments and growth — same person from the first call to the launch
-              tweet.
+              Same person from the first call to the launch tweet — design, code, payments,
+              growth.
             </p>
           </div>
         </Reveal>
-
       </div>
     </section>
   );
@@ -347,9 +368,21 @@ const skillGroups = [
       "AI Agents",
       "Chatbots",
       "Animations",
-      "Product Strategy",
       "Master of AI Tools",
       "No-Code",
+    ],
+  },
+  {
+    label: "Product",
+    items: ["Product Management", "Business Analysis", "Strategy", "Data Analysis"],
+  },
+  {
+    label: "Growth",
+    items: [
+      "GEO / Generative Engine Optimization",
+      "SEO",
+      "Landing Pages That Convert",
+      "Analytics",
     ],
   },
   {
@@ -412,7 +445,7 @@ const proofPoints = [
   {
     stat: "< 24h",
     label: "reply time on calls & WhatsApp",
-    note: "Reachable on " + PHONE + " during IST hours, every working day.",
+    note: "Reachable on WhatsApp during IST hours, every working day.",
   },
   {
     stat: "2 wks",
@@ -490,7 +523,7 @@ function Proof() {
                 href={CALENDLY}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-primary px-6 py-3.5 text-center font-mono text-[0.74rem] uppercase tracking-[0.04em] text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
+                className="btn-shine rounded-full bg-primary px-6 py-3.5 text-center font-mono text-[0.74rem] uppercase tracking-[0.04em] text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
               >
                 Book a 30-min call ↗
               </a>
@@ -511,7 +544,6 @@ function Proof() {
 }
 
 function Work() {
-
   const [preview, setPreview] = useState<{
     tint: string;
     label: string;
@@ -630,7 +662,7 @@ function Work() {
   );
 }
 
-/** Minimal Shopify bag mark, drawn in currentColor-free brand green. */
+/** Minimal Shopify bag mark, drawn in Shopify brand green. */
 function ShopifyMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
@@ -711,81 +743,55 @@ function ClientWork() {
                 </div>
 
                 <div className="flex min-w-0 flex-col">
-                <p className="mono-label mb-3 text-brown-soft">{p.client!.serviceLine}</p>
-                <h3 className="mb-4 text-[clamp(1.5rem,3vw,2rem)] leading-tight">{p.title}</h3>
+                  <p className="mono-label mb-3 text-brown-soft">{p.client!.serviceLine}</p>
+                  <h3 className="mb-4 text-[clamp(1.5rem,3vw,2rem)] leading-tight">{p.title}</h3>
 
-
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <div>
-                    <h4 className="mb-2.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-primary">
-                      Delivered
-                    </h4>
-                    <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[0.9rem] leading-snug text-brown">
-                      {p.client!.delivered.map((d) => (
-                        <li
-                          key={d}
-                          className="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:h-px before:w-2 before:bg-brown-soft before:content-['']"
-                        >
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="mb-2.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-primary">
-                      What changed
-                    </h4>
-                    <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[0.9rem] leading-snug text-foreground">
-                      {p.client!.outcomes.map((o) => (
-                        <li
-                          key={o}
-                          className="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:h-px before:w-2 before:bg-primary before:content-['']"
-                        >
-                          {o}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {p.client!.testimonial && (
-                  <figure className="mt-7 rounded-lg border border-border bg-background p-5 sm:p-6">
-                    <div className="mb-3 flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
-                      <span aria-hidden="true">★★★★★</span>
-                      <span className="text-brown-soft">Client review</span>
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    <div>
+                      <h4 className="mb-2.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-primary">
+                        Delivered
+                      </h4>
+                      <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[0.9rem] leading-snug text-brown">
+                        {p.client!.delivered.map((d) => (
+                          <li
+                            key={d}
+                            className="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:h-px before:w-2 before:bg-brown-soft before:content-['']"
+                          >
+                            {d}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <blockquote className="m-0 font-serif text-[1.12rem] italic leading-[1.55] text-foreground sm:text-[1.22rem]">
-                      “{p.client!.testimonial.quote}”
-                    </blockquote>
-                    <figcaption className="mt-4 flex items-center gap-3 font-mono text-[0.66rem] uppercase tracking-[0.06em] text-brown">
-                      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border bg-frame text-[0.85rem] not-italic">
-                        🪡
-                      </span>
-                      <span>
-                        {p.client!.testimonial.author}
-                        <small className="mt-0.5 block text-[0.92em] normal-case tracking-[0.02em] text-brown-soft">
-                          {p.client!.testimonial.role}
-                        </small>
-                      </span>
-                    </figcaption>
-                  </figure>
-                )}
+                    <div>
+                      <h4 className="mb-2.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-primary">
+                        What changed
+                      </h4>
+                      <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[0.9rem] leading-snug text-foreground">
+                        {p.client!.outcomes.map((o) => (
+                          <li
+                            key={o}
+                            className="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:h-px before:w-2 before:bg-primary before:content-['']"
+                          >
+                            {o}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
 
-
-
-                <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
-                  <Link
-                    to="/work/$slug"
-                    params={{ slug: p.slug }}
-                    className="border-b border-border-strong pb-1 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                  >
-                    Read the case study
-                  </Link>
-                  <span className="flex items-center gap-2 font-mono text-[0.66rem] uppercase tracking-[0.05em] text-brown">
-                    <Dot live={p.live} />
-                    {p.status}
-                  </span>
-                </div>
+                  <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
+                    <Link
+                      to="/work/$slug"
+                      params={{ slug: p.slug }}
+                      className="border-b border-border-strong pb-1 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                    >
+                      Read the case study
+                    </Link>
+                    <span className="flex items-center gap-2 font-mono text-[0.66rem] uppercase tracking-[0.05em] text-brown">
+                      <Dot live={p.live} />
+                      {p.status}
+                    </span>
+                  </div>
                 </div>
               </article>
             </Reveal>
@@ -810,10 +816,13 @@ function ClientWork() {
   );
 }
 
-/** Everything on GitHub that doesn't have a full case study. */
+/** Everything on GitHub that doesn't have a full case study — plus the real contribution grid. */
 function Lab() {
+  const [filter, setFilter] = useState<(typeof repoFilters)[number]>("All");
+  const shown = filter === "All" ? repos : repos.filter((r) => r.kind === filter);
+
   return (
-    <section id="lab" className="py-[clamp(72px,10vw,110px)]">
+    <section id="lab" className="border-t border-border-strong py-[clamp(72px,10vw,110px)]">
       <div className="wrap">
         <Reveal className="mb-9 flex flex-wrap items-end justify-between gap-5">
           <div>
@@ -821,7 +830,7 @@ function Lab() {
               The lab
             </p>
             <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">
-              {repos.length}+ repos, still counting
+              {repos.length} public repos, still counting
             </h2>
           </div>
           <a
@@ -834,77 +843,148 @@ function Lab() {
           </a>
         </Reveal>
 
-        <Reveal className="grid gap-x-6 gap-y-0 border-t border-border-strong sm:grid-cols-2">
-          {repos.map((r) => (
+        <Reveal className="mb-9">
+          <ContributionHeatmap />
+        </Reveal>
+
+        <Reveal className="mb-6 flex flex-wrap gap-2">
+          {repoFilters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              onClick={() => setFilter(f)}
+              aria-pressed={filter === f}
+              className={`rounded-full border px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.06em] transition-colors duration-300 ${
+                filter === f
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border-strong text-brown hover:border-primary hover:text-primary"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </Reveal>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((r) => (
             <a
               key={r.name}
               href={`${GITHUB_URL}/${r.name}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-baseline justify-between gap-4 border-b border-border py-3.5 transition-colors"
+              className="group flex flex-col rounded-xl border border-border bg-frame/40 p-5 transition-colors duration-300 hover:border-primary hover:bg-frame"
             >
-              <span className="min-w-0">
-                <span className="font-mono text-[0.86rem] text-foreground transition-colors group-hover:text-primary">
+              <span className="flex items-center justify-between gap-3">
+                <span className="truncate font-mono text-[0.88rem] text-foreground transition-colors group-hover:text-primary">
                   {r.name}
                 </span>
-                <span className="block truncate text-[0.82rem] leading-snug text-brown">
-                  {r.blurb}
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 text-brown-soft transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-primary"
+                >
+                  ↗
                 </span>
               </span>
-              <span className="shrink-0 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-brown-soft">
-                {r.kind}
+              <span className="mt-2 block flex-1 text-[0.86rem] leading-snug text-brown">
+                {r.blurb || "Open the repo for details."}
+              </span>
+              <span className="mt-4 flex items-center gap-3 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-brown-soft">
+                {r.language && (
+                  <span className="flex items-center gap-1.5">
+                    <span
+                      className="size-[7px] rounded-full"
+                      style={{ backgroundColor: langColor(r.language) ?? "var(--color-primary)" }}
+                    />
+                    {r.language}
+                  </span>
+                )}
+                <span className="rounded-full border border-border px-2.5 py-0.5">{r.kind}</span>
               </span>
             </a>
           ))}
-        </Reveal>
+        </div>
       </div>
     </section>
   );
 }
 
-function Growth() {
+const timeline = [
+  {
+    when: "Sep 2024 — acquired by OK, LLC",
+    title: "LegalDeep AI",
+    role: "Founder · design, development, launch",
+    note: "AI legal document analyzer — summaries, risk & fraud detection, AI law advisor. Founded, built and sold.",
+    chip: "Built & sold",
+  },
+  {
+    when: "Sep 2024 — present",
+    title: "PostPro AI",
+    role: "Founder · design, development, growth",
+    note: "Voice-matching LinkedIn writer. Live at postproai.app and operated solo.",
+    chip: "Live",
+  },
+  {
+    when: "2025 — present",
+    title: "FlipScan AI",
+    role: "Founder · design, development",
+    note: "Resale price estimator for US resellers — the estimate flow is live and iterating with early users.",
+    chip: "Building",
+  },
+  {
+    when: "2025",
+    title: "Sri Vastrika",
+    role: "Client · brand, storefront design & build, SEO",
+    note: "Custom-designed storefront for an Indian nighties & sarees label — Shopify powers checkout, inventory and payments.",
+    chip: "Client · live",
+  },
+];
+
+const achievements = [
+  { title: "Prompt Design in Vertex AI", by: "Google · certificate" },
+  { title: "Machine Learning & AI", by: "Google · certificate, Sep 2026" },
+  { title: "Outlier AI Frontend Hackathon", by: "Finalist · Apr 2025" },
+  { title: "100xEngineers Generative AI Buildathon", by: "Semi-finalist · Jun 2025" },
+];
+
+/** Experience and achievements — dates and results, no LinkedIn logos, just the record. */
+function Experience() {
   return (
-    <section id="growth" className="py-[clamp(80px,10vw,120px)]">
-      <div className="wrap grid gap-14 border-t border-border-strong pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-[70px]">
-        <Reveal>
+    <section id="experience" className="py-[clamp(72px,10vw,110px)]">
+      <div className="wrap">
+        <Reveal className="mb-10 max-w-[52ch]">
           <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-            The other half
+            Experience &amp; achievements
           </p>
-          <h2 className="mb-4 mt-3.5 text-[clamp(2rem,4vw,2.8rem)]">
-            Growth marketing, not just product.
-          </h2>
-          <p className="max-w-[50ch] text-[1.05rem] leading-[1.72] text-brown">
-            Alongside building products, I run paid digital campaigns for healthcare clients across
-            Telangana — hospitals that need patients to actually find and trust them. Same instinct
-            as the product work: ship, measure, iterate.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[0.76rem] tracking-[0.03em] text-foreground">
-            {["Google Ads", "Meta Ads", "Practo", "Truecaller", "ShareChat"].map((c, idx, arr) => (
-              <span key={c}>
-                {c}
-                {idx < arr.length - 1 && <span className="ml-5 text-brown-soft">·</span>}
-              </span>
-            ))}
-          </div>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">The record so far.</h2>
         </Reveal>
-        <Reveal delay={120}>
-          <p className="mono-label mb-5 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-            Why it works together
-          </p>
-          <ul className="m-0 flex list-none flex-col gap-[18px] p-0">
-            {[
-              "Building the product means I understand what's actually being sold — no handoff gap between dev and marketing.",
-              "Running campaigns means the sites I build are made to convert, not just to look good.",
-              "One person, one accountable thread from first line of code to first paying customer.",
-            ].map((t) => (
-              <li
-                key={t}
-                className="relative pl-5 text-[0.94rem] leading-[1.55] text-brown before:absolute before:left-0 before:top-[0.6em] before:h-px before:w-[9px] before:bg-primary before:content-['']"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
+
+        <Reveal className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
+          {timeline.map((t) => (
+            <div key={t.title} className="bg-background p-6 sm:p-7">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <h3 className="m-0 text-[1.35rem] leading-tight">{t.title}</h3>
+                <span className="rounded-full border border-primary/40 px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-primary">
+                  {t.chip}
+                </span>
+              </div>
+              <p className="mb-3 mt-1.5 font-mono text-[0.64rem] uppercase tracking-[0.12em] text-brown-soft">
+                {t.when}
+              </p>
+              <p className="m-0 text-[0.92rem] leading-relaxed text-brown">{t.note}</p>
+              <p className="mb-0 mt-3 font-mono text-[0.66rem] text-foreground">{t.role}</p>
+            </div>
+          ))}
+        </Reveal>
+
+        <Reveal className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {achievements.map((a) => (
+            <div key={a.title} className="rounded-xl border border-border bg-frame/40 p-5">
+              <p className="mono-label m-0 flex items-center gap-2 text-primary before:h-px before:w-3 before:bg-primary before:content-['']">
+                {a.by}
+              </p>
+              <p className="m-0 mt-2.5 text-[1.02rem] leading-snug text-foreground">{a.title}</p>
+            </div>
+          ))}
         </Reveal>
       </div>
     </section>
@@ -953,14 +1033,25 @@ function Stack() {
 
 function About() {
   return (
-    <section id="about" className="py-[clamp(80px,10vw,120px)]">
+    <section id="about" className="border-t border-border-strong py-[clamp(80px,10vw,120px)]">
       <div className="wrap grid items-center gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-[70px]">
         <Reveal className="relative">
           <div className="rounded-xl border border-dashed border-border-strong bg-frame p-6">
-            <FaceBadge className="size-16" />
-            <ul className="m-0 mt-6 flex list-none flex-col gap-0 p-0">
+            <div className="flex items-center gap-4">
+              <FaceBadge className="size-16" />
+              <div>
+                <p className="m-0 flex items-center gap-1.5 font-serif text-[1.3rem] italic leading-tight text-foreground">
+                  Sumanth Chary
+                  <VerifiedBadge className="size-[1em] shrink-0" />
+                </p>
+                <p className="m-0 font-mono text-[0.64rem] uppercase tracking-[0.1em] text-brown-soft">
+                  19 · India
+                </p>
+              </div>
+            </div>
+            <ul className="m-0 mt-6 flex list-none flex-col gap-0 border-t border-border p-0">
               {[
-                ["Based in", "Hyderabad, IST"],
+                ["Based in", "India · IST"],
                 ["Works", "End to end, solo"],
                 ["Ships in", "Weeks, not quarters"],
                 ["You talk to", "Me. Always."],
@@ -984,11 +1075,10 @@ function About() {
             “I'd rather ship something real than plan something perfect.”
           </p>
           <p className="max-w-[58ch] text-[1.02rem] leading-[1.75] text-brown">
-            Based in Hyderabad, Telangana, I build AI-powered products using AI-native tools —
-            Lovable, Netlify, Supabase, Dodo Payments — and run freelance growth work on the side,
-            mostly digital ad campaigns for healthcare clients. I work end to end: design the
-            interface, wire up the backend, connect payments, and then go find the people who'll
-            actually use it.
+            I'm 19, from India, and I build AI-powered products end to end — design the interface,
+            wire up the backend, connect payments, then go find the people who'll actually use it.
+            I founded, built and sold LegalDeep AI, run PostPro AI as a live product, and ship
+            client storefronts with Shopify doing the heavy lifting behind a custom front end.
           </p>
         </Reveal>
       </div>
@@ -1094,7 +1184,7 @@ function Investment() {
               href={CALENDLY}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-foreground px-6 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-colors duration-300 hover:bg-primary"
+              className="btn-shine rounded-full bg-foreground px-6 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-colors duration-300 hover:bg-primary"
             >
               Get an exact quote ↗
             </a>
@@ -1108,7 +1198,6 @@ function Investment() {
             </a>
           </div>
         </Reveal>
-
       </div>
     </section>
   );
