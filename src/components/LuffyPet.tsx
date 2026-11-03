@@ -15,7 +15,9 @@ const FRAME_H = 104;
 
 type Clip = { row: number; frames: number; fps: number; /** ms before control passes on */ oneShot?: number };
 
-const CLIPS = {
+type ClipName = "idle" | "run" | "sprint" | "wave" | "jump" | "cry" | "waiting" | "dash" | "flex";
+
+const CLIPS: Record<ClipName, Clip> = {
   idle: { row: 0, frames: 6, fps: 6, oneShot: 2600 },
   run: { row: 1, frames: 8, fps: 12, oneShot: 2400 },
   sprint: { row: 2, frames: 8, fps: 14 },
@@ -25,9 +27,7 @@ const CLIPS = {
   waiting: { row: 6, frames: 6, fps: 5, oneShot: 3600 },
   dash: { row: 7, frames: 6, fps: 10, oneShot: 1400 },
   flex: { row: 8, frames: 6, fps: 6, oneShot: 2600 },
-} satisfies Record<string, Clip>;
-
-type ClipName = keyof typeof CLIPS;
+};
 type Phase = "enter" | "play" | "leave" | "bye";
 
 const HOME_X = 26;
