@@ -246,11 +246,11 @@
 }
 
 @utility animate-marquee {
-  animation: ticker 38s linear infinite;
+  animation: ticker 90s linear infinite;
 }
 
 @utility animate-marquee-reverse {
-  animation: ticker-reverse 46s linear infinite;
+  animation: ticker-reverse 90s linear infinite;
 }
 
 /* shine sweep on buttons — runs once per hover */
