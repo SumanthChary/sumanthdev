@@ -70,10 +70,9 @@ const ROW_SKILLS: Tool[] = [
   { name: "Testing" },
 ];
 
+void ROW_SKILLS; // skills live in their own section — keep this strip to tools only
 const ROWS = [
-  { items: ROW_CODE, cls: "animate-marquee", label: "Languages and frameworks I build with" },
-  { items: ROW_AI, cls: "animate-marquee-reverse", label: "AI models, cloud and product tools I use" },
-  { items: ROW_SKILLS, cls: "animate-marquee", label: "Roles and disciplines I bring" },
+  { items: [...ROW_CODE, ...ROW_AI], cls: "animate-marquee", label: "Tools I build with" },
 ];
 
 function ChipRow({ items }: { items: Tool[] }) {
@@ -104,7 +103,10 @@ function ChipRow({ items }: { items: Tool[] }) {
 /** Three rows sliding opposite ways — brand logos on each tool, pause on hover, still under reduced motion. */
 export function TechMarquee() {
   return (
-    <section aria-label="Tools, skills and disciplines" className="overflow-hidden border-b border-border py-7">
+    <section aria-label="Tools I build with" className="overflow-hidden border-b border-border py-7">
+      <p className="wrap mb-4 font-mono text-[0.64rem] uppercase tracking-[0.14em] text-brown-soft">
+        Tools I ship with daily
+      </p>
       <div className="flex flex-col gap-3">
         {ROWS.map((row) => (
           <div

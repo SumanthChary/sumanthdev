@@ -167,6 +167,7 @@ function CaseStudy() {
           </div>
         </Reveal>
 
+        {g0 && g1 && g2 && (
         <Reveal className="grid gap-5 md:grid-cols-2 md:items-start">
           <ImageFrame
             label={g0.label}

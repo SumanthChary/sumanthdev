@@ -204,7 +204,6 @@ function Home() {
         <Experience />
         <Proof />
         <Skills />
-        <Stack />
         <About />
         <Investment />
         <Faq />
