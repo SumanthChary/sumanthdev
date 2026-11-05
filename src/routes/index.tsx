@@ -1123,8 +1123,8 @@ function Investment() {
             Priced before we start. Never by the hour.
           </h2>
           <p className="mt-4 text-[0.98rem] leading-relaxed text-brown">
-            Real numbers, so you know in ten seconds whether we're a fit. Scope is written down
-            first; the price on that page is the price you pay.
+            Starting points, so you know in ten seconds whether we're a fit. After one short call
+            you get a fixed quote in writing — and that's the price you pay.
           </p>
         </Reveal>
 
@@ -1144,7 +1144,7 @@ function Investment() {
                 <p className="mt-4 text-[0.92rem] leading-relaxed text-brown">{p.for}</p>
                 {p.featured && (
                   <span className="mt-4 w-fit rounded-full bg-primary px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-primary-foreground">
-                    Most picked
+                    Proven — see Sri Vastrika
                   </span>
                 )}
                 <ul className="m-0 mt-5 flex flex-1 list-none flex-col gap-2 border-t border-border p-0 pt-5 text-[0.88rem] leading-snug text-foreground">
