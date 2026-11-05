@@ -79,11 +79,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sumanth Chary — Indie AI Builder & Growth Marketer" },
+      { title: "Sumanth Chary — Indie AI Product Builder" },
       {
         name: "description",
         content:
-          "Solo AI products shipped end-to-end — design, code, payments and growth — plus paid campaigns for real clients.",
+          "Solo AI products shipped end-to-end — design, code and payments. Founded, built and sold LegalDeep AI. Available for client work.",
       },
       { name: "author", content: "Sumanth Chary" },
       { name: "theme-color", content: "#FAFAF7" },

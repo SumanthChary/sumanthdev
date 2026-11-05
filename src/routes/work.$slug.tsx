@@ -149,18 +149,21 @@ function CaseStudy() {
           />
         </Reveal>
 
-        <Reveal className="grid gap-8 py-12 md:grid-cols-2 md:gap-16 md:py-16">
-          <div>
+        <Reveal className="grid gap-8 py-12 md:grid-cols-3 md:gap-10 md:py-16">
+          {[
+            ["01 — The problem", p.brief],
+            ["02 — What I built", p.approach],
+          ].map(([k, v]) => (
+            <div key={k}>
+              <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-primary">{k}</h4>
+              <p className="text-[1rem] leading-[1.75] text-brown">{v}</p>
+            </div>
+          ))}
+          <div className="rounded-xl border border-primary/40 bg-frame/60 p-6">
             <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-primary">
-              The brief
+              03 — The result
             </h4>
-            <p className="text-[1rem] leading-[1.75] text-brown">{p.brief}</p>
-          </div>
-          <div>
-            <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-primary">
-              The approach
-            </h4>
-            <p className="text-[1rem] leading-[1.75] text-brown">{p.approach}</p>
+            <p className="font-serif text-[1.35rem] leading-snug text-foreground">{p.result}</p>
           </div>
         </Reveal>
 
