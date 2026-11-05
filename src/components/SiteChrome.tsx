@@ -26,7 +26,7 @@ const navLinks = [
   { href: "/#work", label: "Work" },
   { href: "/#client-work", label: "Clients" },
   { href: "/#lab", label: "Lab" },
-  { href: "/#growth", label: "Growth" },
+  { href: "/#experience", label: "Record" },
   { href: "/#about", label: "About" },
 ];
 
@@ -120,7 +120,7 @@ export function SiteNav() {
       {open && (
         <nav
           aria-label="Mobile sections"
-          className="flex flex-col gap-1 border-t border-border px-[clamp(20px,4vw,56px)] pb-8 pt-4 md:hidden"
+          className="flex max-h-[calc(100svh-5rem)] flex-col gap-1 overflow-y-auto overscroll-contain border-t border-border px-[clamp(20px,4vw,56px)] pb-8 pt-4 md:hidden"
         >
           {navLinks.map((l) => (
             <a
