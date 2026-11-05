@@ -1142,7 +1142,12 @@ function Investment() {
                   Typically {p.time}
                 </p>
                 <p className="mt-4 text-[0.92rem] leading-relaxed text-brown">{p.for}</p>
-                <ul className="m-0 mt-5 flex list-none flex-col gap-2 border-t border-border p-0 pt-5 text-[0.88rem] leading-snug text-foreground">
+                {p.featured && (
+                  <span className="mt-4 w-fit rounded-full bg-primary px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-primary-foreground">
+                    Most picked
+                  </span>
+                )}
+                <ul className="m-0 mt-5 flex flex-1 list-none flex-col gap-2 border-t border-border p-0 pt-5 text-[0.88rem] leading-snug text-foreground">
                   {p.includes.map((it) => (
                     <li
                       key={it}
@@ -1152,6 +1157,18 @@ function Investment() {
                     </li>
                   ))}
                 </ul>
+                <a
+                  href={CALENDLY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`btn-shine mt-6 rounded-full px-5 py-3 text-center font-mono text-[0.7rem] uppercase tracking-[0.05em] transition-colors duration-300 ${
+                    p.featured
+                      ? "bg-foreground text-background hover:bg-primary"
+                      : "border border-border-strong text-foreground hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  Discuss this build ↗
+                </a>
               </article>
             </Reveal>
           ))}

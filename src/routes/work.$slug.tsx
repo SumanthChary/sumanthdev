@@ -137,6 +137,7 @@ function CaseStudy() {
           </div>
         )}
 
+        {p.hero && (
         <Reveal className="mt-10 sm:mt-12">
           <ImageFrame
             label="Add: product hero screenshot"
@@ -145,9 +146,10 @@ function CaseStudy() {
             alt={`${p.title} — product hero`}
             loading="eager"
             auto={!!p.hero}
-            className={p.hero ? "w-full" : "aspect-[16/10] w-full sm:aspect-video"}
+            className="w-full"
           />
         </Reveal>
+        )}
 
         <Reveal className="grid gap-8 py-12 md:grid-cols-3 md:gap-10 md:py-16">
           {[
@@ -196,6 +198,7 @@ function CaseStudy() {
             />
           </div>
         </Reveal>
+        )}
 
         {p.beforeAfter && (
           <Reveal className="mt-5 grid gap-5 sm:grid-cols-2">
