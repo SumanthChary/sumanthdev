@@ -1,0 +1,5 @@
+- [ ] Replace unsupported project image placeholders with clearly labeled concept visuals and real supplied imagery.
+- [ ] Correct the homepage hierarchy, scope/pricing copy, and misleading unverified proof claims.
+- [ ] Make case-study galleries resilient and visually complete using available items only.
+- [ ] Refine Luffy summon, dismissal, and mobile interactions without blocking content.
+- [ ] Verify SEO metadata, case-study routes, and desktop/mobile preview states.
