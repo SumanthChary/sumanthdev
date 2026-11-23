@@ -157,12 +157,7 @@ function Dot({ live }: { live: boolean }) {
 /** blue-and-white verified mark, shown next to the name */
 function VerifiedBadge({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      role="img"
-      aria-label="Verified"
-      className={className}
-    >
+    <svg viewBox="0 0 24 24" role="img" aria-label="Verified" className={className}>
       <path
         fill="oklch(0.6 0.17 255)"
         d="M12 1.7l2.6 1.9 3.2-.3 1.2 3 2.9 1.5-.9 3.2.9 3.2-2.9 1.5-1.2 3-3.2-.3-2.6 1.9-2.6-1.9-3.2.3-1.2-3-2.9-1.5.9-3.2-.9-3.2 2.9-1.5 1.2-3 3.2.3 2.6-1.9z"
@@ -194,7 +189,7 @@ function Home() {
     <>
       <div className="grain" aria-hidden="true" />
       <SiteNav />
-      <main>
+      <main id="main">
         <Hero />
         <Ticker />
         <TechMarquee />
@@ -309,8 +304,7 @@ function Hero() {
               ))}
             </dl>
             <p className="mt-7 border-t border-border pt-5 text-[0.9rem] leading-relaxed text-brown">
-              Same person from the first call to the launch tweet — design, code, payments,
-              growth.
+              Same person from the first call to the launch tweet — design, code, payments, growth.
             </p>
           </div>
         </Reveal>
@@ -321,10 +315,7 @@ function Hero() {
 
 function Ticker() {
   return (
-    <div
-      aria-hidden="true"
-      className="group overflow-hidden border-y border-border py-3.5"
-    >
+    <div aria-hidden="true" className="group overflow-hidden border-y border-border py-3.5">
       <div className="animate-ticker flex w-max group-hover:[animation-play-state:paused]">
         {[0, 1].map((dup) => (
           <div className="flex" key={dup}>
@@ -456,10 +447,7 @@ const proofPoints = [
 /** Trust block — the reasons someone should feel safe hiring a solo builder. */
 function Proof() {
   return (
-    <section
-      id="proof"
-      className="border-t border-border-strong py-[clamp(64px,9vw,110px)]"
-    >
+    <section id="proof" className="border-t border-border-strong py-[clamp(64px,9vw,110px)]">
       <div className="wrap">
         <Reveal className="mb-10 max-w-[52ch]">
           <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
@@ -493,10 +481,26 @@ function Proof() {
             </h3>
             <ol className="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
               {[
-                ["01", "One call", "20 minutes on the phone or WhatsApp. What you sell, who buys it, what's in the way."],
-                ["02", "Fixed scope & price", "Written down before anything starts. No hourly surprises."],
-                ["03", "Live in ~2 weeks", "You get a real URL early and watch it improve, not a reveal at the end."],
-                ["04", "Growth after launch", "SEO, ads, and iteration — the part most builders hand back to you."],
+                [
+                  "01",
+                  "One call",
+                  "20 minutes on the phone or WhatsApp. What you sell, who buys it, what's in the way.",
+                ],
+                [
+                  "02",
+                  "Fixed scope & price",
+                  "Written down before anything starts. No hourly surprises.",
+                ],
+                [
+                  "03",
+                  "Live in ~2 weeks",
+                  "You get a real URL early and watch it improve, not a reveal at the end.",
+                ],
+                [
+                  "04",
+                  "Growth after launch",
+                  "SEO, ads, and iteration — the part most builders hand back to you.",
+                ],
               ].map(([n, t, d]) => (
                 <li key={n} className="flex gap-3.5">
                   <span className="font-mono text-[0.7rem] text-brown-soft">{n}</span>
@@ -552,8 +556,11 @@ function Work() {
   const pos = useRef({ x: 0, y: 0 });
   const previewRef = useRef<HTMLDivElement>(null);
   const target = useRef({ x: 0, y: 0 });
+  const active = preview !== null;
 
+  // The cursor-follow preview only animates while a row is hovered, and never on touch devices.
   useEffect(() => {
+    if (!active || !window.matchMedia("(hover: hover)").matches) return;
     let raf = 0;
     const onMove = (e: MouseEvent) => {
       target.current = { x: e.clientX, y: e.clientY };
@@ -572,7 +579,7 @@ function Work() {
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [active]);
 
   return (
     <section id="work" className="py-[clamp(80px,10vw,120px)]">
@@ -595,9 +602,11 @@ function Work() {
               key={p.slug}
               to="/work/$slug"
               params={{ slug: p.slug }}
-              onMouseEnter={() =>
-                setPreview({ tint: p.tint, label: p.title, src: p.hero ?? null })
-              }
+              onMouseEnter={(e) => {
+                target.current = { x: e.clientX, y: e.clientY };
+                pos.current = { x: e.clientX, y: e.clientY };
+                setPreview({ tint: p.tint, label: p.title, src: p.hero ?? null });
+              }}
               onMouseLeave={() => setPreview(null)}
               className="group grid grid-cols-[76px_minmax(0,1fr)] items-center gap-x-4 gap-y-2 border-b border-border py-5 transition-[padding-left] duration-500 ease-[var(--ease-out-soft)] hover:pl-3.5 md:grid-cols-[64px_88px_1fr_auto_auto] md:gap-x-5 md:py-6"
             >
@@ -691,8 +700,8 @@ function ClientWork() {
             <h2 className="mt-3.5 text-[clamp(2rem,4vw,3rem)]">Businesses I've shipped for</h2>
           </div>
           <p className="m-0 max-w-[38ch] text-[0.95rem] leading-relaxed text-brown">
-            Not mockups. Real businesses with real customers — here's exactly what they got and
-            what changed for them.
+            Not mockups. Real businesses with real customers — here's exactly what they got and what
+            changed for them.
           </p>
         </Reveal>
 
@@ -718,7 +727,7 @@ function ClientWork() {
                       <span className="font-mono text-[0.66rem] uppercase leading-tight tracking-[0.1em] text-brown">
                         Shopify backend
                         <small className="mt-1 block text-[0.92em] normal-case tracking-[0.02em] text-brown-soft">
-                          Front end designed &amp; built by us
+                          Front end designed &amp; built by me
                         </small>
                       </span>
                     </div>
@@ -990,46 +999,6 @@ function Experience() {
   );
 }
 
-const stackGroups = [
-  { label: "Languages", items: ["TypeScript", "JavaScript", "Python", "SQL"] },
-  { label: "Frameworks", items: ["React", "Next.js", "TanStack", "Tailwind", "Node"] },
-  { label: "Data & infra", items: ["Postgres", "Supabase", "Netlify", "Vercel", "Cloudflare"] },
-  { label: "AI & tooling", items: ["OpenAI", "Claude", "Gemini", "LangChain-style agents", "Lovable", "Dodo Payments", "GitHub Copilot"] },
-];
-
-function Stack() {
-  return (
-    <section id="stack" className="py-[clamp(60px,8vw,100px)]">
-      <div className="wrap">
-        <Reveal className="mb-8">
-          <p className="mono-label mb-4 flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-            Toolkit
-          </p>
-          <h2 className="text-[clamp(1.6rem,3vw,2.2rem)]">Tech stack</h2>
-        </Reveal>
-        <Reveal className="grid gap-x-8 gap-y-0 border-t border-border-strong sm:grid-cols-2">
-          {stackGroups.map((g) => (
-            <div key={g.label} className="border-b border-border py-5">
-              <h3 className="mb-2.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-brown-soft">
-                {g.label}
-              </h3>
-              <p className="m-0 flex flex-wrap font-mono text-[0.86rem] text-brown">
-                {g.items.map((t, idx) => (
-                  <span key={t}>
-                    {t}
-                    {idx < g.items.length - 1 && <span className="mx-3 text-brown-soft">·</span>}
-                  </span>
-                ))}
-              </p>
-            </div>
-          ))}
-        </Reveal>
-        <span className="animate-caret mt-6 inline-block h-[1em] w-[7px] bg-primary" />
-      </div>
-    </section>
-  );
-}
-
 function About() {
   return (
     <section id="about" className="border-t border-border-strong py-[clamp(80px,10vw,120px)]">
@@ -1075,9 +1044,9 @@ function About() {
           </p>
           <p className="max-w-[58ch] text-[1.02rem] leading-[1.75] text-brown">
             I'm 19, from India, and I build AI-powered products end to end — design the interface,
-            wire up the backend, connect payments, then go find the people who'll actually use it.
-            I founded, built and sold LegalDeep AI, run PostPro AI as a live product, and ship
-            client storefronts with Shopify doing the heavy lifting behind a custom front end.
+            wire up the backend, connect payments, then go find the people who'll actually use it. I
+            founded, built and sold LegalDeep AI, run PostPro AI as a live product, and ship client
+            storefronts with Shopify doing the heavy lifting behind a custom front end.
           </p>
         </Reveal>
       </div>
@@ -1091,14 +1060,24 @@ const packages = [
     price: "from ₹18,000",
     time: "5–7 days",
     for: "One page, one offer — built to turn ad clicks into enquiries.",
-    includes: ["Copy written with you", "Custom design, no template", "Mobile-first build", "Analytics + lead capture"],
+    includes: [
+      "Copy written with you",
+      "Custom design, no template",
+      "Mobile-first build",
+      "Analytics + lead capture",
+    ],
   },
   {
     name: "Online store",
     price: "from ₹45,000",
     time: "2–3 weeks",
     for: "A storefront that looks like a brand, with Shopify doing the boring parts.",
-    includes: ["Logo / brand polish", "Custom storefront design & build", "Checkout, COD, shipping", "SEO from day one"],
+    includes: [
+      "Logo / brand polish",
+      "Custom storefront design & build",
+      "Checkout, COD, shipping",
+      "SEO from day one",
+    ],
     featured: true,
   },
   {
@@ -1106,7 +1085,12 @@ const packages = [
     price: "from ₹75,000",
     time: "3–5 weeks",
     for: "A working v1 with real users — auth, payments, and the AI part that matters.",
-    includes: ["Product & flow design", "Full-stack build", "Payments wired in", "Two weeks of fixes after launch"],
+    includes: [
+      "Product & flow design",
+      "Full-stack build",
+      "Payments wired in",
+      "Two weeks of fixes after launch",
+    ],
   },
 ];
 
@@ -1191,9 +1175,9 @@ function Investment() {
 
         <Reveal className="mt-6 flex flex-col gap-4 rounded-xl border border-dashed border-frame-border bg-frame/50 p-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="m-0 max-w-[62ch] text-[0.92rem] leading-relaxed text-brown">
-            These are starting points, not sealed quotes. The final number depends on scope,
-            rounds of changes and timeline — you'll get an exact figure, in writing, after one
-            30-minute call. Smaller one-off jobs are welcome too.
+            These are starting points, not sealed quotes. The final number depends on scope, rounds
+            of changes and timeline — you'll get an exact figure, in writing, after one 30-minute
+            call. Smaller one-off jobs are welcome too.
           </p>
           <div className="flex shrink-0 flex-wrap gap-3">
             <a

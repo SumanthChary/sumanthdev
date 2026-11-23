@@ -7,6 +7,9 @@ import vastrikaHome from "@/assets/media/vastrika-home.webp";
 import vastrikaArrivals from "@/assets/media/vastrika-arrivals.webp";
 import vastrikaProduct from "@/assets/media/vastrika-product.webp";
 import vastrikaLogo from "@/assets/media/vastrika-logo.webp";
+import flipscanConcept from "@/assets/media/flipscan-concept.jpg";
+import legaldeepConcept from "@/assets/media/legaldeep-concept.jpg";
+import airwriteConcept from "@/assets/media/airwrite-concept.jpg";
 
 export type GalleryItem = { label: string; size: string; src?: string; fit?: "cover" | "contain" };
 
@@ -38,6 +41,11 @@ export type Project = {
   hero?: string;
   /** public URL people can open and verify */
   liveUrl?: string;
+  /**
+   * Illustration used when there is no real screenshot to show. The case study
+   * labels it clearly as a concept so nobody mistakes it for the shipped UI.
+   */
+  concept?: { src: string; caption: string };
   /** optional closing full-width image */
   closing?: { src: string; caption: string };
   /** client engagements get a dedicated block on the home page */
@@ -111,6 +119,11 @@ export const projects: Project[] = [
       "Built the scan flow mobile-first with a single input step, then layered comparable listings underneath the estimate so the number always shows its work. The whole flow was designed for one-handed use in the real world, not for a demo desk.",
     result: "Growing with early users — the estimate flow is live and iterating.",
     quote: "A price is only useful if the person reading it believes where it came from.",
+    concept: {
+      src: flipscanConcept,
+      caption:
+        "Scan on the left, comparable listings on the right — the number always shows its work.",
+    },
     gallery: [],
   },
   {
@@ -134,6 +147,10 @@ export const projects: Project[] = [
       "A document view with inline risk flags rather than a separate report — the analysis lives where the text lives. Conservative language throughout, and every flag links back to the exact paragraph it came from.",
     result: "Founded, built and sold — a complete product taken from idea to handover.",
     quote: "Confidence in a legal tool comes from restraint, not from claiming more than it knows.",
+    concept: {
+      src: legaldeepConcept,
+      caption: "Risk flags live inline, next to the paragraph they came from.",
+    },
     gallery: [],
   },
   {
@@ -158,6 +175,10 @@ export const projects: Project[] = [
       "Smoothing was the whole project. Raw landmark data is jittery, so the stroke path runs through a velocity-aware filter before it ever hits the canvas — the difference between a toy and something that feels like drawing.",
     result: "Launched — the full source is public on GitHub.",
     quote: "Most novel interfaces fail on latency, not on the idea.",
+    concept: {
+      src: airwriteConcept,
+      caption: "Hand landmarks in, smoothed strokes out — the canvas follows the fingertip.",
+    },
     gallery: [],
   },
   {
@@ -180,17 +201,18 @@ export const projects: Project[] = [
     brief:
       "A growing nighties and sarees label with real products and no storefront to match them. They didn't want a template store — they wanted the label to look premium in a category where most competitors look like a catalogue dump.",
     approach:
-      "Logo first, then the storefront itself — designed and built by us, page by page, around large product photography and the client's own maroon-and-gold. Shopify sits behind it doing what it's genuinely good at: checkout, inventory, variants, COD and payments. The look is ours; the plumbing is battle-tested, so the owner runs the whole store alone.",
+      "Logo first, then the storefront itself — designed and built by me, page by page, around large product photography and the client's own maroon-and-gold. Shopify sits behind it doing what it's genuinely good at: checkout, inventory, variants, COD and payments. The look is custom; the plumbing is battle-tested, so the owner runs the whole store alone.",
     result:
       "Live at srivastrika.store — the owner adds products and runs orders without a developer.",
-    quote: "Premium isn't a colour palette. It's how much space you're willing to give the product.",
+    quote:
+      "Premium isn't a colour palette. It's how much space you're willing to give the product.",
     client: {
       serviceLine: "Custom storefront design & build · Shopify backend",
       platform: "Shopify",
       logo: vastrikaLogo,
       delivered: [
         "Logo & brand identity",
-        "Storefront designed and coded by us — not a bought theme",
+        "Storefront designed and coded by me — not a bought theme",
         "Shopify backend: inventory, variants, orders",
         "Checkout, COD, payments & shipping rules configured",
         "On-page SEO from day one",
@@ -203,7 +225,11 @@ export const projects: Project[] = [
     },
     hero: vastrikaHome,
     gallery: [
-      { label: "Product page — Rosewood Rose Kanchipuram", size: "Detail, care & COD", src: vastrikaProduct },
+      {
+        label: "Product page — Rosewood Rose Kanchipuram",
+        size: "Detail, care & COD",
+        src: vastrikaProduct,
+      },
       { label: "New arrivals grid", size: "Collection view", src: vastrikaArrivals },
       { label: "Brand mark", size: "Logo & wordmark", src: vastrikaLogo, fit: "contain" },
     ],

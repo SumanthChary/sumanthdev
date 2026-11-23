@@ -13,7 +13,12 @@ import sheet from "@/assets/media/luffy-sheet.webp";
 const FRAME_W = 96;
 const FRAME_H = 104;
 
-type Clip = { row: number; frames: number; fps: number; /** ms before control passes on */ oneShot?: number };
+type Clip = {
+  row: number;
+  frames: number;
+  fps: number;
+  /** ms before control passes on */ oneShot?: number;
+};
 
 type ClipName = "idle" | "run" | "sprint" | "wave" | "jump" | "cry" | "waiting" | "dash" | "flex";
 

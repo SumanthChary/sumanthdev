@@ -58,6 +58,13 @@ export function SiteNav() {
   }, []);
 
   useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -163,9 +170,9 @@ export function ContactSection() {
           Have something worth shipping?
         </h2>
         <p className="mb-8 max-w-[46ch] text-[0.95rem] leading-relaxed text-on-dark-muted">
-          Tell me what you want built. Grab a 30-minute call on my calendar, or message me — I
-          reply within a day, usually the same evening IST, and you always talk to me, not an
-          agency account manager.
+          Tell me what you want built. Grab a 30-minute call on my calendar, or message me — I reply
+          within a day, usually the same evening IST, and you always talk to me, not an agency
+          account manager.
         </p>
         <div className="flex flex-col gap-8 border-t border-on-dark-muted/25 pt-8 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -191,23 +198,6 @@ export function ContactSection() {
               className="inline-flex items-center justify-center gap-2 rounded-full border border-on-dark-muted/40 px-7 py-4 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-on-dark transition-colors duration-300 hover:border-primary hover:text-primary"
             >
               WhatsApp me
-              <span aria-hidden="true">↗</span>
-            </a>
-            <a
-              href={RESUME_URL}
-              download="Sumanth-Chary-Resume.pdf"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-on-dark-muted/40 px-7 py-4 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-on-dark transition-colors duration-300 hover:border-primary hover:text-primary"
-            >
-              Download resume
-              <span aria-hidden="true">↓</span>
-            </a>
-            <a
-              href={FIVER}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-on-dark-muted/40 px-7 py-4 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-on-dark transition-colors duration-300 hover:border-primary hover:text-primary"
-            >
-              Hire on Fiverr
               <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -242,7 +232,14 @@ export function ContactSection() {
               rel="noopener noreferrer"
               className="text-on-dark-muted hover:text-primary"
             >
-              fiverr.com/s/61bpX5q
+              Hire me on Fiverr ↗
+            </a>
+            <a
+              href={RESUME_URL}
+              download="Sumanth-Chary-Resume.pdf"
+              className="text-on-dark-muted hover:text-primary"
+            >
+              Download resume ↓
             </a>
           </div>
         </div>

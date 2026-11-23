@@ -35,12 +35,7 @@ export function ImageFrame({
 }: ImageFrameProps) {
   if (src) {
     return (
-      <div
-        className={cn(
-          "overflow-hidden rounded-lg border border-border bg-frame",
-          className,
-        )}
-      >
+      <div className={cn("overflow-hidden rounded-lg border border-border bg-frame", className)}>
         <img
           src={src}
           alt={alt ?? label}

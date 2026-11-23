@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
-import { Wordmark } from "@/components/SiteChrome";
+import { CALENDLY, Wordmark, WHATSAPP } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
 
 export const Route = createFileRoute("/work/$slug")({
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/work/$slug")({
       ? `${loaderData.title} — ${loaderData.category} case study — Sumanth Chary`
       : "Case study — Sumanth Chary";
     const description = loaderData?.description ?? "Case study by Sumanth Chary.";
-    const image = loaderData?.hero ? `${SITE}${loaderData.hero}` : null;
+    const image = loaderData?.hero ? `${SITE}${loaderData.hero}` : `${SITE}/og-cover.jpg`;
     return {
       meta: [
         { title },
@@ -82,7 +82,11 @@ function CaseStudy() {
   const p = Route.useLoaderData();
   const idx = projects.findIndex((x) => x.slug === p.slug);
   const next = projects[(idx + 1) % projects.length]!;
-  const [g0, g1, g2] = p.gallery as [typeof p.gallery[0], typeof p.gallery[0], typeof p.gallery[0]];
+  const [g0, g1, g2] = p.gallery as [
+    (typeof p.gallery)[0],
+    (typeof p.gallery)[0],
+    (typeof p.gallery)[0],
+  ];
 
   return (
     <>
@@ -91,16 +95,17 @@ function CaseStudy() {
         <Wordmark />
         <Link
           to="/"
+          hash="work"
           className="font-mono text-[0.74rem] uppercase tracking-[0.05em] text-brown transition-colors hover:text-primary"
         >
           ← Back to work
         </Link>
       </header>
 
-      <main className="mx-auto max-w-[1100px] px-[clamp(20px,4vw,56px)]">
+      <main id="main" className="mx-auto max-w-[1100px] px-[clamp(20px,4vw,56px)]">
         <div className="pb-10 pt-12">
           <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-            Case study — {p.index} / 06
+            Case study — {p.index} / {String(projects.length).padStart(2, "0")}
           </p>
           <h1 className="mt-4 text-[clamp(2.6rem,6vw,5rem)] leading-[1.05]">
             {p.titleLead} <em className="italic text-primary">{p.titleAccent}</em>
@@ -138,17 +143,37 @@ function CaseStudy() {
         )}
 
         {p.hero && (
-        <Reveal className="mt-10 sm:mt-12">
-          <ImageFrame
-            label="Add: product hero screenshot"
-            size="1920 × 1080 · full dashboard or landing view"
-            src={p.hero}
-            alt={`${p.title} — product hero`}
-            loading="eager"
-            auto={!!p.hero}
-            className="w-full"
-          />
-        </Reveal>
+          <Reveal className="mt-10 sm:mt-12">
+            <ImageFrame
+              label={`${p.title} — product hero`}
+              src={p.hero}
+              alt={`${p.title} — product hero`}
+              loading="eager"
+              auto={!!p.hero}
+              className="w-full"
+            />
+          </Reveal>
+        )}
+
+        {!p.hero && p.concept && (
+          <Reveal className="mt-10 sm:mt-12">
+            <ImageFrame
+              label={p.concept.caption}
+              src={p.concept.src}
+              alt={`${p.title} — concept illustration`}
+              loading="eager"
+              auto
+              className="w-full"
+            />
+            <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-brown-soft">
+              <span className="rounded-full border border-primary/40 px-2.5 py-0.5 text-primary">
+                Concept illustration
+              </span>
+              <span className="normal-case tracking-[0.02em]">
+                {p.concept.caption} Not a screenshot of the shipped UI.
+              </span>
+            </p>
+          </Reveal>
         )}
 
         <Reveal className="grid gap-8 py-12 md:grid-cols-3 md:gap-10 md:py-16">
@@ -157,7 +182,9 @@ function CaseStudy() {
             ["02 — What I built", p.approach],
           ].map(([k, v]) => (
             <div key={k}>
-              <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-primary">{k}</h4>
+              <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-primary">
+                {k}
+              </h4>
               <p className="text-[1rem] leading-[1.75] text-brown">{v}</p>
             </div>
           ))}
@@ -170,34 +197,34 @@ function CaseStudy() {
         </Reveal>
 
         {g0 && g1 && g2 && (
-        <Reveal className="grid gap-5 md:grid-cols-2 md:items-start">
-          <ImageFrame
-            label={g0.label}
-            size={g0.size}
-            src={g0.src}
-            alt={`${p.title} — ${g0.label}`}
-            auto={!!g0.src}
-            className={g0.src ? "w-full" : "aspect-[4/5] w-full"}
-          />
-          <div className="grid gap-5">
+          <Reveal className="grid gap-5 md:grid-cols-2 md:items-start">
             <ImageFrame
-              label={g1.label}
-              size={g1.size}
-              src={g1.src}
-              alt={`${p.title} — ${g1.label}`}
-              auto={!!g1.src}
-              className={g1.src ? "w-full" : "aspect-[16/10] w-full"}
+              label={g0.label}
+              size={g0.size}
+              src={g0.src}
+              alt={`${p.title} — ${g0.label}`}
+              auto={!!g0.src}
+              className={g0.src ? "w-full" : "aspect-[4/5] w-full"}
             />
-            <ImageFrame
-              label={g2.label}
-              size={g2.size}
-              src={g2.src}
-              alt={`${p.title} — ${g2.label}`}
-              auto={!!g2.src}
-              className={g2.src ? "w-full" : "aspect-[16/10] w-full"}
-            />
-          </div>
-        </Reveal>
+            <div className="grid gap-5">
+              <ImageFrame
+                label={g1.label}
+                size={g1.size}
+                src={g1.src}
+                alt={`${p.title} — ${g1.label}`}
+                auto={!!g1.src}
+                className={g1.src ? "w-full" : "aspect-[16/10] w-full"}
+              />
+              <ImageFrame
+                label={g2.label}
+                size={g2.size}
+                src={g2.src}
+                alt={`${p.title} — ${g2.label}`}
+                auto={!!g2.src}
+                className={g2.src ? "w-full" : "aspect-[16/10] w-full"}
+              />
+            </div>
+          </Reveal>
         )}
 
         {p.beforeAfter && (
@@ -236,6 +263,32 @@ function CaseStudy() {
           </p>
         </Reveal>
 
+        <Reveal className="mb-16 flex flex-col gap-5 rounded-xl border border-primary/40 bg-frame/60 p-6 sm:mb-24 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="max-w-[48ch]">
+            <p className="mono-label m-0 text-primary">Want something like this?</p>
+            <p className="m-0 mt-2.5 font-serif text-[clamp(1.4rem,2.6vw,1.8rem)] leading-snug text-foreground">
+              One call, a fixed price, a live link in about two weeks.
+            </p>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-shine rounded-full bg-foreground px-6 py-3.5 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-colors duration-300 hover:bg-primary"
+            >
+              Book a 30-min call ↗
+            </a>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-border-strong px-6 py-3.5 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
+            >
+              WhatsApp ↗
+            </a>
+          </div>
+        </Reveal>
       </main>
 
       <section className="bg-foreground py-24 text-center text-on-dark">
@@ -250,6 +303,7 @@ function CaseStudy() {
         <div className="mt-8">
           <Link
             to="/"
+            hash="work"
             className="font-mono text-[0.74rem] uppercase tracking-[0.05em] text-on-dark-muted hover:text-primary"
           >
             View all work

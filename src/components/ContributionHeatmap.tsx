@@ -22,7 +22,7 @@ export function ContributionHeatmap() {
 
   // GitHub's grid runs Sunday → Saturday, column per week.
   const firstDow = new Date(`${contributions[0]!.date}T00:00:00Z`).getUTCDay();
-  const cells: (typeof contributions[number])[] = [
+  const cells: (typeof contributions)[number][] = [
     ...Array.from({ length: firstDow }, () => ({ date: "", count: -1 })),
     ...contributions,
   ];
@@ -52,10 +52,7 @@ export function ContributionHeatmap() {
         </span>
       </figcaption>
       <div className="-mx-1 overflow-x-auto pb-1">
-        <div
-          className="mx-1 grid w-max flex-none grid-flow-col gap-[3px]"
-          aria-hidden="true"
-        >
+        <div className="mx-1 grid w-max flex-none grid-flow-col gap-[3px]" aria-hidden="true">
           {weeks.map((week, wi) => (
             <div key={wi} className="grid grid-flow-row gap-[3px]">
               {week.map((day, di) => (

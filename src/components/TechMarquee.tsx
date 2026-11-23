@@ -86,10 +86,7 @@ function ChipRow({ items }: { items: Tool[] }) {
               className="flex items-center gap-2 whitespace-nowrap rounded-full border border-border bg-frame px-4 py-2 font-mono text-[0.74rem] tracking-[0.03em] text-brown"
             >
               {tool.Icon && (
-                <tool.Icon
-                  aria-hidden="true"
-                  className="size-[0.95rem] shrink-0 text-brown/80"
-                />
+                <tool.Icon aria-hidden="true" className="size-[0.95rem] shrink-0 text-brown/80" />
               )}
               {tool.name}
             </span>
@@ -103,7 +100,10 @@ function ChipRow({ items }: { items: Tool[] }) {
 /** Three rows sliding opposite ways — brand logos on each tool, pause on hover, still under reduced motion. */
 export function TechMarquee() {
   return (
-    <section aria-label="Tools I build with" className="overflow-hidden border-b border-border py-7">
+    <section
+      aria-label="Tools I build with"
+      className="overflow-hidden border-b border-border py-7"
+    >
       <p className="wrap mb-4 font-mono text-[0.64rem] uppercase tracking-[0.14em] text-brown-soft">
         Tools I ship with daily
       </p>
@@ -114,9 +114,7 @@ export function TechMarquee() {
             className="group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
             aria-label={row.label}
           >
-            <div
-              className={`flex w-max group-hover:[animation-play-state:paused] ${row.cls}`}
-            >
+            <div className={`flex w-max group-hover:[animation-play-state:paused] ${row.cls}`}>
               <ChipRow items={row.items} />
             </div>
           </div>
