@@ -19,11 +19,14 @@
 5. **FlipScan AI** — keep last until it has a live URL or real screenshots; "early users" alone is thin.
 
 ## Next — highest leverage first
-- [x] Sri Vastrika client line is live (home + case study). Still wanted: the person's name and a screenshot of the message
+- [x] Sri Vastrika client line is live (home + case study), named (Bhaskar) with a real WhatsApp message beside it
+- [ ] Make sure the quote on the site is something Bhaskar actually said — the screenshot shows "Kk bro thanks for everything", not the quote line. Add a screenshot of the quote itself, or switch the quote to his words
 - [ ] Replace the one-line testimonial with a longer quote once the client can give one
 - [x] LegalDeep public record linked (2 posts on X, LinkedIn, TrustMRR)
-- [ ] Confirm the sale month and the buyer's name — the old copy said "Sep 2024" but the linked X posts date to Oct 2026, so the date is removed until confirmed
-- [ ] Real screenshots/recordings for FlipScan, LegalDeep, AirWrite (set `hero` in `src/data/projects.ts`)
+- [x] LegalDeep sale: 11 October 2026, buyer Darren Gill (shown on the case study)
+- [x] Real FlipScan screens + render, real LegalDeep landing page
+- [ ] AirWrite: add real photos/recordings — drop files named `airwrite-photo-1.jpg`, `airwrite-photo-2.png` … into `src/assets/media` and they appear automatically (first = hero, rest = gallery)
+- [ ] Higher-resolution FlipScan screenshots (two are only 215px and 410px wide)
 - [ ] "Try AirWrite" live demo on the site — the most shareable asset you own
 - [ ] 30-second screen recording per case study (autoplay, muted) for X/LinkedIn
 - [ ] Free "3-minute site teardown" lead magnet → WhatsApp

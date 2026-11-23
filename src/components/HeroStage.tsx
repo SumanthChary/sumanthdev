@@ -357,7 +357,7 @@ export function HeroStage({ chip }: { chip: ReactNode }) {
           const p = peel[i]!;
           const holder = holders[i]!;
           holder.position.set(
-            x0 + i * STEP.x - p * 0.8 + h * 0.1,
+            x0 + i * STEP.x - p * 0.38 + h * 0.1,
             y0 +
               i * STEP.y -
               p * 0.8 +

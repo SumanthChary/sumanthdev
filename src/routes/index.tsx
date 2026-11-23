@@ -403,7 +403,7 @@ function Receipts() {
     {
       label: "Founded & sold",
       title: "LegalDeep AI",
-      note: "Built from zero, then sold. The sale was announced publicly — see the record.",
+      note: "Built from zero, sold in October 2026. The public posts are linked in the case study.",
       cta: "See the public record",
       to: "legaldeep-ai",
       live: false,

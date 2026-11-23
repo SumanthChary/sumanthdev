@@ -8,9 +8,26 @@ import vastrikaArrivals from "@/assets/media/vastrika-arrivals.webp";
 import vastrikaProduct from "@/assets/media/vastrika-product.webp";
 import vastrikaLogo from "@/assets/media/vastrika-logo.webp";
 import { addOns } from "./site";
-import flipscanConcept from "@/assets/media/flipscan-concept.webp";
+import flipscanHero from "@/assets/media/flipscan-hero.webp";
+import flipscanScan from "@/assets/media/flipscan-scan.webp";
+import flipscanSplash from "@/assets/media/flipscan-splash.webp";
+import legaldeepLanding from "@/assets/media/legaldeep-landing.webp";
+import bhaskarMessage from "@/assets/media/bhaskar-message.webp";
 import legaldeepConcept from "@/assets/media/legaldeep-concept.webp";
 import airwriteConcept from "@/assets/media/airwrite-concept.webp";
+
+/**
+ * Real photos of AirWrite in use. Drop files named airwrite-photo-1.jpg, airwrite-photo-2.png …
+ * into src/assets/media and they appear on the case study — no code change needed.
+ */
+const airwritePhotos = Object.entries(
+  import.meta.glob("../assets/media/airwrite-photo-*.{jpg,jpeg,png,webp}", {
+    eager: true,
+    import: "default",
+  }),
+)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, src]) => src as string);
 
 export type GalleryItem = { label: string; size: string; src?: string; fit?: "cover" | "contain" };
 
@@ -46,16 +63,20 @@ export type Project = {
    * Illustration used when there is no real screenshot to show. The case study
    * labels it clearly as a concept so nobody mistakes it for the shipped UI.
    */
-  concept?: { src: string; caption: string };
+  concept?: { src: string; caption: string; heading?: string };
   /** optional closing full-width image */
   closing?: { src: string; caption: string };
   /** a real line from the client — shown on the home page and the case study */
-  testimonial?: { quote: string; by: string };
+  testimonial?: { quote: string; by: string; /** screenshot of the real message */ proof?: string };
   /** what was in scope, and what was deliberately left out (client work) */
   scope?: {
     included: { title: string; items: string[] }[];
     separate: { name: string; note: string }[];
   };
+  /** one line under the hero image, e.g. what exactly the screenshot shows */
+  heroCaption?: string;
+  /** "phones": portrait app screenshots shown at natural size on a device stage */
+  galleryLayout?: "phones";
   /** public posts that back up the headline claim */
   evidence?: { source: string; label: string; href: string }[];
   /** client engagements get a dedicated block on the home page */
@@ -150,7 +171,11 @@ export const projects: Project[] = [
         "Collections built to be found on search, not just browsed",
       ],
     },
-    testimonial: { quote: "It's too good! I love it!", by: "Sri Vastrika — the client" },
+    testimonial: {
+      quote: "It's too good! I love it!",
+      by: "Bhaskar, Sri Vastrika",
+      proof: bhaskarMessage,
+    },
     scope: {
       included: [
         {
@@ -212,14 +237,14 @@ export const projects: Project[] = [
     tint: "--cover-legaldeep",
     role: "Founder — design, development",
     stack: "Lovable · Supabase · Claude",
-    statusLong: "Founded, built and sold",
+    statusLong: "Founded, built and sold — 11 Oct 2026",
     category: "SaaS product",
     brief:
       "Small businesses sign contracts they haven't fully read. LegalDeep needed to surface the three clauses that actually matter without pretending to be a lawyer.",
     approach:
       "A document view with inline risk flags rather than a separate report — the analysis lives where the text lives. Conservative language throughout, and every flag links back to the exact paragraph it came from.",
     result:
-      "Founded, built and sold — a complete product taken from idea to handover, with the sale announced publicly.",
+      "Founded, built and sold — acquired by Darren Gill on 11 October 2026. A complete product taken from idea to handover, with the sale announced publicly.",
     quote: "Confidence in a legal tool comes from restraint, not from claiming more than it knows.",
     evidence: [
       {
@@ -239,9 +264,13 @@ export const projects: Project[] = [
         href: "https://x.com/trust_mrr/status/2109001319650619561",
       },
     ],
+    hero: legaldeepLanding,
+    heroCaption: "The product's landing page, shown as branded ContractAI.",
     concept: {
+      heading: "The analysis view, as designed",
       src: legaldeepConcept,
-      caption: "Risk flags live inline, next to the paragraph they came from.",
+      caption:
+        "The analysis view as designed — risk flags live inline, next to the paragraph they came from.",
     },
     gallery: [],
   },
@@ -268,10 +297,17 @@ export const projects: Project[] = [
     result: "Launched — the full source is public on GitHub.",
     quote: "Most novel interfaces fail on latency, not on the idea.",
     concept: {
+      heading: "The interface, as designed",
       src: airwriteConcept,
       caption: "Hand landmarks in, smoothed strokes out — the canvas follows the fingertip.",
     },
-    gallery: [],
+    ...(airwritePhotos[0] ? { hero: airwritePhotos[0] } : {}),
+    heroCaption: "AirWrite in use.",
+    gallery: airwritePhotos.slice(1).map((src, i) => ({
+      label: `AirWrite in use — ${i + 2}`,
+      size: "Photo",
+      src,
+    })),
   },
   {
     slug: "flipscan-ai",
@@ -279,7 +315,8 @@ export const projects: Project[] = [
     title: "FlipScan AI",
     titleLead: "FlipScan",
     titleAccent: "AI",
-    description: "Resale price estimator for the US market — eBay, Poshmark, Depop.",
+    description:
+      "Sneaker resale price estimator for the US market — scan a pair, get an instant estimate.",
     tag: "SaaS Product",
     status: "Growing",
     live: false,
@@ -294,12 +331,12 @@ export const projects: Project[] = [
       "Built the scan flow mobile-first with a single input step, then layered comparable listings underneath the estimate so the number always shows its work. The whole flow was designed for one-handed use in the real world, not for a demo desk.",
     result: "Growing with early users — the estimate flow is live and iterating.",
     quote: "A price is only useful if the person reading it believes where it came from.",
-    concept: {
-      src: flipscanConcept,
-      caption:
-        "Scan on the left, comparable listings on the right — the number always shows its work.",
-    },
-    gallery: [],
+    hero: flipscanHero,
+    galleryLayout: "phones",
+    gallery: [
+      { label: "Welcome screen", size: "Scan sneakers. Get instant results.", src: flipscanSplash },
+      { label: "Scan screen", size: "Point, frame, scan", src: flipscanScan },
+    ],
   },
 ];
 

@@ -3,6 +3,7 @@ import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
 import { ShareRow } from "@/components/ShareRow";
 import { Tilt } from "@/components/Tilt";
+import { CaseGallery } from "@/components/CaseGallery";
 import { CALENDLY, Wordmark, whatsappLink } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
 
@@ -90,12 +91,6 @@ function CaseStudy() {
   const p = Route.useLoaderData();
   const idx = projects.findIndex((x) => x.slug === p.slug);
   const next = projects[(idx + 1) % projects.length]!;
-  const [g0, g1, g2] = p.gallery as [
-    (typeof p.gallery)[0],
-    (typeof p.gallery)[0],
-    (typeof p.gallery)[0],
-  ];
-
   return (
     <>
       <header className="flex items-center justify-between px-[clamp(20px,4vw,56px)] py-7">
@@ -174,6 +169,11 @@ function CaseStudy() {
                 className="w-full"
               />
             </Tilt>
+            {p.heroCaption && (
+              <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-brown-soft">
+                {p.heroCaption}
+              </p>
+            )}
           </Reveal>
         )}
 
@@ -220,36 +220,32 @@ function CaseStudy() {
           </div>
         </Reveal>
 
-        {g0 && g1 && g2 && (
-          <Reveal className="grid gap-5 md:grid-cols-2 md:items-start">
-            <ImageFrame
-              label={g0.label}
-              size={g0.size}
-              src={g0.src}
-              alt={`${p.title} — ${g0.label}`}
-              auto={!!g0.src}
-              className={g0.src ? "w-full" : "aspect-[4/5] w-full"}
-            />
-            <div className="grid gap-5">
+        {p.hero && p.concept && (
+          <Reveal className="pb-12 md:pb-16">
+            <p className="mono-label m-0 mb-4 text-brown-soft">
+              {p.concept.heading ?? "The interface, as designed"}
+            </p>
+            <Tilt>
               <ImageFrame
-                label={g1.label}
-                size={g1.size}
-                src={g1.src}
-                alt={`${p.title} — ${g1.label}`}
-                auto={!!g1.src}
-                className={g1.src ? "w-full" : "aspect-[16/10] w-full"}
+                label={p.concept.caption}
+                src={p.concept.src}
+                alt={`${p.title} — concept illustration`}
+                auto
+                className="w-full"
               />
-              <ImageFrame
-                label={g2.label}
-                size={g2.size}
-                src={g2.src}
-                alt={`${p.title} — ${g2.label}`}
-                auto={!!g2.src}
-                className={g2.src ? "w-full" : "aspect-[16/10] w-full"}
-              />
-            </div>
+            </Tilt>
+            <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-brown-soft">
+              <span className="rounded-full border border-primary/40 px-2.5 py-0.5 text-primary">
+                Concept illustration
+              </span>
+              <span className="normal-case tracking-[0.02em]">
+                {p.concept.caption} Not a screenshot of the shipped UI.
+              </span>
+            </p>
           </Reveal>
         )}
+
+        <CaseGallery title={p.title} items={p.gallery} layout={p.galleryLayout} />
 
         {p.beforeAfter && (
           <Reveal className="mt-5 grid gap-5 sm:grid-cols-2">
@@ -282,14 +278,30 @@ function CaseStudy() {
         )}
 
         {p.testimonial && (
-          <Reveal className="mt-16 rounded-xl border border-primary/40 bg-frame/60 p-7 sm:p-12">
-            <p className="mono-label m-0 text-primary">What the client said</p>
-            <blockquote className="m-0 mt-5 font-serif text-[clamp(2rem,5vw,3.4rem)] italic leading-[1.15] text-foreground">
-              “{p.testimonial.quote}”
-            </blockquote>
-            <p className="mb-0 mt-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-brown-soft">
-              {p.testimonial.by}
-            </p>
+          <Reveal className="mt-16 grid gap-8 rounded-xl border border-primary/40 bg-frame/60 p-7 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-12">
+            <div>
+              <p className="mono-label m-0 text-primary">What the client said</p>
+              <blockquote className="m-0 mt-5 font-serif text-[clamp(2rem,5vw,3.4rem)] italic leading-[1.15] text-foreground">
+                “{p.testimonial.quote}”
+              </blockquote>
+              <p className="mb-0 mt-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-brown-soft">
+                {p.testimonial.by}
+              </p>
+            </div>
+            {p.testimonial.proof && (
+              <figure className="m-0">
+                <img
+                  src={p.testimonial.proof}
+                  alt="A message from the client on WhatsApp: “Kk bro thanks for everything”, with a heart reaction"
+                  loading="lazy"
+                  decoding="async"
+                  className="block h-auto w-full max-w-[442px] rounded-2xl border border-border-strong shadow-[var(--shadow-float)]"
+                />
+                <figcaption className="mt-3 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-brown-soft">
+                  A real message from {p.testimonial.by.split(",")[0]}
+                </figcaption>
+              </figure>
+            )}
           </Reveal>
         )}
 
