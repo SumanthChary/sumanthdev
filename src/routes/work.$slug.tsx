@@ -281,6 +281,95 @@ function CaseStudy() {
           </Reveal>
         )}
 
+        {p.testimonial && (
+          <Reveal className="mt-16 rounded-xl border border-primary/40 bg-frame/60 p-7 sm:p-12">
+            <p className="mono-label m-0 text-primary">What the client said</p>
+            <blockquote className="m-0 mt-5 font-serif text-[clamp(2rem,5vw,3.4rem)] italic leading-[1.15] text-foreground">
+              “{p.testimonial.quote}”
+            </blockquote>
+            <p className="mb-0 mt-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-brown-soft">
+              {p.testimonial.by}
+            </p>
+          </Reveal>
+        )}
+
+        {p.scope && (
+          <Reveal className="mt-16 sm:mt-20">
+            <p className="mono-label m-0 text-brown-soft">
+              Scope — written down before work started
+            </p>
+            <h2 className="mt-3 text-[clamp(1.7rem,3.4vw,2.5rem)] leading-tight">
+              What was in scope, and what wasn't
+            </h2>
+            <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
+              {p.scope.included.map((g) => (
+                <div key={g.title} className="bg-background p-6">
+                  <h3 className="m-0 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-primary">
+                    {g.title}
+                  </h3>
+                  <ul className="m-0 mt-4 flex list-none flex-col gap-2.5 p-0 text-[0.92rem] leading-snug text-foreground">
+                    {g.items.map((it) => (
+                      <li
+                        key={it}
+                        className="relative pl-4 before:absolute before:left-0 before:top-[0.62em] before:h-px before:w-2 before:bg-primary before:content-['']"
+                      >
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 rounded-xl border border-dashed border-border-strong p-6">
+              <p className="m-0 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-brown-soft">
+                Not included — available separately, whenever the client is ready
+              </p>
+              <ul className="m-0 mt-4 grid list-none gap-x-8 gap-y-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
+                {p.scope.separate.map((s) => (
+                  <li key={s.name} className="text-[0.9rem] leading-snug">
+                    <span className="block text-foreground">{s.name}</span>
+                    <span className="mt-0.5 block text-brown">{s.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        )}
+
+        {p.evidence && (
+          <Reveal id="public-record" className="mt-16 scroll-mt-24 sm:mt-20">
+            <p className="mono-label m-0 text-brown-soft">Public record</p>
+            <h2 className="mt-3 text-[clamp(1.7rem,3.4vw,2.5rem)] leading-tight">
+              The sale is public. Read it where it was posted.
+            </h2>
+            <ul className="m-0 mt-8 list-none divide-y divide-border overflow-hidden rounded-xl border border-border p-0">
+              {p.evidence.map((e) => (
+                <li key={e.href}>
+                  <a
+                    href={e.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 px-5 py-4 transition-colors duration-300 hover:bg-frame/60"
+                  >
+                    <span className="w-[4.5rem] shrink-0 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-primary">
+                      {e.source}
+                    </span>
+                    <span className="flex-1 text-[1rem] text-foreground transition-colors group-hover:text-primary">
+                      {e.label}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="text-brown-soft transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-primary"
+                    >
+                      ↗
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        )}
+
         <Reveal className="mx-auto max-w-[640px] pb-10 pt-16 text-center sm:pt-24">
           <p className="font-serif text-[clamp(1.5rem,3vw,2rem)] italic leading-[1.45] text-foreground">
             “{p.quote}”

@@ -7,6 +7,7 @@ import vastrikaHome from "@/assets/media/vastrika-home.webp";
 import vastrikaArrivals from "@/assets/media/vastrika-arrivals.webp";
 import vastrikaProduct from "@/assets/media/vastrika-product.webp";
 import vastrikaLogo from "@/assets/media/vastrika-logo.webp";
+import { addOns } from "./site";
 import flipscanConcept from "@/assets/media/flipscan-concept.webp";
 import legaldeepConcept from "@/assets/media/legaldeep-concept.webp";
 import airwriteConcept from "@/assets/media/airwrite-concept.webp";
@@ -48,6 +49,15 @@ export type Project = {
   concept?: { src: string; caption: string };
   /** optional closing full-width image */
   closing?: { src: string; caption: string };
+  /** a real line from the client — shown on the home page and the case study */
+  testimonial?: { quote: string; by: string };
+  /** what was in scope, and what was deliberately left out (client work) */
+  scope?: {
+    included: { title: string; items: string[] }[];
+    separate: { name: string; note: string }[];
+  };
+  /** public posts that back up the headline claim */
+  evidence?: { source: string; label: string; href: string }[];
   /** client engagements get a dedicated block on the home page */
   client?: {
     /** one-line service framing, e.g. "E-commerce brand build" */
@@ -130,15 +140,49 @@ export const projects: Project[] = [
       delivered: [
         "Logo & brand identity",
         "Storefront designed and coded by me — not a bought theme",
-        "Shopify backend: inventory, variants, orders",
-        "Checkout, COD, payments & shipping rules configured",
-        "On-page SEO from day one",
+        "Homepage, four collection pages, product pages, About & Contact",
+        "Shopify backend: payments, shipping, inventory & variants",
+        "On-page SEO: titles & meta, alt text, clean URLs, sitemap, speed pass",
       ],
       outcomes: [
         "A label that finally looks as premium as its products",
         "Owner adds products and runs orders without a developer",
         "Collections built to be found on search, not just browsed",
       ],
+    },
+    testimonial: { quote: "It's too good! I love it!", by: "Sri Vastrika — the client" },
+    scope: {
+      included: [
+        {
+          title: "Website design & build",
+          items: [
+            "Custom homepage — hero, brand values, collection showcase, new arrivals & combo offers, craft story, featured products, newsletter",
+            "Nighties, Sarees, New Arrivals and Combo Offers pages",
+            "Product pages — image gallery, pricing, size & colour selection",
+            "About Us and Contact Us",
+            "Fully responsive: mobile, tablet, desktop",
+          ],
+        },
+        { title: "Branding", items: ["Logo design"] },
+        {
+          title: "Shopify store setup",
+          items: [
+            "Store configuration with the custom design integrated",
+            "Payment gateway and shipping configuration",
+            "Initial products, categories and variants",
+          ],
+        },
+        {
+          title: "On-page SEO",
+          items: [
+            "Page titles, meta descriptions and image alt text",
+            "Clean, search-friendly URLs",
+            "Sitemap submitted to Google",
+            "Basic page-speed optimisation",
+          ],
+        },
+      ],
+      separate: addOns,
     },
     hero: vastrikaHome,
     gallery: [
@@ -175,8 +219,26 @@ export const projects: Project[] = [
     approach:
       "A document view with inline risk flags rather than a separate report — the analysis lives where the text lives. Conservative language throughout, and every flag links back to the exact paragraph it came from.",
     result:
-      "Founded, built and sold — acquired by OK, LLC in September 2024. A complete product taken from idea to handover.",
+      "Founded, built and sold — a complete product taken from idea to handover, with the sale announced publicly.",
     quote: "Confidence in a legal tool comes from restraint, not from claiming more than it knows.",
+    evidence: [
+      {
+        source: "X",
+        label: "My post on X",
+        href: "https://x.com/SumanthChary07/status/2108397554430071205",
+      },
+      {
+        source: "X",
+        label: "My follow-up post on X",
+        href: "https://x.com/SumanthChary07/status/2108883458118582615",
+      },
+      { source: "LinkedIn", label: "Post on LinkedIn", href: "https://lnkd.in/p/dtbyVfEx" },
+      {
+        source: "TrustMRR",
+        label: "TrustMRR's post on X",
+        href: "https://x.com/trust_mrr/status/2109001319650619561",
+      },
+    ],
     concept: {
       src: legaldeepConcept,
       caption: "Risk flags live inline, next to the paragraph they came from.",

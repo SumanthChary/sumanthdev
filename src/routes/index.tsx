@@ -12,7 +12,7 @@ import {
   whatsappLink,
 } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
-import { AVAILABILITY, faqs, packages } from "@/data/site";
+import { AVAILABILITY, addOns, faqs, packages } from "@/data/site";
 import { GITHUB_URL, featuredRepos, langColor, repos } from "@/data/github";
 import face from "@/assets/media/sumanth-face.webp";
 import { LuffyPet } from "@/components/LuffyPet";
@@ -336,7 +336,7 @@ function Hero() {
             </MagneticLink>
             <a
               href="#work"
-              className="border-b border-border-strong pb-1 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-brown transition-colors hover:border-primary hover:text-primary"
+              className="tap-area border-b border-border-strong pb-1 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-brown transition-colors hover:border-primary hover:text-primary"
             >
               View the work
             </a>
@@ -403,8 +403,8 @@ function Receipts() {
     {
       label: "Founded & sold",
       title: "LegalDeep AI",
-      note: "Built from zero, acquired Sep 2024 — a case study, not a live link.",
-      cta: "Read the case study",
+      note: "Built from zero, then sold. The sale was announced publicly — see the record.",
+      cta: "See the public record",
       to: "legaldeep-ai",
       live: false,
     },
@@ -443,7 +443,12 @@ function Receipts() {
                 );
                 const cls = "glow-card group flex h-full flex-col px-1 py-6 sm:px-6 sm:first:pl-1";
                 return it.to ? (
-                  <Link to="/work/$slug" params={{ slug: it.to }} className={cls}>
+                  <Link
+                    to="/work/$slug"
+                    params={{ slug: it.to }}
+                    hash="public-record"
+                    className={cls}
+                  >
                     {inner}
                   </Link>
                 ) : (
@@ -509,12 +514,12 @@ function Skills() {
               <h3 className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-brown-soft sm:pt-1">
                 {g.label}
               </h3>
-              <ul className="m-0 flex list-none flex-wrap items-center gap-x-3 gap-y-2 p-0 text-[1rem] leading-snug text-foreground sm:gap-x-4 sm:text-[1.08rem]">
+              <ul className="m-0 flex list-none flex-wrap items-center gap-x-5 gap-y-2 sm:gap-x-4 p-0 text-[1rem] leading-snug text-foreground sm:gap-x-4 sm:text-[1.08rem]">
                 {g.items.map((s, idx) => (
                   <li key={s} className="flex items-center gap-3 sm:gap-4">
                     {s}
                     {idx < g.items.length - 1 && (
-                      <span aria-hidden="true" className="text-brown-soft/60">
+                      <span aria-hidden="true" className="hidden text-brown-soft/60 sm:inline">
                         /
                       </span>
                     )}
@@ -539,8 +544,8 @@ const steps = [
   ],
   [
     "04",
-    "Growth after launch",
-    "SEO, analytics and iteration — the part most builders hand back to you.",
+    "After launch",
+    "Two weeks of fixes included. Ongoing SEO, GEO, ads and monthly care are optional add-ons — never bundled in.",
   ],
 ];
 
@@ -780,7 +785,7 @@ function ClientWork() {
                       href={p.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-fit border-b border-border-strong pb-1 font-mono text-[0.7rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                      className="tap-area w-fit border-b border-border-strong pb-1 font-mono text-[0.7rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
                     >
                       Visit the live store ↗
                     </a>
@@ -824,11 +829,22 @@ function ClientWork() {
                     </div>
                   </div>
 
+                  {p.testimonial && (
+                    <figure className="m-0 mt-7 border-l-2 border-primary pl-5">
+                      <blockquote className="m-0 font-serif text-[clamp(1.4rem,2.6vw,1.9rem)] italic leading-snug text-foreground">
+                        “{p.testimonial.quote}”
+                      </blockquote>
+                      <figcaption className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-brown-soft">
+                        {p.testimonial.by}
+                      </figcaption>
+                    </figure>
+                  )}
+
                   <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
                     <Link
                       to="/work/$slug"
                       params={{ slug: p.slug }}
-                      className="border-b border-border-strong pb-1 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                      className="tap-area border-b border-border-strong pb-1 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
                     >
                       Read the case study
                     </Link>
@@ -866,7 +882,7 @@ function Lab() {
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-b border-border-strong pb-1 font-mono text-[0.74rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
+            className="tap-area border-b border-border-strong pb-1 font-mono text-[0.74rem] uppercase tracking-[0.05em] text-foreground transition-colors hover:border-primary hover:text-primary"
           >
             github.com/SumanthChary ↗
           </a>
@@ -1072,6 +1088,20 @@ function Investment() {
               <p className="mt-2 text-[0.92rem] leading-relaxed text-brown">{v}</p>
             </div>
           ))}
+        </Reveal>
+
+        <Reveal className="mt-6 rounded-xl border border-border p-6">
+          <p className="m-0 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-primary">
+            Available separately — whenever you're ready
+          </p>
+          <ul className="m-0 mt-4 grid list-none gap-x-8 gap-y-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
+            {addOns.map((a) => (
+              <li key={a.name} className="text-[0.9rem] leading-snug">
+                <span className="block text-foreground">{a.name}</span>
+                <span className="mt-0.5 block text-brown">{a.note}</span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
         <Reveal className="mt-6 flex flex-col gap-4 rounded-xl border border-dashed border-frame-border bg-frame/50 p-6 sm:flex-row sm:items-center sm:justify-between">

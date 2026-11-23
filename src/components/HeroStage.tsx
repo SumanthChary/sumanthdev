@@ -246,7 +246,7 @@ export function HeroStage({ chip }: { chip: ReactNode }) {
         const aspect = w / h;
         camera.aspect = aspect;
         // keep the whole deck in frame on narrow stages
-        const dist = Math.max(9, 9.4 / Math.min(aspect, 1.15));
+        const dist = Math.max(9, 9.0 / Math.min(aspect, 1.15));
         camera.position.set(0, 0.1, dist);
         camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();
@@ -442,7 +442,7 @@ export function HeroStage({ chip }: { chip: ReactNode }) {
       ref={wrapRef}
       role="group"
       aria-label="Selected work — five case studies"
-      className="relative h-[430px] w-full select-none sm:h-[520px] lg:h-[600px]"
+      className="relative h-[390px] w-full select-none sm:h-[520px] lg:h-[600px]"
     >
       {/* static stack: server render, reduced motion, no WebGL — and the first paint before three loads */}
       <div
@@ -512,7 +512,7 @@ export function HeroStage({ chip }: { chip: ReactNode }) {
               onFocus={() => setHover(i)}
               onBlur={() => setHover(null)}
               className={cn(
-                "grid size-9 place-items-center rounded-full border font-mono text-[0.62rem] tracking-[0.04em] transition-all duration-300 ease-[var(--ease-out-soft)]",
+                "grid size-10 place-items-center rounded-full border sm:size-9 font-mono text-[0.62rem] tracking-[0.04em] transition-all duration-300 ease-[var(--ease-out-soft)]",
                 hover === i
                   ? "-translate-y-0.5 border-foreground bg-foreground text-background"
                   : "border-border-strong bg-background/70 text-brown backdrop-blur hover:border-primary hover:text-primary",

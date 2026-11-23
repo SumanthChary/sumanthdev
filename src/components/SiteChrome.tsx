@@ -15,7 +15,7 @@ export const CALENDLY = "https://calendly.com/sumanthcharyy/30min";
 
 export function Wordmark({ to = "/" }: { to?: string }) {
   return (
-    <Link to={to} className="font-serif text-2xl italic text-foreground">
+    <Link to={to} className="tap-area font-serif text-2xl italic text-foreground">
       sumanth<b className="not-italic text-primary">.</b>
     </Link>
   );
@@ -229,12 +229,12 @@ export function ContactSection() {
               <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <div className="flex flex-col gap-2.5 break-words font-mono text-[0.84rem] sm:text-[0.88rem]">
+          <div className="flex flex-col gap-4 break-words font-mono sm:gap-2.5 text-[0.84rem] sm:text-[0.88rem]">
             <a
               href={`https://x.com/${X_HANDLE}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-on-dark-muted hover:text-primary"
+              className="tap-area text-on-dark-muted hover:text-primary"
             >
               @{X_HANDLE} — X / Twitter
             </a>
@@ -242,7 +242,7 @@ export function ContactSection() {
               href={`https://www.${LINKEDIN}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-on-dark-muted hover:text-primary"
+              className="tap-area text-on-dark-muted hover:text-primary"
             >
               {LINKEDIN}
             </a>
@@ -250,7 +250,7 @@ export function ContactSection() {
               href={`https://${GITHUB}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-on-dark-muted hover:text-primary"
+              className="tap-area text-on-dark-muted hover:text-primary"
             >
               {GITHUB}
             </a>
@@ -258,7 +258,7 @@ export function ContactSection() {
               href={`https://${PEERLIST}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-on-dark-muted hover:text-primary"
+              className="tap-area text-on-dark-muted hover:text-primary"
             >
               {PEERLIST}
             </a>
@@ -266,7 +266,7 @@ export function ContactSection() {
             <a
               href={RESUME_URL}
               download="Sumanth-Chary-Resume.pdf"
-              className="text-on-dark-muted hover:text-primary"
+              className="tap-area text-on-dark-muted hover:text-primary"
             >
               Download resume ↓
             </a>
@@ -282,15 +282,15 @@ export function SiteFooter() {
     <footer className="border-t border-on-dark-muted/20 bg-foreground py-8">
       <div className="wrap flex flex-col gap-5 font-mono text-[0.7rem] tracking-[0.03em] text-on-dark-muted sm:flex-row sm:items-center sm:justify-between">
         <span>© {new Date().getFullYear()} Sumanth Chary. Built solo.</span>
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2">
-          <a href={`mailto:${EMAIL}`} className="hover:text-primary">
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-0 sm:gap-y-2">
+          <a href={`mailto:${EMAIL}`} className="py-3 hover:text-primary sm:py-0">
             Email
           </a>
           <a
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-primary"
+            className="py-3 hover:text-primary sm:py-0"
           >
             WhatsApp
           </a>
@@ -298,7 +298,7 @@ export function SiteFooter() {
             href={`https://${GITHUB}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-primary"
+            className="py-3 hover:text-primary sm:py-0"
           >
             GitHub
           </a>
@@ -306,11 +306,11 @@ export function SiteFooter() {
             href={`https://www.${LINKEDIN}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-primary"
+            className="py-3 hover:text-primary sm:py-0"
           >
             LinkedIn
           </a>
-          <a href="#top" className="hover:text-primary">
+          <a href="#top" className="py-3 hover:text-primary sm:py-0">
             Back to top ↑
           </a>
         </nav>

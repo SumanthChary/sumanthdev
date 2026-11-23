@@ -344,6 +344,26 @@
   }
 }
 
+/* Touch devices: small text links get an invisible, larger hit area (no layout change) */
+.tap-area {
+  position: relative;
+}
+@media (pointer: coarse) {
+  .tap-area::after {
+    content: "";
+    position: absolute;
+    inset: -12px -8px;
+  }
+}
+
+/* Phones: the tiny mono labels (9–10px on desktop) become comfortably readable */
+@media (max-width: 640px) {
+  [class*="text-[0.5"],
+  [class*="text-[0.6"] {
+    font-size: 0.72rem !important;
+  }
+}
+
 /* page-to-page cross-fade (Chromium View Transitions) */
 ::view-transition-old(root),
 ::view-transition-new(root) {

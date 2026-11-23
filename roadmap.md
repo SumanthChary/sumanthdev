@@ -19,8 +19,10 @@
 5. **FlipScan AI** — keep last until it has a live URL or real screenshots; "early users" alone is thin.
 
 ## Next — highest leverage first
-- [ ] Real testimonial from the Sri Vastrika owner (quote + name + link) — biggest missing proof
-- [ ] Public evidence for the LegalDeep acquisition (announcement, buyer quote, or handover screenshot)
+- [x] Sri Vastrika client line is live (home + case study). Still wanted: the person's name and a screenshot of the message
+- [ ] Replace the one-line testimonial with a longer quote once the client can give one
+- [x] LegalDeep public record linked (2 posts on X, LinkedIn, TrustMRR)
+- [ ] Confirm the sale month and the buyer's name — the old copy said "Sep 2024" but the linked X posts date to Oct 2026, so the date is removed until confirmed
 - [ ] Real screenshots/recordings for FlipScan, LegalDeep, AirWrite (set `hero` in `src/data/projects.ts`)
 - [ ] "Try AirWrite" live demo on the site — the most shareable asset you own
 - [ ] 30-second screen recording per case study (autoplay, muted) for X/LinkedIn

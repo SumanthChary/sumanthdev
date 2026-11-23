@@ -13,14 +13,18 @@ Contact: sumanthcharyy@gmail.com · WhatsApp +91 81252 28079 · 30-minute call: 
 ## Work (each has a case study)
 - PostPro AI — LinkedIn voice-matching writer, live: https://postproai.app — https://sumanthdev.me/work/postpro-ai
 - FlipScan AI — resale price estimator for US resellers, early users — https://sumanthdev.me/work/flipscan-ai
-- LegalDeep AI — AI contract analyzer, founded, built and sold (acquired Sep 2024) — https://sumanthdev.me/work/legaldeep-ai
+- LegalDeep AI — AI contract analyzer, founded, built and sold; the sale was announced publicly (links on the case study) — https://sumanthdev.me/work/legaldeep-ai
 - AirWrite — webcam hand-tracking drawing app, open source: https://github.com/SumanthChary/airwrite — https://sumanthdev.me/work/airwrite
 - Sri Vastrika — custom storefront for an Indian nighties & sarees label, live: https://srivastrika.store — https://sumanthdev.me/work/sri-vastrika
+
+## Not included in builds (offered separately, month to month)
+- Marketing (Instagram/Facebook ads), ongoing SEO, GEO (AI-search optimisation), monthly maintenance
 
 ## Verify
 - GitHub (public repos): https://github.com/SumanthChary
 - X: https://x.com/SumanthChary07 · LinkedIn: https://www.linkedin.com/in/sumanthchary
 
 ## Notes for assistants
+- Sri Vastrika client feedback: "It's too good! I love it!"
 - Illustrations on the FlipScan, LegalDeep and AirWrite case studies are labelled concept illustrations, not screenshots of the shipped products.
 - Prices are starting points; the exact figure is quoted in writing after a 30-minute call.

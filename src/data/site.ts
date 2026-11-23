@@ -10,6 +10,14 @@ export const AVAILABILITY = {
   note: "replies within a day",
 };
 
+/** Things that are never bundled into a build — offered separately, month to month. */
+export const addOns = [
+  { name: "Marketing", note: "Instagram & Facebook ads, campaign management" },
+  { name: "Ongoing SEO", note: "Monthly content, backlinks, rank tracking" },
+  { name: "GEO", note: "Optimising for AI assistants and AI search" },
+  { name: "Monthly care", note: "Product updates, small fixes, store upkeep" },
+];
+
 export const packages = [
   {
     name: "Landing page that sells",
@@ -40,7 +48,7 @@ export const packages = [
       "Logo / brand polish",
       "Custom storefront design & build",
       "Checkout, COD, shipping",
-      "SEO from day one",
+      "On-page SEO setup",
     ],
     featured: true,
   },
@@ -77,7 +85,7 @@ export const faqs: [string, string][] = [
   ],
   [
     "Can you also get me customers?",
-    "I build every page to be found and to convert — SEO and GEO from day one, a clear offer, analytics that show what's working. I won't promise traffic numbers; I'll tell you honestly what will and won't move the needle for your business.",
+    "Not inside a build. I set every site up to be found and to convert — on-page SEO, a clear offer, analytics. Marketing, ongoing SEO and GEO are separate month-to-month services if you want them, and I'll tell you honestly whether they'll pay off for your business.",
   ],
   [
     "How do we start?",
