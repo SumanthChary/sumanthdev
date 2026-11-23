@@ -14,11 +14,12 @@ import flipscanSplash from "@/assets/media/flipscan-splash.webp";
 import legaldeepLanding from "@/assets/media/legaldeep-landing.webp";
 import bhaskarMessage from "@/assets/media/bhaskar-message.webp";
 import legaldeepConcept from "@/assets/media/legaldeep-concept.webp";
-import airwriteConcept from "@/assets/media/airwrite-concept.webp";
+import airwriteHero from "@/assets/media/airwrite-hero.webp";
+import airwriteReadme from "@/assets/media/airwrite-readme.webp";
 
 /**
- * Real photos of AirWrite in use. Drop files named airwrite-photo-1.jpg, airwrite-photo-2.png …
- * into src/assets/media and they appear on the case study — no code change needed.
+ * More photos of AirWrite in use: drop files named airwrite-photo-1.jpg, airwrite-photo-2.png …
+ * into src/assets/media and they are added to the case-study gallery — no code change needed.
  */
 const airwritePhotos = Object.entries(
   import.meta.glob("../assets/media/airwrite-photo-*.{jpg,jpeg,png,webp}", {
@@ -265,7 +266,7 @@ export const projects: Project[] = [
       },
     ],
     hero: legaldeepLanding,
-    heroCaption: "The product's landing page, shown as branded ContractAI.",
+    heroCaption: "The product's landing page.",
     concept: {
       heading: "The analysis view, as designed",
       src: legaldeepConcept,
@@ -286,7 +287,7 @@ export const projects: Project[] = [
     live: true,
     tint: "--cover-airwrite",
     role: "Design, development",
-    stack: "React · MediaPipe · Canvas",
+    stack: "TanStack Start · TypeScript · MediaPipe · Canvas",
     statusLong: "Launched — code on GitHub",
     category: "Experiment",
     repo: "https://github.com/SumanthChary/airwrite",
@@ -296,18 +297,17 @@ export const projects: Project[] = [
       "Smoothing was the whole project. Raw landmark data is jittery, so the stroke path runs through a velocity-aware filter before it ever hits the canvas — the difference between a toy and something that feels like drawing.",
     result: "Launched — the full source is public on GitHub.",
     quote: "Most novel interfaces fail on latency, not on the idea.",
-    concept: {
-      heading: "The interface, as designed",
-      src: airwriteConcept,
-      caption: "Hand landmarks in, smoothed strokes out — the canvas follows the fingertip.",
-    },
-    ...(airwritePhotos[0] ? { hero: airwritePhotos[0] } : {}),
-    heroCaption: "AirWrite in use.",
-    gallery: airwritePhotos.slice(1).map((src, i) => ({
-      label: `AirWrite in use — ${i + 2}`,
-      size: "Photo",
-      src,
-    })),
+    hero: airwriteHero,
+    heroCaption:
+      "AirWrite running on a webcam — the camera feed is the canvas, the fingertip is the pen.",
+    gallery: [
+      { label: "README on GitHub", size: "The source is public", src: airwriteReadme },
+      ...airwritePhotos.map((src, i) => ({
+        label: `AirWrite in use — ${i + 1}`,
+        size: "Photo",
+        src,
+      })),
+    ],
   },
   {
     slug: "flipscan-ai",

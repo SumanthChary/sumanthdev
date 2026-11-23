@@ -80,8 +80,18 @@ export function CaseGallery({
     );
   }
   return (
-    <Reveal className={`grid gap-5 ${shown.length === 2 ? "md:grid-cols-2" : ""}`}>
-      {shown.map((g) => frame(g))}
+    <Reveal
+      className={`grid gap-6 ${shown.length === 2 ? "md:grid-cols-2" : "mx-auto max-w-[900px]"}`}
+    >
+      {shown.map((g) => (
+        <figure key={g.label} className="m-0">
+          {frame(g)}
+          <figcaption className="mt-3 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-brown-soft">
+            {g.label}
+            <span className="ml-2 normal-case tracking-[0.02em]">— {g.size}</span>
+          </figcaption>
+        </figure>
+      ))}
     </Reveal>
   );
 }

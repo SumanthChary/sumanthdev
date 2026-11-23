@@ -20,12 +20,11 @@
 
 ## Next — highest leverage first
 - [x] Sri Vastrika client line is live (home + case study), named (Bhaskar) with a real WhatsApp message beside it
-- [ ] Make sure the quote on the site is something Bhaskar actually said — the screenshot shows "Kk bro thanks for everything", not the quote line. Add a screenshot of the quote itself, or switch the quote to his words
 - [ ] Replace the one-line testimonial with a longer quote once the client can give one
 - [x] LegalDeep public record linked (2 posts on X, LinkedIn, TrustMRR)
 - [x] LegalDeep sale: 11 October 2026, buyer Darren Gill (shown on the case study)
 - [x] Real FlipScan screens + render, real LegalDeep landing page
-- [ ] AirWrite: add real photos/recordings — drop files named `airwrite-photo-1.jpg`, `airwrite-photo-2.png` … into `src/assets/media` and they appear automatically (first = hero, rest = gallery)
+- [x] AirWrite: real screenshot + README on the case study. More photos? Drop `airwrite-photo-1.jpg`, `airwrite-photo-2.png` … into `src/assets/media` and they join the gallery automatically
 - [ ] Higher-resolution FlipScan screenshots (two are only 215px and 410px wide)
 - [ ] "Try AirWrite" live demo on the site — the most shareable asset you own
 - [ ] 30-second screen recording per case study (autoplay, muted) for X/LinkedIn
