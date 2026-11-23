@@ -18,6 +18,8 @@ type ImageFrameProps = {
   loading?: "lazy" | "eager";
   /** render the real image at its natural aspect ratio (no crop) */
   auto?: boolean;
+  /** mark the image as an illustration, not a screenshot of the shipped product */
+  concept?: boolean;
 };
 
 export function ImageFrame({
@@ -32,10 +34,21 @@ export function ImageFrame({
   position = "center top",
   loading = "lazy",
   auto,
+  concept,
 }: ImageFrameProps) {
   if (src) {
     return (
-      <div className={cn("overflow-hidden rounded-lg border border-border bg-frame", className)}>
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-lg border border-border bg-frame",
+          className,
+        )}
+      >
+        {concept && (
+          <span className="absolute bottom-1 left-1 z-10 rounded-sm bg-foreground/80 px-1 py-px font-mono text-[0.42rem] uppercase leading-none tracking-[0.1em] text-on-dark">
+            Concept
+          </span>
+        )}
         <img
           src={src}
           alt={alt ?? label}

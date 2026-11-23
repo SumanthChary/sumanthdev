@@ -54,23 +54,6 @@ const ROW_AI: Tool[] = [
   { name: "Vercel", Icon: SiVercel },
 ];
 
-/** Roles & disciplines, no brand logos. */
-const ROW_SKILLS: Tool[] = [
-  { name: "Product Management" },
-  { name: "Data Analysis" },
-  { name: "GEO / SEO" },
-  { name: "Strategy" },
-  { name: "UI / UX Design" },
-  { name: "Copywriting" },
-  { name: "Automation" },
-  { name: "AI Agents" },
-  { name: "Mobile Apps" },
-  { name: "Research" },
-  { name: "Content Creation" },
-  { name: "Testing" },
-];
-
-void ROW_SKILLS; // skills live in their own section — keep this strip to tools only
 const ROWS = [
   { items: [...ROW_CODE, ...ROW_AI], cls: "animate-marquee", label: "Tools I build with" },
 ];
@@ -97,7 +80,7 @@ function ChipRow({ items }: { items: Tool[] }) {
   );
 }
 
-/** Three rows sliding opposite ways — brand logos on each tool, pause on hover, still under reduced motion. */
+/** One row of tools with brand logos — pauses on hover, still under reduced motion. */
 export function TechMarquee() {
   return (
     <section

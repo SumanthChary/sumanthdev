@@ -15,6 +15,8 @@ export function SmoothScroll() {
         duration: 1.15,
         easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
+        // in-page links glide under the fixed header instead of jumping
+        anchors: true,
       });
       lenis = instance;
       const loop = (time: number) => {

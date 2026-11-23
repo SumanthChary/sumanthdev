@@ -128,17 +128,30 @@ function CaseStudy() {
           ))}
         </div>
 
-        {p.liveUrl && (
-          <div className="mt-6">
-            <a
-              href={p.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
-            >
-              Visit the live site
-              <span aria-hidden="true">↗</span>
-            </a>
+        {(p.liveUrl || p.repo) && (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {p.liveUrl && (
+              <a
+                href={p.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
+              >
+                Visit the live site
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
+            {p.repo && (
+              <a
+                href={p.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
+              >
+                View the source on GitHub
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
           </div>
         )}
 

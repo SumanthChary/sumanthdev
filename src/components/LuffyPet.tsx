@@ -198,7 +198,12 @@ export function LuffyPet() {
 
   const toggle = () => {
     setOn((v) => {
-      localStorage.setItem(STORAGE_KEY, v ? "0" : "1");
+      // storage can throw (private windows, blocked cookies) — the pet works without it
+      try {
+        localStorage.setItem(STORAGE_KEY, v ? "0" : "1");
+      } catch {
+        /* ignore */
+      }
       return !v;
     });
   };
@@ -209,12 +214,13 @@ export function LuffyPet() {
         type="button"
         onClick={toggle}
         aria-pressed={on}
-        className="luffy-toggle fixed bottom-5 left-5 z-[70] inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/90 px-4 py-2.5 font-mono text-[0.64rem] uppercase tracking-[0.1em] text-brown shadow-[var(--shadow-float)] backdrop-blur transition-colors duration-300 hover:border-primary hover:text-primary"
+        className="luffy-toggle fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/90 px-3.5 py-2 font-mono text-[0.6rem] sm:bottom-5 sm:left-5 sm:px-4 sm:py-2.5 sm:text-[0.64rem] uppercase tracking-[0.1em] text-brown shadow-[var(--shadow-float)] backdrop-blur transition-colors duration-300 hover:border-primary hover:text-primary"
       >
         <span aria-hidden="true" className="text-primary">
           {on ? "✕" : "✦"}
         </span>
-        {on ? "Send Luffy home" : "Summon Luffy"}
+        <span className="sm:hidden">{on ? "Bye" : "Luffy"}</span>
+        <span className="hidden sm:inline">{on ? "Send Luffy home" : "Summon Luffy"}</span>
       </button>
 
       {on && (

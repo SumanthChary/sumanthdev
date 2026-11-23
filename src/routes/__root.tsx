@@ -14,25 +14,54 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SmoothScroll } from "../components/SmoothScroll";
 
+function StatusPage({
+  eyebrow,
+  title,
+  body,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  body: string;
+  children: ReactNode;
+}) {
+  return (
+    <main
+      id="main"
+      className="flex min-h-svh flex-col items-center justify-center bg-background px-6 text-center"
+    >
+      <Link to="/" className="mb-12 font-serif text-2xl italic text-foreground">
+        sumanth<b className="not-italic text-primary">.</b>
+      </Link>
+      <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+        {eyebrow}
+      </p>
+      <h1 className="mt-4 text-[clamp(2.4rem,7vw,4.2rem)] leading-[1.06]">{title}</h1>
+      <p className="mt-4 max-w-[42ch] text-[1rem] leading-relaxed text-brown">{body}</p>
+      <div className="mt-8 flex flex-wrap justify-center gap-3">{children}</div>
+    </main>
+  );
+}
+
+const primaryBtn =
+  "inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3.5 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-colors duration-300 hover:bg-primary";
+const ghostBtn =
+  "inline-flex items-center justify-center rounded-full border border-border-strong px-6 py-3.5 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary";
+
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
-      </div>
-    </div>
+    <StatusPage
+      eyebrow="Error 404"
+      title="That page isn't here."
+      body="It may have moved, or the link is off by a letter. The work is still where you left it."
+    >
+      <Link to="/" className={primaryBtn}>
+        Back home
+      </Link>
+      <Link to="/" hash="work" className={ghostBtn}>
+        See the work
+      </Link>
+    </StatusPage>
   );
 }
 
@@ -44,33 +73,25 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Try again
-          </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
-        </div>
-      </div>
-    </div>
+    <StatusPage
+      eyebrow="Something broke"
+      title="This page didn't load."
+      body="That's on me, not you. Try again, or head back home."
+    >
+      <button
+        type="button"
+        onClick={() => {
+          router.invalidate();
+          reset();
+        }}
+        className={primaryBtn}
+      >
+        Try again
+      </button>
+      <a href="/" className={ghostBtn}>
+        Go home
+      </a>
+    </StatusPage>
   );
 }
 
@@ -123,7 +144,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         <a
           href="#main"
-          className="fixed left-4 top-4 z-[70] -translate-y-24 rounded-full bg-foreground px-5 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-transform focus:translate-y-0"
+          className="fixed left-4 top-4 z-[70] -translate-y-24 rounded-full opacity-0 focus:opacity-100 bg-foreground px-5 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-transform focus:translate-y-0"
         >
           Skip to content
         </a>

@@ -12,9 +12,10 @@ import {
   SiteNav,
   WHATSAPP,
 } from "@/components/SiteChrome";
-import { projects } from "@/data/projects";
+import { getProject, projects } from "@/data/projects";
 import { GITHUB_URL, langColor, repoFilters, repos } from "@/data/github";
 import { ContributionHeatmap } from "@/components/ContributionHeatmap";
+import { contributions } from "@/data/contributions";
 import { TechMarquee } from "@/components/TechMarquee";
 import face from "@/assets/media/sumanth-face.webp";
 import { LuffyPet } from "@/components/LuffyPet";
@@ -133,15 +134,6 @@ export const Route = createFileRoute("/")({
 const heroWords = ["I", "build", "the", "product."];
 const heroWords2 = ["Then", "I", "make", "it"];
 
-const tickerItems = [
-  { label: "PostPro AI — live at postproai.app", live: true },
-  { label: "LegalDeep AI — founded, built & sold", live: false },
-  { label: "FlipScan AI — growing with early users", live: false },
-  { label: "Sri Vastrika — client store, live", live: true },
-  { label: "30-min intro calls open", live: true },
-  { label: "Booking new client work", live: true },
-];
-
 function Dot({ live }: { live: boolean }) {
   return (
     <span
@@ -191,7 +183,7 @@ function Home() {
       <SiteNav />
       <main id="main">
         <Hero />
-        <Ticker />
+        <Receipts />
         <TechMarquee />
         <Work />
         <ClientWork />
@@ -231,7 +223,7 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative flex items-center overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-28 lg:min-h-svh"
+      className="relative flex items-center overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-28 lg:min-h-[70svh]"
     >
       <div className="wrap grid w-full items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
         {/* headline and CTAs come first on every screen — mobile visitors read before they scroll */}
@@ -290,7 +282,7 @@ function Hero() {
               {[
                 { k: "Products shipped", v: "5" },
                 { k: "Reply time", v: "< 24h" },
-                { k: "Built solo", v: "100%" },
+                { k: "Public repos", v: String(repos.length) },
                 { k: "First live build", v: "~2 wks" },
               ].map((s) => (
                 <div key={s.k}>
@@ -313,25 +305,99 @@ function Hero() {
   );
 }
 
-function Ticker() {
+/** Proof within the first scroll: every cell is something a visitor can open and check. */
+function Receipts() {
+  const total = contributions.reduce((sum, d) => sum + d.count, 0);
+  const items: {
+    label: string;
+    title: string;
+    note: string;
+    cta: string;
+    href?: string | undefined;
+    to?: string;
+    live: boolean;
+  }[] = [
+    {
+      label: "Live product",
+      title: "PostPro AI",
+      note: "Voice-matching LinkedIn writer, running in production.",
+      cta: "postproai.app ↗",
+      href: getProject("postpro-ai")?.liveUrl,
+      live: true,
+    },
+    {
+      label: "Live client store",
+      title: "Sri Vastrika",
+      note: "Custom storefront for a real label, taking real orders.",
+      cta: "srivastrika.store ↗",
+      href: getProject("sri-vastrika")?.liveUrl,
+      live: true,
+    },
+    {
+      label: "Open source",
+      title: `${repos.length} public repos`,
+      note: `${total} GitHub contributions in the last 12 months.`,
+      cta: "github.com/SumanthChary ↗",
+      href: GITHUB_URL,
+      live: true,
+    },
+    {
+      label: "Founded & sold",
+      title: "LegalDeep AI",
+      note: "Built from zero, acquired Sep 2024 — a case study, not a live link.",
+      cta: "Read the case study",
+      to: "legaldeep-ai",
+      live: false,
+    },
+  ];
+
+  const linkClass =
+    "mt-4 inline-block w-fit border-b border-border-strong pb-1 font-mono text-[0.66rem] uppercase tracking-[0.05em] text-foreground transition-colors group-hover:border-primary group-hover:text-primary";
+
   return (
-    <div aria-hidden="true" className="group overflow-hidden border-y border-border py-3.5">
-      <div className="animate-ticker flex w-max group-hover:[animation-play-state:paused]">
-        {[0, 1].map((dup) => (
-          <div className="flex" key={dup}>
-            {tickerItems.map((t) => (
-              <span
-                key={`${dup}-${t.label}`}
-                className="flex items-center gap-2.5 whitespace-nowrap px-[30px] font-mono text-[0.72rem] tracking-[0.03em] text-brown"
-              >
-                <Dot live={t.live} />
-                {t.label}
-              </span>
-            ))}
-          </div>
-        ))}
+    <section aria-label="Proof you can check" className="border-y border-border">
+      <div className="wrap">
+        <p className="mono-label flex items-center gap-2.5 pb-1 pt-6 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
+          Don't take my word for it — open these
+        </p>
+        <ul className="m-0 grid list-none p-0 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((it) => (
+            <li
+              key={it.title}
+              className="border-b border-border last:border-b-0 sm:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0"
+            >
+              {(() => {
+                const inner = (
+                  <>
+                    <span className="flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
+                      <Dot live={it.live} />
+                      {it.label}
+                    </span>
+                    <span className="mt-3 block font-serif text-[1.55rem] leading-tight text-foreground transition-colors group-hover:text-primary">
+                      {it.title}
+                    </span>
+                    <span className="mt-2 block flex-1 text-[0.88rem] leading-snug text-brown">
+                      {it.note}
+                    </span>
+                    <span className={linkClass}>{it.cta}</span>
+                  </>
+                );
+                const cls = "group flex h-full flex-col px-1 py-6 sm:px-6 sm:first:pl-1";
+                return it.to ? (
+                  <Link to="/work/$slug" params={{ slug: it.to }} className={cls}>
+                    {inner}
+                  </Link>
+                ) : (
+                  <a href={it.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                    {inner}
+                  </a>
+                );
+              })()}
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -453,12 +519,12 @@ function Proof() {
           <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
             Why people trust me with it
           </p>
-          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">
-            Everything here is live and checkable.
-          </h2>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">Check it yourself.</h2>
           <p className="mt-4 text-[0.98rem] leading-relaxed text-brown">
-            Every project on this page has a public URL, a GitHub repo, or a business you can ring
-            up. Open them, poke around, then message me — I'd rather be verified than believed.
+            PostPro AI and Sri Vastrika are live URLs you can open right now. AirWrite and eleven
+            other repos are public on GitHub. LegalDeep was sold, so it's a case study rather than a
+            link — and anything still early is labelled as early. I'd rather be verified than
+            believed.
           </p>
         </Reveal>
 
@@ -605,7 +671,11 @@ function Work() {
               onMouseEnter={(e) => {
                 target.current = { x: e.clientX, y: e.clientY };
                 pos.current = { x: e.clientX, y: e.clientY };
-                setPreview({ tint: p.tint, label: p.title, src: p.hero ?? null });
+                setPreview({
+                  tint: p.tint,
+                  label: p.concept && !p.hero ? `${p.title} · concept` : p.title,
+                  src: p.hero ?? p.concept?.src ?? null,
+                });
               }}
               onMouseLeave={() => setPreview(null)}
               className="group grid grid-cols-[76px_minmax(0,1fr)] items-center gap-x-4 gap-y-2 border-b border-border py-5 transition-[padding-left] duration-500 ease-[var(--ease-out-soft)] hover:pl-3.5 md:grid-cols-[64px_88px_1fr_auto_auto] md:gap-x-5 md:py-6"
@@ -616,8 +686,9 @@ function Work() {
               <ImageFrame
                 label={p.title}
                 tint={p.tint}
-                src={p.hero}
-                alt={`${p.title} preview`}
+                src={p.hero ?? p.concept?.src}
+                alt={`${p.title} ${p.hero ? "preview" : "concept illustration"}`}
+                concept={!p.hero && !!p.concept}
                 compact
                 className="h-14 w-[76px] max-w-full shrink-0 rounded-md md:h-16 md:w-[88px]"
               />
@@ -640,6 +711,12 @@ function Work() {
               <span className="hidden items-center gap-2 whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.05em] text-brown md:flex">
                 <Dot live={p.live} />
                 {p.status}
+              </span>
+              <span
+                aria-hidden="true"
+                className="col-start-2 -mt-1 font-mono text-[0.7rem] uppercase tracking-[0.06em] text-primary md:hidden"
+              >
+                Read case study →
               </span>
             </Link>
           ))}
@@ -1206,7 +1283,7 @@ function Investment() {
 const faqs = [
   [
     "Why one person instead of an agency?",
-    "Because nothing gets lost in translation. The person who hears your idea is the one designing it, coding it and running the ads — and you can message him directly.",
+    "Because nothing gets lost in translation. The person who hears your idea is the one designing it, coding it and running the ads — and you can message me directly.",
   ],
   [
     "I'm not technical. Is that a problem?",

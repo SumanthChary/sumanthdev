@@ -26,9 +26,32 @@ const navLinks = [
   { href: "/#work", label: "Work" },
   { href: "/#client-work", label: "Clients" },
   { href: "/#lab", label: "Lab" },
-  { href: "/#experience", label: "Record" },
+  { href: "/#experience", label: "Experience" },
   { href: "/#about", label: "About" },
+  { href: "/#investment", label: "Pricing" },
 ];
+
+/** Tracks which home-page section is under the header so the nav can highlight it. */
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    const els = ids.map((id) => document.getElementById(id)).filter((e): e is HTMLElement => !!e);
+    if (els.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [ids]);
+  return active;
+}
+
+const navIds = navLinks.map((l) => l.href.replace("/#", ""));
 
 export function ResumeButton({ className }: { className?: string }) {
   return (
@@ -49,6 +72,7 @@ export function ResumeButton({ className }: { className?: string }) {
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const active = useActiveSection(navIds);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -82,15 +106,24 @@ export function SiteNav() {
     >
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-[clamp(20px,4vw,56px)] py-5 md:flex md:justify-between md:py-6">
         <Wordmark />
-        <nav aria-label="Sections" className="hidden gap-9 md:flex">
+        <nav aria-label="Sections" className="hidden gap-7 lg:gap-9 md:flex">
           {navLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="group relative pb-1 font-mono text-[0.74rem] uppercase tracking-[0.06em] text-brown transition-colors hover:text-foreground"
+              aria-current={active === l.href.replace("/#", "") ? "location" : undefined}
+              className={cn(
+                "group relative pb-1 font-mono text-[0.74rem] uppercase tracking-[0.06em] transition-colors hover:text-foreground",
+                active === l.href.replace("/#", "") ? "text-foreground" : "text-brown",
+              )}
             >
               {l.label}
-              <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-primary transition-[width] duration-300 ease-[var(--ease-out-soft)] group-hover:w-full" />
+              <span
+                className={cn(
+                  "absolute inset-x-0 bottom-0 h-px bg-primary transition-[width] duration-300 ease-[var(--ease-out-soft)] group-hover:w-full",
+                  active === l.href.replace("/#", "") ? "w-full" : "w-0",
+                )}
+              />
             </a>
           ))}
         </nav>
@@ -251,11 +284,40 @@ export function ContactSection() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-on-dark-muted/20 bg-foreground py-8">
-      <div className="wrap flex flex-wrap items-center justify-between gap-3.5 font-mono text-[0.7rem] tracking-[0.03em] text-on-dark-muted">
-        <span>© 2026 Sumanth Chary. Built solo.</span>
-        <a href="#top" className="hover:text-primary">
-          Back to top ↑
-        </a>
+      <div className="wrap flex flex-col gap-5 font-mono text-[0.7rem] tracking-[0.03em] text-on-dark-muted sm:flex-row sm:items-center sm:justify-between">
+        <span>© {new Date().getFullYear()} Sumanth Chary. Built solo.</span>
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2">
+          <a href={`mailto:${EMAIL}`} className="hover:text-primary">
+            Email
+          </a>
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary"
+          >
+            WhatsApp
+          </a>
+          <a
+            href={`https://${GITHUB}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary"
+          >
+            GitHub
+          </a>
+          <a
+            href={`https://www.${LINKEDIN}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary"
+          >
+            LinkedIn
+          </a>
+          <a href="#top" className="hover:text-primary">
+            Back to top ↑
+          </a>
+        </nav>
       </div>
     </footer>
   );

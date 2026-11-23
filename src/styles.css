@@ -108,6 +108,19 @@
     scroll-behavior: smooth;
   }
 
+  /* Lenis owns smooth scrolling when active — native smooth scrolling would fight it */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  html.lenis {
+    scroll-behavior: auto;
+  }
+
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
   body {
     margin: 0;
     background-color: var(--color-background);
@@ -154,12 +167,24 @@
 }
 
 /* pastel gradient washes, applied as background-image utilities */
-@utility bloom-peach { background-image: var(--bloom-peach); }
-@utility bloom-sun { background-image: var(--bloom-sun); }
-@utility bloom-rose { background-image: var(--bloom-rose); }
-@utility bloom-lilac { background-image: var(--bloom-lilac); }
-@utility bloom-mint { background-image: var(--bloom-mint); }
-@utility bloom-sky { background-image: var(--bloom-sky); }
+@utility bloom-peach {
+  background-image: var(--bloom-peach);
+}
+@utility bloom-sun {
+  background-image: var(--bloom-sun);
+}
+@utility bloom-rose {
+  background-image: var(--bloom-rose);
+}
+@utility bloom-lilac {
+  background-image: var(--bloom-lilac);
+}
+@utility bloom-mint {
+  background-image: var(--bloom-mint);
+}
+@utility bloom-sky {
+  background-image: var(--bloom-sky);
+}
 
 /* soft multi-gradient wash behind the hero */
 @utility hero-aurora {
@@ -264,12 +289,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(
-      105deg,
-      transparent 42%,
-      oklch(1 0 0 / 0.32) 50%,
-      transparent 58%
-    );
+    background: linear-gradient(105deg, transparent 42%, oklch(1 0 0 / 0.32) 50%, transparent 58%);
     transform: translateX(-130%);
     transition: transform 0.75s var(--ease-out-soft);
     pointer-events: none;
