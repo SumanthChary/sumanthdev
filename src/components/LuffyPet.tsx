@@ -214,7 +214,7 @@ export function LuffyPet() {
         type="button"
         onClick={toggle}
         aria-pressed={on}
-        className="luffy-toggle fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/90 px-3.5 py-2 font-mono text-[0.6rem] sm:bottom-5 sm:left-5 sm:px-4 sm:py-2.5 sm:text-[0.64rem] uppercase tracking-[0.1em] text-brown shadow-[var(--shadow-float)] backdrop-blur transition-colors duration-300 hover:border-primary hover:text-primary"
+        className="luffy-toggle fixed bottom-20 left-4 z-40 md:bottom-4 inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/90 px-3.5 py-2 font-mono text-[0.6rem] md:bottom-5 sm:left-5 sm:px-4 sm:py-2.5 sm:text-[0.64rem] uppercase tracking-[0.1em] text-brown shadow-[var(--shadow-float)] backdrop-blur transition-colors duration-300 hover:border-primary hover:text-primary"
       >
         <span aria-hidden="true" className="text-primary">
           {on ? "✕" : "✦"}

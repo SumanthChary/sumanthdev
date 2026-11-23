@@ -11,8 +11,10 @@ import {
   SiteFooter,
   SiteNav,
   WHATSAPP,
+  whatsappLink,
 } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
+import { AVAILABILITY, faqs, packages } from "@/data/site";
 import { GITHUB_URL, langColor, repoFilters, repos } from "@/data/github";
 import { ContributionHeatmap } from "@/components/ContributionHeatmap";
 import { contributions } from "@/data/contributions";
@@ -115,6 +117,37 @@ export const Route = createFileRoute("/")({
               publisher: { "@id": `${SITE}/#person` },
             },
             {
+              "@type": "ProfessionalService",
+              "@id": `${SITE}/#service`,
+              name: "Sumanth Chary — web & AI product studio (solo)",
+              url: `${SITE}/`,
+              provider: { "@id": `${SITE}/#person` },
+              areaServed: ["IN", "US"],
+              priceRange: "₹18,000+",
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Fixed-price builds",
+                itemListElement: packages.map((pk) => ({
+                  "@type": "Offer",
+                  itemOffered: { "@type": "Service", name: pk.name, description: pk.for },
+                  priceSpecification: {
+                    "@type": "PriceSpecification",
+                    minPrice: pk.priceFrom,
+                    priceCurrency: "INR",
+                  },
+                })),
+              },
+            },
+            {
+              "@type": "FAQPage",
+              "@id": `${SITE}/#faq`,
+              mainEntity: faqs.map(([q, a]) => ({
+                "@type": "Question",
+                name: q,
+                acceptedAnswer: { "@type": "Answer", text: a },
+              })),
+            },
+            {
               "@type": "ProfilePage",
               "@id": `${SITE}/#profilepage`,
               url: `${SITE}/`,
@@ -203,6 +236,24 @@ function Home() {
   );
 }
 
+/** Live local time — tells a client in another timezone exactly when you're around. */
+function IstClock() {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const fmt = new Intl.DateTimeFormat("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Asia/Kolkata",
+    });
+    const tick = () => setTime(fmt.format(new Date()));
+    tick();
+    const id = window.setInterval(tick, 20_000);
+    return () => window.clearInterval(id);
+  }, []);
+  return <span suppressHydrationWarning>{time ? `${time} IST now` : "IST"}</span>;
+}
+
 function Hero() {
   let i = 0;
   const word = (w: string, accent = false) => {
@@ -247,6 +298,26 @@ function Hero() {
             Solo-built AI products and client stores — design, code, payments, growth. Founded,
             built and sold LegalDeep AI. One person, the whole pipeline.
           </p>
+          <p
+            className="animate-fade-rise mb-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.06em] text-brown"
+            style={{ animationDelay: "0.56s" }}
+          >
+            {AVAILABILITY.open && (
+              <span className="flex items-center gap-2 text-foreground">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60" />
+                  <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                </span>
+                {AVAILABILITY.label}
+              </span>
+            )}
+            <a
+              href="#investment"
+              className="border-b border-border-strong pb-0.5 hover:border-primary hover:text-primary"
+            >
+              {packages.map((pk) => `${pk.label} ${pk.short}`).join(" · ")}
+            </a>
+          </p>
           <div
             className="animate-fade-rise flex flex-wrap items-center gap-x-8 gap-y-4"
             style={{ animationDelay: "0.62s" }}
@@ -274,7 +345,7 @@ function Hero() {
                   <VerifiedBadge className="size-[1.15em] shrink-0" />
                 </p>
                 <p className="m-0 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-brown-soft">
-                  19 · India · IST
+                  19 · India · <IstClock />
                 </p>
               </div>
             </div>
@@ -1131,46 +1202,6 @@ function About() {
   );
 }
 
-const packages = [
-  {
-    name: "Landing page that sells",
-    price: "from ₹18,000",
-    time: "5–7 days",
-    for: "One page, one offer — built to turn ad clicks into enquiries.",
-    includes: [
-      "Copy written with you",
-      "Custom design, no template",
-      "Mobile-first build",
-      "Analytics + lead capture",
-    ],
-  },
-  {
-    name: "Online store",
-    price: "from ₹45,000",
-    time: "2–3 weeks",
-    for: "A storefront that looks like a brand, with Shopify doing the boring parts.",
-    includes: [
-      "Logo / brand polish",
-      "Custom storefront design & build",
-      "Checkout, COD, shipping",
-      "SEO from day one",
-    ],
-    featured: true,
-  },
-  {
-    name: "AI product or automation",
-    price: "from ₹75,000",
-    time: "3–5 weeks",
-    for: "A working v1 with real users — auth, payments, and the AI part that matters.",
-    includes: [
-      "Product & flow design",
-      "Full-stack build",
-      "Payments wired in",
-      "Two weeks of fixes after launch",
-    ],
-  },
-];
-
 /** Money talk, up front — the section most freelancers hide. */
 function Investment() {
   return (
@@ -1219,7 +1250,9 @@ function Investment() {
                   ))}
                 </ul>
                 <a
-                  href={CALENDLY}
+                  href={whatsappLink(
+                    `Hi Sumanth, I saw your portfolio and I'm interested in the "${p.name}" build (${p.price}). Here's what I have in mind: `,
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`btn-shine mt-6 rounded-full px-5 py-3 text-center font-mono text-[0.7rem] uppercase tracking-[0.05em] transition-colors duration-300 ${
@@ -1229,6 +1262,14 @@ function Investment() {
                   }`}
                 >
                   Discuss this build ↗
+                </a>
+                <a
+                  href={CALENDLY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 text-center font-mono text-[0.64rem] uppercase tracking-[0.06em] text-brown-soft transition-colors hover:text-primary"
+                >
+                  or book a 30-min call
                 </a>
               </article>
             </Reveal>
@@ -1279,29 +1320,6 @@ function Investment() {
     </section>
   );
 }
-
-const faqs = [
-  [
-    "Why one person instead of an agency?",
-    "Because nothing gets lost in translation. The person who hears your idea is the one designing it, coding it and running the ads — and you can message me directly.",
-  ],
-  [
-    "I'm not technical. Is that a problem?",
-    "It's the normal case. You talk about customers and products; I handle the rest and show you a live link every few days instead of jargon.",
-  ],
-  [
-    "What if I don't like the design?",
-    "You see direction early, not at the end. Two rounds of changes are built into every project, and nothing goes live until you're happy with it.",
-  ],
-  [
-    "Can you also get me customers?",
-    "Yes — that's the second half of what I do. Google and Meta ads, SEO and landing pages that were designed to convert in the first place.",
-  ],
-  [
-    "How do we start?",
-    "One 30-minute call. You'll leave it with a scope, a price and a date — no obligation, no pitch deck.",
-  ],
-];
 
 function Faq() {
   return (

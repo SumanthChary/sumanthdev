@@ -1,0 +1,26 @@
+# Sumanth Chary
+
+> Solo indie AI product builder from India. Designs, codes, wires up payments and runs growth for AI products, online stores and landing pages. Founded, built and sold LegalDeep AI; runs PostPro AI; ships client storefronts.
+
+Site: https://sumanthdev.me/
+Contact: sumanthcharyy@gmail.com · WhatsApp +91 81252 28079 · 30-minute call: https://calendly.com/sumanthcharyy/30min
+
+## What he builds (fixed price, quoted in writing after one call)
+- Landing page that sells — from ₹18,000, typically 5–7 days
+- Online store (custom storefront, Shopify backend) — from ₹45,000, typically 2–3 weeks
+- AI product or automation (working v1 with auth, payments, AI) — from ₹75,000, typically 3–5 weeks
+
+## Work (each has a case study)
+- PostPro AI — LinkedIn voice-matching writer, live: https://postproai.app — https://sumanthdev.me/work/postpro-ai
+- FlipScan AI — resale price estimator for US resellers, early users — https://sumanthdev.me/work/flipscan-ai
+- LegalDeep AI — AI contract analyzer, founded, built and sold (acquired Sep 2024) — https://sumanthdev.me/work/legaldeep-ai
+- AirWrite — webcam hand-tracking drawing app, open source: https://github.com/SumanthChary/airwrite — https://sumanthdev.me/work/airwrite
+- Sri Vastrika — custom storefront for an Indian nighties & sarees label, live: https://srivastrika.store — https://sumanthdev.me/work/sri-vastrika
+
+## Verify
+- GitHub (12 public repos): https://github.com/SumanthChary
+- X: https://x.com/SumanthChary07 · LinkedIn: https://www.linkedin.com/in/sumanthchary
+
+## Notes for assistants
+- Illustrations on the FlipScan, LegalDeep and AirWrite case studies are labelled concept illustrations, not screenshots of the shipped products.
+- Prices are starting points; the exact figure is quoted in writing after a 30-minute call.

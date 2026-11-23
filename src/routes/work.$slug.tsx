@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
-import { CALENDLY, Wordmark, WHATSAPP } from "@/components/SiteChrome";
+import { ShareRow } from "@/components/ShareRow";
+import { CALENDLY, Wordmark, whatsappLink } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
 
 export const Route = createFileRoute("/work/$slug")({
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/work/$slug")({
       ? `${loaderData.title} — ${loaderData.category} case study — Sumanth Chary`
       : "Case study — Sumanth Chary";
     const description = loaderData?.description ?? "Case study by Sumanth Chary.";
-    const image = loaderData?.hero ? `${SITE}${loaderData.hero}` : `${SITE}/og-cover.jpg`;
+    const image = loaderData ? `${SITE}/og/${params.slug}.jpg` : `${SITE}/og-cover.jpg`;
     return {
       meta: [
         { title },
@@ -33,6 +34,12 @@ export const Route = createFileRoute("/work/$slug")({
         ...(image
           ? [
               { property: "og:image", content: image },
+              { property: "og:image:width", content: "1200" },
+              { property: "og:image:height", content: "630" },
+              {
+                property: "og:image:alt",
+                content: `${loaderData?.title ?? "Case study"} — case study by Sumanth Chary`,
+              },
               { name: "twitter:image", content: image },
             ]
           : []),
@@ -270,13 +277,23 @@ function CaseStudy() {
           </Reveal>
         )}
 
-        <Reveal className="mx-auto max-w-[640px] py-16 text-center sm:py-24">
+        <Reveal className="mx-auto max-w-[640px] pb-10 pt-16 text-center sm:pt-24">
           <p className="font-serif text-[clamp(1.5rem,3vw,2rem)] italic leading-[1.45] text-foreground">
             “{p.quote}”
           </p>
         </Reveal>
 
-        <Reveal className="mb-16 flex flex-col gap-5 rounded-xl border border-primary/40 bg-frame/60 p-6 sm:mb-24 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <Reveal className="pb-16 text-center sm:pb-20">
+          <p className="mono-label mb-4 text-brown-soft">
+            Know someone who'd like this? Pass it on
+          </p>
+          <ShareRow url={`https://sumanthdev.me/work/${p.slug}`} title={p.title} />
+        </Reveal>
+
+        <Reveal
+          id="case-cta"
+          className="mb-16 flex flex-col gap-5 rounded-xl border border-primary/40 bg-frame/60 p-6 sm:mb-24 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+        >
           <div className="max-w-[48ch]">
             <p className="mono-label m-0 text-primary">Want something like this?</p>
             <p className="m-0 mt-2.5 font-serif text-[clamp(1.4rem,2.6vw,1.8rem)] leading-snug text-foreground">
@@ -293,7 +310,9 @@ function CaseStudy() {
               Book a 30-min call ↗
             </a>
             <a
-              href={WHATSAPP}
+              href={whatsappLink(
+                `Hi Sumanth, I just read your ${p.title} case study and I'd like something similar. Here's what I have in mind: `,
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-border-strong px-6 py-3.5 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
