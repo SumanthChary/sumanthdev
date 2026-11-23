@@ -65,7 +65,7 @@ export const packages = [
 export const faqs: [string, string][] = [
   [
     "Why one person instead of an agency?",
-    "Because nothing gets lost in translation. The person who hears your idea is the one designing it, coding it and running the ads — and you can message me directly.",
+    "Because nothing gets lost in translation. The person who hears your idea is the one designing it, coding it — and you can message me directly.",
   ],
   [
     "I'm not technical. Is that a problem?",
@@ -77,7 +77,7 @@ export const faqs: [string, string][] = [
   ],
   [
     "Can you also get me customers?",
-    "Yes — that's the second half of what I do. Google and Meta ads, SEO and landing pages that were designed to convert in the first place.",
+    "I build every page to be found and to convert — SEO and GEO from day one, a clear offer, analytics that show what's working. I won't promise traffic numbers; I'll tell you honestly what will and won't move the needle for your business.",
   ],
   [
     "How do we start?",

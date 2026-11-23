@@ -97,7 +97,6 @@ function CaseStudy() {
 
   return (
     <>
-      <div className="grain" aria-hidden="true" />
       <header className="flex items-center justify-between px-[clamp(20px,4vw,56px)] py-7">
         <Wordmark />
         <Link
@@ -284,16 +283,11 @@ function CaseStudy() {
         </Reveal>
 
         <Reveal className="pb-16 text-center sm:pb-20">
-          <p className="mono-label mb-4 text-brown-soft">
-            Know someone who'd like this? Pass it on
-          </p>
+          <p className="mono-label mb-4 text-brown-soft">Share this case study</p>
           <ShareRow url={`https://sumanthdev.me/work/${p.slug}`} title={p.title} />
         </Reveal>
 
-        <Reveal
-          id="case-cta"
-          className="mb-16 flex flex-col gap-5 rounded-xl border border-primary/40 bg-frame/60 p-6 sm:mb-24 sm:flex-row sm:items-center sm:justify-between sm:p-8"
-        >
+        <Reveal className="mb-16 flex flex-col gap-5 rounded-xl border border-primary/40 bg-frame/60 p-6 sm:mb-24 sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div className="max-w-[48ch]">
             <p className="mono-label m-0 text-primary">Want something like this?</p>
             <p className="m-0 mt-2.5 font-serif text-[clamp(1.4rem,2.6vw,1.8rem)] leading-snug text-foreground">

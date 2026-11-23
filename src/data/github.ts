@@ -6,6 +6,8 @@ export type Repo = {
   kind: string;
   /** primary language, straight from the GitHub API */
   language: string | null;
+  /** shown on the home page — the rest stay one click away on GitHub */
+  featured?: boolean;
 };
 
 const LANG_COLORS: Record<string, string> = {
@@ -25,18 +27,21 @@ export function langColor(language: string | null): string | null {
 export const repos: Repo[] = [
   {
     name: "pipelineai-openclaw",
+    featured: true,
     blurb: "Agent pipeline runner",
     kind: "Agent",
     language: "TypeScript",
   },
   {
     name: "triage-beacon",
+    featured: true,
     blurb: "Incident triage assistant",
     kind: "Agent",
     language: "TypeScript",
   },
   {
     name: "flowmind-original",
+    featured: true,
     blurb: "Workflow automation brain",
     kind: "Automation",
     language: "TypeScript",
@@ -44,13 +49,26 @@ export const repos: Repo[] = [
   { name: "gemini-os", blurb: "Gemini OS", kind: "Experiment", language: null },
   {
     name: "sky-story-maker",
+    featured: true,
     blurb: "AI story generator",
     kind: "Experiment",
     language: "TypeScript",
   },
-  { name: "airwrite", blurb: "Draw in air via webcam", kind: "Experiment", language: "TypeScript" },
+  {
+    name: "airwrite",
+    featured: true,
+    blurb: "Draw in air via webcam",
+    kind: "Experiment",
+    language: "TypeScript",
+  },
   { name: "particle", blurb: "Canvas particle playground", kind: "Experiment", language: "HTML" },
-  { name: "handy", blurb: "Hand-gesture control lab", kind: "Experiment", language: "TypeScript" },
+  {
+    name: "handy",
+    featured: true,
+    blurb: "Hand-gesture control lab",
+    kind: "Experiment",
+    language: "TypeScript",
+  },
   {
     name: "aitradevision",
     blurb: "Market signal dashboard",
@@ -72,4 +90,4 @@ export const repos: Repo[] = [
   },
 ];
 
-export const repoFilters = ["All", "Agent", "Automation", "Experiment", "Tools"] as const;
+export const featuredRepos = repos.filter((r) => r.featured);

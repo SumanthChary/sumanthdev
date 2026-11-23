@@ -15,9 +15,8 @@ import { CALENDLY, EMAIL, RESUME_URL, whatsappLink } from "@/components/SiteChro
 const sections = [
   ["work", "Work"],
   ["client-work", "Client work"],
-  ["lab", "The lab — 12 public repos"],
-  ["experience", "Experience & achievements"],
-  ["proof", "How a project runs"],
+  ["lab", "The lab — public repos"],
+  ["process", "How it works"],
   ["about", "About"],
   ["investment", "Pricing"],
   ["faq", "FAQ"],

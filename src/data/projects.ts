@@ -145,7 +145,8 @@ export const projects: Project[] = [
       "Small businesses sign contracts they haven't fully read. LegalDeep needed to surface the three clauses that actually matter without pretending to be a lawyer.",
     approach:
       "A document view with inline risk flags rather than a separate report — the analysis lives where the text lives. Conservative language throughout, and every flag links back to the exact paragraph it came from.",
-    result: "Founded, built and sold — a complete product taken from idea to handover.",
+    result:
+      "Founded, built and sold — acquired by OK, LLC in September 2024. A complete product taken from idea to handover.",
     quote: "Confidence in a legal tool comes from restraint, not from claiming more than it knows.",
     concept: {
       src: legaldeepConcept,

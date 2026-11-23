@@ -6,8 +6,6 @@ import { MagneticLink } from "@/components/MagneticLink";
 import {
   CALENDLY,
   ContactSection,
-  FIVER,
-  ResumeButton,
   SiteFooter,
   SiteNav,
   WHATSAPP,
@@ -15,10 +13,7 @@ import {
 } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
 import { AVAILABILITY, faqs, packages } from "@/data/site";
-import { GITHUB_URL, langColor, repoFilters, repos } from "@/data/github";
-import { ContributionHeatmap } from "@/components/ContributionHeatmap";
-import { contributions } from "@/data/contributions";
-import { TechMarquee } from "@/components/TechMarquee";
+import { GITHUB_URL, featuredRepos, langColor, repos } from "@/data/github";
 import face from "@/assets/media/sumanth-face.webp";
 import { LuffyPet } from "@/components/LuffyPet";
 
@@ -179,22 +174,6 @@ function Dot({ live }: { live: boolean }) {
   );
 }
 
-/** blue-and-white verified mark, shown next to the name */
-function VerifiedBadge({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" role="img" aria-label="Verified" className={className}>
-      <path
-        fill="oklch(0.6 0.17 255)"
-        d="M12 1.7l2.6 1.9 3.2-.3 1.2 3 2.9 1.5-.9 3.2.9 3.2-2.9 1.5-1.2 3-3.2-.3-2.6 1.9-2.6-1.9-3.2.3-1.2-3-2.9-1.5.9-3.2-.9-3.2 2.9-1.5 1.2-3 3.2.3 2.6-1.9z"
-      />
-      <path
-        fill="oklch(0.984 0.004 95)"
-        d="M10.6 15.9l-3-3 1.4-1.4 1.6 1.6 4.4-4.4 1.4 1.4-5.8 5.8z"
-      />
-    </svg>
-  );
-}
-
 /** the cartoon face — used as a small friendly accent throughout */
 function FaceBadge({ className }: { className?: string }) {
   return (
@@ -212,19 +191,16 @@ function FaceBadge({ className }: { className?: string }) {
 function Home() {
   return (
     <>
-      <div className="grain" aria-hidden="true" />
       <SiteNav />
       <main id="main">
         <Hero />
         <Receipts />
-        <TechMarquee />
         <Work />
         <ClientWork />
         <Lab />
-        <Experience />
-        <Proof />
         <Skills />
         <About />
+        <Process />
         <Investment />
         <Faq />
         <ContactSection />
@@ -304,19 +280,10 @@ function Hero() {
           >
             {AVAILABILITY.open && (
               <span className="flex items-center gap-2 text-foreground">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60" />
-                  <span className="relative inline-flex size-2 rounded-full bg-primary" />
-                </span>
+                <span className="size-2 rounded-full bg-primary" />
                 {AVAILABILITY.label}
               </span>
             )}
-            <a
-              href="#investment"
-              className="border-b border-border-strong pb-0.5 hover:border-primary hover:text-primary"
-            >
-              {packages.map((pk) => `${pk.label} ${pk.short}`).join(" · ")}
-            </a>
           </p>
           <div
             className="animate-fade-rise flex flex-wrap items-center gap-x-8 gap-y-4"
@@ -325,7 +292,6 @@ function Hero() {
             <MagneticLink href="#contact" className="btn-shine">
               Start a project
             </MagneticLink>
-            <ResumeButton className="btn-shine" />
             <a
               href="#work"
               className="border-b border-border-strong pb-1 font-mono text-[0.78rem] uppercase tracking-[0.05em] text-brown transition-colors hover:border-primary hover:text-primary"
@@ -342,19 +308,21 @@ function Hero() {
               <div className="min-w-0">
                 <p className="m-0 flex flex-wrap items-center gap-x-2 gap-y-1 font-serif text-[1.5rem] italic leading-tight text-foreground">
                   Sumanth Chary
-                  <VerifiedBadge className="size-[1.15em] shrink-0" />
                 </p>
                 <p className="m-0 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-brown-soft">
-                  19 · India · <IstClock />
+                  India · <IstClock />
                 </p>
               </div>
             </div>
             <dl className="mt-7 grid grid-cols-2 gap-x-5 gap-y-5 border-t border-border pt-6">
               {[
-                { k: "Products shipped", v: "5" },
-                { k: "Reply time", v: "< 24h" },
+                { k: "Products shipped", v: String(projects.length) },
+                {
+                  k: "Live right now",
+                  v: String(projects.filter((p) => p.live && p.liveUrl).length),
+                },
+                { k: "Built & sold", v: "1" },
                 { k: "Public repos", v: String(repos.length) },
-                { k: "First live build", v: "~2 wks" },
               ].map((s) => (
                 <div key={s.k}>
                   <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
@@ -378,7 +346,6 @@ function Hero() {
 
 /** Proof within the first scroll: every cell is something a visitor can open and check. */
 function Receipts() {
-  const total = contributions.reduce((sum, d) => sum + d.count, 0);
   const items: {
     label: string;
     title: string;
@@ -407,7 +374,7 @@ function Receipts() {
     {
       label: "Open source",
       title: `${repos.length} public repos`,
-      note: `${total} GitHub contributions in the last 12 months.`,
+      note: "Agents, automations and experiments — all readable.",
       cta: "github.com/SumanthChary ↗",
       href: GITHUB_URL,
       live: true,
@@ -429,7 +396,7 @@ function Receipts() {
     <section aria-label="Proof you can check" className="border-y border-border">
       <div className="wrap">
         <p className="mono-label flex items-center gap-2.5 pb-1 pt-6 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-          Don't take my word for it — open these
+          Receipts — I'd rather be verified than believed
         </p>
         <ul className="m-0 grid list-none p-0 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((it) => (
@@ -475,46 +442,29 @@ function Receipts() {
 const skillGroups = [
   {
     label: "Design",
-    items: [
-      "UI/UX Design",
-      "Design Systems",
-      "Brand Identity",
-      "Figma",
-      "Motion Design",
-      "Visual Systems",
-    ],
+    items: ["UI/UX design", "Design systems", "Brand identity", "Motion"],
   },
   {
     label: "Build",
     items: [
-      "SaaS Development",
-      "App Development",
-      "Frontend Engineering",
-      "API Integration",
-      "Automations",
-      "AI Agents",
-      "Chatbots",
-      "Animations",
-      "Master of AI Tools",
-      "No-Code",
+      "SaaS products",
+      "AI agents & automations",
+      "Frontend engineering",
+      "Payments & API integration",
     ],
   },
   {
     label: "Product",
-    items: ["Product Management", "Business Analysis", "Strategy", "Data Analysis"],
+    items: ["Product management", "Business analysis", "Data analysis"],
   },
   {
     label: "Growth",
     items: [
-      "GEO / Generative Engine Optimization",
       "SEO",
-      "Landing Pages That Convert",
+      "Generative engine optimization (GEO)",
+      "Landing pages that convert",
       "Analytics",
     ],
-  },
-  {
-    label: "Create",
-    items: ["Video Editing", "Content Writing", "Brand Strategy", "Scripting", "Social Media"],
   },
 ];
 
@@ -526,7 +476,7 @@ function Skills() {
           <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
             Capabilities
           </p>
-          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,3rem)]">What I do</h2>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,3rem)]">What I do — and have shipped</h2>
         </Reveal>
 
         <Reveal className="border-t border-border-strong">
@@ -558,125 +508,43 @@ function Skills() {
   );
 }
 
-const proofPoints = [
-  {
-    stat: "5",
-    label: "products & client builds shipped",
-    note: "A live Shopify storefront, three AI products, one experiment — all built end to end by me.",
-  },
-  {
-    stat: "100%",
-    label: "solo — design to deployment",
-    note: "No agency layer. The person you message is the person writing the code.",
-  },
-  {
-    stat: "< 24h",
-    label: "reply time on calls & WhatsApp",
-    note: "Reachable on WhatsApp during IST hours, every working day.",
-  },
-  {
-    stat: "2 wks",
-    label: "typical first shipped version",
-    note: "A real, live URL you can open — not a slide deck or a Figma file.",
-  },
+const steps = [
+  ["01", "One call", "20–30 minutes. What you sell, who buys it, what's in the way."],
+  ["02", "Fixed scope & price", "Written down before anything starts. No hourly surprises."],
+  [
+    "03",
+    "Live in ~2 weeks",
+    "You get a real URL early and watch it improve — no big reveal at the end.",
+  ],
+  [
+    "04",
+    "Growth after launch",
+    "SEO, analytics and iteration — the part most builders hand back to you.",
+  ],
 ];
 
-/** Trust block — the reasons someone should feel safe hiring a solo builder. */
-function Proof() {
+function Process() {
   return (
-    <section id="proof" className="border-t border-border-strong py-[clamp(64px,9vw,110px)]">
-      <div className="wrap">
-        <Reveal className="mb-10 max-w-[52ch]">
+    <section id="process" className="border-t border-border-strong py-[clamp(64px,9vw,100px)]">
+      <div className="wrap grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <Reveal>
           <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-            Why people trust me with it
+            How it works
           </p>
-          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">Check it yourself.</h2>
-          <p className="mt-4 text-[0.98rem] leading-relaxed text-brown">
-            PostPro AI and Sri Vastrika are live URLs you can open right now. AirWrite and eleven
-            other repos are public on GitHub. LegalDeep was sold, so it's a case study rather than a
-            link — and anything still early is labelled as early. I'd rather be verified than
-            believed.
-          </p>
+          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">Four steps. One person.</h2>
         </Reveal>
-
-        <Reveal className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {proofPoints.map((p) => (
-            <div key={p.label} className="bg-background p-6">
-              <p className="m-0 font-serif text-[2.4rem] leading-none text-primary">{p.stat}</p>
-              <p className="mt-3 font-mono text-[0.64rem] uppercase tracking-[0.12em] text-foreground">
-                {p.label}
-              </p>
-              <p className="mt-2.5 text-[0.86rem] leading-snug text-brown">{p.note}</p>
-            </div>
-          ))}
-        </Reveal>
-
-        <Reveal className="mt-8 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-xl border border-border p-6 sm:p-8">
-            <h3 className="mb-5 font-mono text-[0.64rem] uppercase tracking-[0.14em] text-primary">
-              How a project runs
-            </h3>
-            <ol className="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
-              {[
-                [
-                  "01",
-                  "One call",
-                  "20 minutes on the phone or WhatsApp. What you sell, who buys it, what's in the way.",
-                ],
-                [
-                  "02",
-                  "Fixed scope & price",
-                  "Written down before anything starts. No hourly surprises.",
-                ],
-                [
-                  "03",
-                  "Live in ~2 weeks",
-                  "You get a real URL early and watch it improve, not a reveal at the end.",
-                ],
-                [
-                  "04",
-                  "Growth after launch",
-                  "SEO, ads, and iteration — the part most builders hand back to you.",
-                ],
-              ].map(([n, t, d]) => (
-                <li key={n} className="flex gap-3.5">
-                  <span className="font-mono text-[0.7rem] text-brown-soft">{n}</span>
-                  <span>
-                    <span className="block text-[1rem] text-foreground">{t}</span>
-                    <span className="mt-1 block text-[0.86rem] leading-snug text-brown">{d}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <div className="flex flex-col justify-between gap-6 rounded-xl border border-primary/40 bg-frame/60 p-6 sm:p-8">
-            <div className="flex items-start gap-4">
-              <FaceBadge className="size-12 shrink-0" />
-              <p className="m-0 text-[0.98rem] leading-relaxed text-foreground">
-                Prefer talking to typing? Take 30 minutes of my calendar, or send one WhatsApp
-                message. You'll get an honest yes, no, or “here's a cheaper way to do it.”
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <a
-                href={CALENDLY}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-shine rounded-full bg-primary px-6 py-3.5 text-center font-mono text-[0.74rem] uppercase tracking-[0.04em] text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
-              >
-                Book a 30-min call ↗
-              </a>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-border-strong px-6 py-3.5 text-center font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
-              >
-                Message on WhatsApp ↗
-              </a>
-            </div>
-          </div>
+        <Reveal delay={100}>
+          <ol className="m-0 grid list-none gap-x-8 gap-y-7 p-0 sm:grid-cols-2">
+            {steps.map(([n, t, d]) => (
+              <li key={n} className="flex gap-3.5 border-t border-border-strong pt-4">
+                <span className="font-mono text-[0.7rem] text-primary">{n}</span>
+                <span>
+                  <span className="block text-[1.05rem] text-foreground">{t}</span>
+                  <span className="mt-1 block text-[0.88rem] leading-snug text-brown">{d}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
         </Reveal>
       </div>
     </section>
@@ -953,30 +821,13 @@ function ClientWork() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal className="mt-8 flex flex-wrap items-center gap-4 rounded-xl border border-dashed border-border-strong p-6">
-          <FaceBadge className="size-12" />
-          <p className="m-0 max-w-[52ch] text-[0.95rem] leading-relaxed text-brown">
-            Same treatment for your business: brand, site, and the growth work behind it — one
-            person, one thread, no handoff gap.
-          </p>
-          <a
-            href="#contact"
-            className="rounded-full bg-foreground px-6 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-colors duration-300 hover:bg-primary"
-          >
-            Work with me
-          </a>
-        </Reveal>
       </div>
     </section>
   );
 }
 
-/** Everything on GitHub that doesn't have a full case study — plus the real contribution grid. */
+/** A curated slice of the public repos — the rest are one click away. */
 function Lab() {
-  const [filter, setFilter] = useState<(typeof repoFilters)[number]>("All");
-  const shown = filter === "All" ? repos : repos.filter((r) => r.kind === filter);
-
   return (
     <section id="lab" className="border-t border-border-strong py-[clamp(72px,10vw,110px)]">
       <div className="wrap">
@@ -985,9 +836,11 @@ function Lab() {
             <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
               The lab
             </p>
-            <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">
-              {repos.length} public repos, still counting
-            </h2>
+            <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">Built in public</h2>
+            <p className="mt-3 max-w-[48ch] text-[0.95rem] leading-relaxed text-brown">
+              Agents, automations and experiments — a selection. All {repos.length} repos are on
+              GitHub.
+            </p>
           </div>
           <a
             href={GITHUB_URL}
@@ -999,30 +852,8 @@ function Lab() {
           </a>
         </Reveal>
 
-        <Reveal className="mb-9">
-          <ContributionHeatmap />
-        </Reveal>
-
-        <Reveal className="mb-6 flex flex-wrap gap-2">
-          {repoFilters.map((f) => (
-            <button
-              key={f}
-              type="button"
-              onClick={() => setFilter(f)}
-              aria-pressed={filter === f}
-              className={`rounded-full border px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.06em] transition-colors duration-300 ${
-                filter === f
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border-strong text-brown hover:border-primary hover:text-primary"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </Reveal>
-
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {shown.map((r) => (
+          {featuredRepos.map((r) => (
             <a
               key={r.name}
               href={`${GITHUB_URL}/${r.name}`}
@@ -1042,7 +873,7 @@ function Lab() {
                 </span>
               </span>
               <span className="mt-2 block flex-1 text-[0.86rem] leading-snug text-brown">
-                {r.blurb || "Open the repo for details."}
+                {r.blurb}
               </span>
               <span className="mt-4 flex items-center gap-3 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-brown-soft">
                 {r.language && (
@@ -1064,88 +895,12 @@ function Lab() {
   );
 }
 
-const timeline = [
-  {
-    when: "Sep 2024 — acquired by OK, LLC",
-    title: "LegalDeep AI",
-    role: "Founder · design, development, launch",
-    note: "AI legal document analyzer — summaries, risk & fraud detection, AI law advisor. Founded, built and sold.",
-    chip: "Built & sold",
-  },
-  {
-    when: "Sep 2024 — present",
-    title: "PostPro AI",
-    role: "Founder · design, development, growth",
-    note: "Voice-matching LinkedIn writer. Live at postproai.app and operated solo.",
-    chip: "Live",
-  },
-  {
-    when: "2025 — present",
-    title: "FlipScan AI",
-    role: "Founder · design, development",
-    note: "Resale price estimator for US resellers — the estimate flow is live and iterating with early users.",
-    chip: "Building",
-  },
-  {
-    when: "2025",
-    title: "Sri Vastrika",
-    role: "Client · brand, storefront design & build, SEO",
-    note: "Custom-designed storefront for an Indian nighties & sarees label — Shopify powers checkout, inventory and payments.",
-    chip: "Client · live",
-  },
-];
-
 const achievements = [
   { title: "Prompt Design in Vertex AI", by: "Google · certificate" },
   { title: "Machine Learning & AI", by: "Google · certificate, Sep 2026" },
   { title: "Outlier AI Frontend Hackathon", by: "Finalist · Apr 2025" },
   { title: "100xEngineers Generative AI Buildathon", by: "Semi-finalist · Jun 2025" },
 ];
-
-/** Experience and achievements — dates and results, no LinkedIn logos, just the record. */
-function Experience() {
-  return (
-    <section id="experience" className="py-[clamp(72px,10vw,110px)]">
-      <div className="wrap">
-        <Reveal className="mb-10 max-w-[52ch]">
-          <p className="mono-label flex items-center gap-2.5 text-brown-soft before:h-px before:w-3.5 before:bg-primary before:content-['']">
-            Experience &amp; achievements
-          </p>
-          <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">The record so far.</h2>
-        </Reveal>
-
-        <Reveal className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
-          {timeline.map((t) => (
-            <div key={t.title} className="bg-background p-6 sm:p-7">
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                <h3 className="m-0 text-[1.35rem] leading-tight">{t.title}</h3>
-                <span className="rounded-full border border-primary/40 px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-primary">
-                  {t.chip}
-                </span>
-              </div>
-              <p className="mb-3 mt-1.5 font-mono text-[0.64rem] uppercase tracking-[0.12em] text-brown-soft">
-                {t.when}
-              </p>
-              <p className="m-0 text-[0.92rem] leading-relaxed text-brown">{t.note}</p>
-              <p className="mb-0 mt-3 font-mono text-[0.66rem] text-foreground">{t.role}</p>
-            </div>
-          ))}
-        </Reveal>
-
-        <Reveal className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {achievements.map((a) => (
-            <div key={a.title} className="rounded-xl border border-border bg-frame/40 p-5">
-              <p className="mono-label m-0 flex items-center gap-2 text-primary before:h-px before:w-3 before:bg-primary before:content-['']">
-                {a.by}
-              </p>
-              <p className="m-0 mt-2.5 text-[1.02rem] leading-snug text-foreground">{a.title}</p>
-            </div>
-          ))}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 function About() {
   return (
@@ -1158,10 +913,9 @@ function About() {
               <div>
                 <p className="m-0 flex items-center gap-1.5 font-serif text-[1.3rem] italic leading-tight text-foreground">
                   Sumanth Chary
-                  <VerifiedBadge className="size-[1em] shrink-0" />
                 </p>
                 <p className="m-0 font-mono text-[0.64rem] uppercase tracking-[0.1em] text-brown-soft">
-                  19 · India
+                  India
                 </p>
               </div>
             </div>
@@ -1196,6 +950,22 @@ function About() {
             founded, built and sold LegalDeep AI, run PostPro AI as a live product, and ship client
             storefronts with Shopify doing the heavy lifting behind a custom front end.
           </p>
+          <div className="mt-8 max-w-[58ch] border-t border-border pt-6">
+            <p className="mono-label mb-3 text-brown-soft">Recognition</p>
+            <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
+              {achievements.map((a) => (
+                <li
+                  key={a.title}
+                  className="flex flex-wrap items-baseline justify-between gap-x-4 text-[0.95rem] leading-snug text-foreground"
+                >
+                  {a.title}
+                  <span className="font-mono text-[0.62rem] uppercase tracking-[0.1em] text-brown-soft">
+                    {a.by}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -1263,14 +1033,6 @@ function Investment() {
                 >
                   Discuss this build ↗
                 </a>
-                <a
-                  href={CALENDLY}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 text-center font-mono text-[0.64rem] uppercase tracking-[0.06em] text-brown-soft transition-colors hover:text-primary"
-                >
-                  or book a 30-min call
-                </a>
               </article>
             </Reveal>
           ))}
@@ -1295,7 +1057,7 @@ function Investment() {
           <p className="m-0 max-w-[62ch] text-[0.92rem] leading-relaxed text-brown">
             These are starting points, not sealed quotes. The final number depends on scope, rounds
             of changes and timeline — you'll get an exact figure, in writing, after one 30-minute
-            call. Smaller one-off jobs are welcome too.
+            call.
           </p>
           <div className="flex shrink-0 flex-wrap gap-3">
             <a
@@ -1305,14 +1067,6 @@ function Investment() {
               className="btn-shine rounded-full bg-foreground px-6 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-background transition-colors duration-300 hover:bg-primary"
             >
               Get an exact quote ↗
-            </a>
-            <a
-              href={FIVER}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-border-strong px-6 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary"
-            >
-              Or hire on Fiverr ↗
             </a>
           </div>
         </Reveal>

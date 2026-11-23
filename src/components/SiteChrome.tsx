@@ -12,7 +12,6 @@ export const WHATSAPP = "https://wa.me/918125228079";
 /** WhatsApp deep link with the message already typed — one tap from "interested" to "sent". */
 export const whatsappLink = (text: string) => `${WHATSAPP}?text=${encodeURIComponent(text)}`;
 export const CALENDLY = "https://calendly.com/sumanthcharyy/30min";
-export const FIVER = "https://www.fiverr.com/s/61bpX5q";
 
 export function Wordmark({ to = "/" }: { to?: string }) {
   return (
@@ -28,7 +27,6 @@ const navLinks = [
   { href: "/#work", label: "Work" },
   { href: "/#client-work", label: "Clients" },
   { href: "/#lab", label: "Lab" },
-  { href: "/#experience", label: "Experience" },
   { href: "/#about", label: "About" },
   { href: "/#investment", label: "Pricing" },
 ];
@@ -54,22 +52,6 @@ function useActiveSection(ids: string[]) {
 }
 
 const navIds = navLinks.map((l) => l.href.replace("/#", ""));
-
-export function ResumeButton({ className }: { className?: string }) {
-  return (
-    <a
-      href={RESUME_URL}
-      download="Sumanth-Chary-Resume.pdf"
-      className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-3 font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground transition-colors duration-300 hover:border-primary hover:text-primary",
-        className,
-      )}
-    >
-      Resume
-      <span aria-hidden="true">↓</span>
-    </a>
-  );
-}
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -193,7 +175,6 @@ export function SiteNav() {
             >
               Start a project
             </a>
-            <ResumeButton className="justify-center" />
           </div>
         </nav>
       )}
@@ -272,14 +253,7 @@ export function ContactSection() {
             >
               {GITHUB}
             </a>
-            <a
-              href={FIVER}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-on-dark-muted hover:text-primary"
-            >
-              Hire me on Fiverr ↗
-            </a>
+
             <a
               href={RESUME_URL}
               download="Sumanth-Chary-Resume.pdf"
@@ -296,7 +270,7 @@ export function ContactSection() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-on-dark-muted/20 bg-foreground pb-24 pt-8 md:py-8">
+    <footer className="border-t border-on-dark-muted/20 bg-foreground py-8">
       <div className="wrap flex flex-col gap-5 font-mono text-[0.7rem] tracking-[0.03em] text-on-dark-muted sm:flex-row sm:items-center sm:justify-between">
         <span>© {new Date().getFullYear()} Sumanth Chary. Built solo.</span>
         <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2">
@@ -333,65 +307,5 @@ export function SiteFooter() {
         </nav>
       </div>
     </footer>
-  );
-}
-
-/**
- * Mobile-only bottom bar: the two ways to reach you are always one thumb away, but it
- * stays out of the way at the top of the page and once the real contact section is on screen.
- */
-export function StickyCta() {
-  const [show, setShow] = useState(false);
-  const [atContact, setAtContact] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 640);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const targets = document.querySelectorAll("#contact, #case-cta");
-    if (targets.length === 0) return;
-    const seen = new Set<Element>();
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
-      setAtContact(seen.size > 0);
-    });
-    targets.forEach((t) => io.observe(t));
-    return () => io.disconnect();
-  });
-
-  const visible = show && !atContact;
-  return (
-    <div
-      aria-hidden={!visible}
-      className={cn(
-        "fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-border bg-background/92 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-md transition-transform duration-500 ease-[var(--ease-out-soft)] md:hidden",
-        visible ? "translate-y-0" : "translate-y-full",
-      )}
-    >
-      <a
-        href={CALENDLY}
-        target="_blank"
-        rel="noopener noreferrer"
-        tabIndex={visible ? 0 : -1}
-        className="flex-1 rounded-full bg-primary px-4 py-3.5 text-center font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground"
-      >
-        Book a call
-      </a>
-      <a
-        href={whatsappLink(
-          "Hi Sumanth, I found your portfolio and I'd like to talk about a project.",
-        )}
-        target="_blank"
-        rel="noopener noreferrer"
-        tabIndex={visible ? 0 : -1}
-        className="flex-1 rounded-full border border-border-strong px-4 py-3.5 text-center font-mono text-[0.72rem] uppercase tracking-[0.05em] text-foreground"
-      >
-        WhatsApp
-      </a>
-    </div>
   );
 }
