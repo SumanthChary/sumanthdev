@@ -28,7 +28,7 @@
 
 ## Next — highest leverage first
 - [ ] Galley Resume: add its live URL (`liveUrl` in `src/data/projects.ts`) and confirm the status, role and stack wording — until then it isn't counted in 'live right now'
-- [ ] Decide whether to show the ₹60,000 store price — only with Bhaskar's OK
+- [x] Pricing decision: public 'from' prices stay as they are; the ₹60,000 Sri Vastrika quote stays private unless Bhaskar agrees to a line like "a typical store build lands around ₹60,000"
 - [ ] Push `docs/airwrite-README.md` to the AirWrite repo as its README (the current one describes a generic writing app)
 - [ ] Give AirWrite a deployed URL so visitors can try it with their own camera — the most shareable thing you own
 - [x] Sri Vastrika client line is live (home + case study), named (Bhaskar) with a real WhatsApp message beside it
@@ -53,3 +53,4 @@
 - **Show real activity only.** The GitHub contribution graph was removed because it undersold the work (private repos don't show). Curated repos with real descriptions beat a full list.
 - **Don't promise what isn't shown.** No ad-management or traffic claims until there's a case study for it.
 - **Label illustrations.** Concept art always says "Concept" until it's replaced by a real screenshot.
+- **Prices are public, contracts are not.** Keep the "from" prices and the scope/exclusions visible. Client-specific prices and quote documents stay private unless that client agrees. The ₹18,000 starter tier is the one most likely to read as 'budget' to higher-paying clients — revisit it if enquiries skew low-budget.
