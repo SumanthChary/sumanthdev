@@ -22,6 +22,7 @@ export function Wordmark({ to = "/" }: { to?: string }) {
 }
 
 export const GITHUB = "github.com/SumanthChary";
+export const PEERLIST = "peerlist.io/sumanthdev";
 
 const navLinks = [
   { href: "/#work", label: "Work" },
@@ -252,6 +253,14 @@ export function ContactSection() {
               className="text-on-dark-muted hover:text-primary"
             >
               {GITHUB}
+            </a>
+            <a
+              href={`https://${PEERLIST}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-on-dark-muted hover:text-primary"
+            >
+              {PEERLIST}
             </a>
 
             <a

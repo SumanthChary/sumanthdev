@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
 import { MagneticLink } from "@/components/MagneticLink";
@@ -16,6 +16,7 @@ import { AVAILABILITY, faqs, packages } from "@/data/site";
 import { GITHUB_URL, featuredRepos, langColor, repos } from "@/data/github";
 import face from "@/assets/media/sumanth-face.webp";
 import { LuffyPet } from "@/components/LuffyPet";
+import { HeroStage } from "@/components/HeroStage";
 
 const SITE = "https://sumanthdev.me";
 const OG_IMAGE = `${SITE}/og-cover.jpg`;
@@ -231,28 +232,65 @@ function IstClock() {
 }
 
 function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || !window.matchMedia("(hover: hover)").matches) return;
+    let raf = 0;
+    let x = 0;
+    let y = 0;
+    const apply = () => {
+      raf = 0;
+      el.style.setProperty("--mx", `${x}px`);
+      el.style.setProperty("--my", `${y}px`);
+    };
+    const onMove = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      x = e.clientX - r.left;
+      y = e.clientY - r.top;
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+    el.addEventListener("pointermove", onMove);
+    return () => {
+      el.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   let i = 0;
   const word = (w: string, accent = false) => {
     const delay = 0.12 + i * 0.055;
     i += 1;
     return (
-      <span key={`${w}-${delay}`} className="mr-[0.24em] inline-block overflow-hidden align-top">
-        <span
-          className={`animate-word-rise inline-block${accent ? " italic text-primary" : ""}`}
-          style={{ animationDelay: `${delay}s` }}
-        >
-          {w}
-        </span>
-      </span>
+      <Fragment key={`${w}-${delay}`}>
+        <span className="inline-block overflow-hidden align-top">
+          <span
+            className={`animate-word-rise inline-block${accent ? " italic text-primary" : ""}`}
+            style={{ animationDelay: `${delay}s` }}
+          >
+            {w}
+          </span>
+        </span>{" "}
+      </Fragment>
     );
   };
 
   return (
     <section
       id="top"
+      ref={sectionRef}
       className="relative flex items-center overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-28 lg:min-h-[70svh]"
     >
-      <div className="wrap grid w-full items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+      {/* ambient light that follows the pointer — cheap: one CSS variable pair, no React state */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(620px circle at var(--mx, 72%) var(--my, 38%), oklch(0.618 0.203 34 / 0.13), transparent 62%)",
+        }}
+      />
+      <div className="wrap grid w-full items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-10">
         {/* headline and CTAs come first on every screen — mobile visitors read before they scroll */}
         <div>
           <p
@@ -284,6 +322,10 @@ function Hero() {
                 {AVAILABILITY.label}
               </span>
             )}
+            <span className="text-brown-soft">
+              {projects.length} shipped · {projects.filter((p) => p.live && p.liveUrl).length} live
+              · 1 sold
+            </span>
           </p>
           <div
             className="animate-fade-rise flex flex-wrap items-center gap-x-8 gap-y-4"
@@ -302,42 +344,21 @@ function Hero() {
         </div>
 
         <Reveal delay={200}>
-          <div className="relative overflow-hidden rounded-xl border border-border-strong bg-frame p-7 shadow-[var(--shadow-float)] sm:p-8">
-            <div className="flex items-center gap-4">
-              <FaceBadge className="size-16 shrink-0 sm:size-20" />
-              <div className="min-w-0">
-                <p className="m-0 flex flex-wrap items-center gap-x-2 gap-y-1 font-serif text-[1.5rem] italic leading-tight text-foreground">
-                  Sumanth Chary
-                </p>
-                <p className="m-0 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-brown-soft">
-                  India · <IstClock />
-                </p>
-              </div>
-            </div>
-            <dl className="mt-7 grid grid-cols-2 gap-x-5 gap-y-5 border-t border-border pt-6">
-              {[
-                { k: "Products shipped", v: String(projects.length) },
-                {
-                  k: "Live right now",
-                  v: String(projects.filter((p) => p.live && p.liveUrl).length),
-                },
-                { k: "Built & sold", v: "1" },
-                { k: "Public repos", v: String(repos.length) },
-              ].map((s) => (
-                <div key={s.k}>
-                  <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-brown-soft">
-                    {s.k}
-                  </dt>
-                  <dd className="m-0 mt-1 font-serif text-[1.6rem] leading-none text-foreground">
-                    {s.v}
-                  </dd>
+          <HeroStage
+            chip={
+              <div className="group flex items-center gap-3 rounded-full border border-border-strong bg-background/80 py-1.5 pl-1.5 pr-5 shadow-[var(--shadow-float)] backdrop-blur">
+                <FaceBadge className="size-11 shrink-0 transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:rotate-[10deg] group-hover:scale-110" />
+                <div className="min-w-0">
+                  <p className="m-0 font-serif text-[1.15rem] italic leading-tight text-foreground">
+                    Sumanth Chary
+                  </p>
+                  <p className="m-0 font-mono text-[0.6rem] uppercase tracking-[0.1em] text-brown-soft">
+                    India · <IstClock />
+                  </p>
                 </div>
-              ))}
-            </dl>
-            <p className="mt-7 border-t border-border pt-5 text-[0.9rem] leading-relaxed text-brown">
-              Same person from the first call to the launch tweet — design, code, payments, growth.
-            </p>
-          </div>
+              </div>
+            }
+          />
         </Reveal>
       </div>
     </section>
@@ -373,7 +394,7 @@ function Receipts() {
     },
     {
       label: "Open source",
-      title: `${repos.length} public repos`,
+      title: "Open source",
       note: "Agents, automations and experiments — all readable.",
       cta: "github.com/SumanthChary ↗",
       href: GITHUB_URL,
@@ -420,7 +441,7 @@ function Receipts() {
                     <span className={linkClass}>{it.cta}</span>
                   </>
                 );
-                const cls = "group flex h-full flex-col px-1 py-6 sm:px-6 sm:first:pl-1";
+                const cls = "glow-card group flex h-full flex-col px-1 py-6 sm:px-6 sm:first:pl-1";
                 return it.to ? (
                   <Link to="/work/$slug" params={{ slug: it.to }} className={cls}>
                     {inner}
@@ -724,7 +745,7 @@ function ClientWork() {
         <div className="grid gap-5">
           {clientProjects.map((p, i) => (
             <Reveal key={p.slug} delay={i * 90}>
-              <article className="grid h-full gap-7 rounded-xl border border-border bg-frame/50 p-6 transition-colors duration-300 hover:border-primary sm:p-8 lg:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:gap-10">
+              <article className="glow-card grid h-full gap-7 rounded-xl border border-border bg-frame/50 p-6 transition-colors duration-300 hover:border-primary sm:p-8 lg:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:gap-10">
                 <div className="flex flex-col gap-4">
                   {p.hero && (
                     <div className="overflow-hidden rounded-lg border border-border bg-frame">
@@ -838,8 +859,7 @@ function Lab() {
             </p>
             <h2 className="mt-3.5 text-[clamp(1.9rem,4vw,2.8rem)]">Built in public</h2>
             <p className="mt-3 max-w-[48ch] text-[0.95rem] leading-relaxed text-brown">
-              Agents, automations and experiments — a selection. All {repos.length} repos are on
-              GitHub.
+              Agents, automations and experiments — a selection. The rest are on GitHub.
             </p>
           </div>
           <a
@@ -859,7 +879,7 @@ function Lab() {
               href={`${GITHUB_URL}/${r.name}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col rounded-xl border border-border bg-frame/40 p-5 transition-colors duration-300 hover:border-primary hover:bg-frame"
+              className="glow-card group flex flex-col rounded-xl border border-border bg-frame/40 p-5 transition-colors duration-300 hover:border-primary hover:bg-frame"
             >
               <span className="flex items-center justify-between gap-3">
                 <span className="truncate font-mono text-[0.88rem] text-foreground transition-colors group-hover:text-primary">
@@ -922,6 +942,7 @@ function About() {
             <ul className="m-0 mt-6 flex list-none flex-col gap-0 border-t border-border p-0">
               {[
                 ["Based in", "India · IST"],
+                ["Obsessed with", "Building & designing stuff"],
                 ["Works", "End to end, solo"],
                 ["Ships in", "Weeks, not quarters"],
                 ["You talk to", "Me. Always."],
@@ -994,7 +1015,7 @@ function Investment() {
           {packages.map((p, i) => (
             <Reveal key={p.name} delay={i * 90}>
               <article
-                className={`flex h-full flex-col rounded-xl border p-6 transition-colors duration-300 hover:border-primary sm:p-7 ${
+                className={`glow-card flex h-full flex-col rounded-xl border p-6 transition-colors duration-300 hover:border-primary sm:p-7 ${
                   p.featured ? "border-primary/50 bg-frame/60" : "border-border"
                 }`}
               >

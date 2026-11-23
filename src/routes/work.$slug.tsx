@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
 import { ShareRow } from "@/components/ShareRow";
+import { Tilt } from "@/components/Tilt";
 import { CALENDLY, Wordmark, whatsappLink } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
 
@@ -163,27 +164,31 @@ function CaseStudy() {
 
         {p.hero && (
           <Reveal className="mt-10 sm:mt-12">
-            <ImageFrame
-              label={`${p.title} — product hero`}
-              src={p.hero}
-              alt={`${p.title} — product hero`}
-              loading="eager"
-              auto={!!p.hero}
-              className="w-full"
-            />
+            <Tilt>
+              <ImageFrame
+                label={`${p.title} — product hero`}
+                src={p.hero}
+                alt={`${p.title} — product hero`}
+                loading="eager"
+                auto={!!p.hero}
+                className="w-full"
+              />
+            </Tilt>
           </Reveal>
         )}
 
         {!p.hero && p.concept && (
           <Reveal className="mt-10 sm:mt-12">
-            <ImageFrame
-              label={p.concept.caption}
-              src={p.concept.src}
-              alt={`${p.title} — concept illustration`}
-              loading="eager"
-              auto
-              className="w-full"
-            />
+            <Tilt>
+              <ImageFrame
+                label={p.concept.caption}
+                src={p.concept.src}
+                alt={`${p.title} — concept illustration`}
+                loading="eager"
+                auto
+                className="w-full"
+              />
+            </Tilt>
             <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-brown-soft">
               <span className="rounded-full border border-primary/40 px-2.5 py-0.5 text-primary">
                 Concept illustration

@@ -7,9 +7,9 @@ import vastrikaHome from "@/assets/media/vastrika-home.webp";
 import vastrikaArrivals from "@/assets/media/vastrika-arrivals.webp";
 import vastrikaProduct from "@/assets/media/vastrika-product.webp";
 import vastrikaLogo from "@/assets/media/vastrika-logo.webp";
-import flipscanConcept from "@/assets/media/flipscan-concept.jpg";
-import legaldeepConcept from "@/assets/media/legaldeep-concept.jpg";
-import airwriteConcept from "@/assets/media/airwrite-concept.jpg";
+import flipscanConcept from "@/assets/media/flipscan-concept.webp";
+import legaldeepConcept from "@/assets/media/legaldeep-concept.webp";
+import airwriteConcept from "@/assets/media/airwrite-concept.webp";
 
 export type GalleryItem = { label: string; size: string; src?: string; fit?: "cover" | "contain" };
 
@@ -99,32 +99,61 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "flipscan-ai",
+    slug: "sri-vastrika",
     index: "02",
-    title: "FlipScan AI",
-    titleLead: "FlipScan",
-    titleAccent: "AI",
-    description: "Resale price estimator for the US market — eBay, Poshmark, Depop.",
-    tag: "SaaS Product",
-    status: "Growing",
-    live: false,
-    tint: "--cover-flipscan",
-    role: "Design, development, growth",
-    stack: "Lovable · Supabase · Dodo Payments",
-    statusLong: "Growing — early users",
-    category: "SaaS product",
+    title: "Sri Vastrika",
+    titleLead: "Sri",
+    titleAccent: "Vastrika",
+    description:
+      "Custom-designed and developed storefront for an Indian nighties & sarees label, with Shopify powering checkout, inventory and payments — live at srivastrika.store.",
+    tag: "Client — custom store build",
+    status: "Live",
+    live: true,
+    tint: "--cover-vastrika",
+    role: "Brand, storefront design & build, SEO",
+    stack: "Custom front end · Shopify backend · Liquid",
+    statusLong: "Live at srivastrika.store",
+    liveUrl: "https://srivastrika.store",
+    category: "Client — e-commerce",
     brief:
-      "Resellers guess at pricing constantly, and a wrong guess costs either the sale or the margin. FlipScan needed to turn a photo and a few details into a defensible number, fast enough to use while standing in a thrift aisle.",
+      "A growing nighties and sarees label with real products and no storefront to match them. They didn't want a template store — they wanted the label to look premium in a category where most competitors look like a catalogue dump.",
     approach:
-      "Built the scan flow mobile-first with a single input step, then layered comparable listings underneath the estimate so the number always shows its work. The whole flow was designed for one-handed use in the real world, not for a demo desk.",
-    result: "Growing with early users — the estimate flow is live and iterating.",
-    quote: "A price is only useful if the person reading it believes where it came from.",
-    concept: {
-      src: flipscanConcept,
-      caption:
-        "Scan on the left, comparable listings on the right — the number always shows its work.",
+      "Logo first, then the storefront itself — designed and built by me, page by page, around large product photography and the client's own maroon-and-gold. Shopify sits behind it doing what it's genuinely good at: checkout, inventory, variants, COD and payments. The look is custom; the plumbing is battle-tested, so the owner runs the whole store alone.",
+    result:
+      "Live at srivastrika.store — the owner adds products and runs orders without a developer.",
+    quote:
+      "Premium isn't a colour palette. It's how much space you're willing to give the product.",
+    client: {
+      serviceLine: "Custom storefront design & build · Shopify backend",
+      platform: "Shopify",
+      logo: vastrikaLogo,
+      delivered: [
+        "Logo & brand identity",
+        "Storefront designed and coded by me — not a bought theme",
+        "Shopify backend: inventory, variants, orders",
+        "Checkout, COD, payments & shipping rules configured",
+        "On-page SEO from day one",
+      ],
+      outcomes: [
+        "A label that finally looks as premium as its products",
+        "Owner adds products and runs orders without a developer",
+        "Collections built to be found on search, not just browsed",
+      ],
     },
-    gallery: [],
+    hero: vastrikaHome,
+    gallery: [
+      {
+        label: "Product page — Rosewood Rose Kanchipuram",
+        size: "Detail, care & COD",
+        src: vastrikaProduct,
+      },
+      { label: "New arrivals grid", size: "Collection view", src: vastrikaArrivals },
+      { label: "Brand mark", size: "Logo & wordmark", src: vastrikaLogo, fit: "contain" },
+    ],
+    closing: {
+      src: vastrikaLogo,
+      caption: "The mark the whole storefront was built around.",
+    },
   },
   {
     slug: "legaldeep-ai",
@@ -183,61 +212,32 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-    slug: "sri-vastrika",
+    slug: "flipscan-ai",
     index: "05",
-    title: "Sri Vastrika",
-    titleLead: "Sri",
-    titleAccent: "Vastrika",
-    description:
-      "Custom-designed and developed storefront for an Indian nighties & sarees label, with Shopify powering checkout, inventory and payments — live at srivastrika.store.",
-    tag: "Client — custom store build",
-    status: "Live",
-    live: true,
-    tint: "--cover-vastrika",
-    role: "Brand, storefront design & build, SEO",
-    stack: "Custom front end · Shopify backend · Liquid",
-    statusLong: "Live at srivastrika.store",
-    liveUrl: "https://srivastrika.store",
-    category: "Client — e-commerce",
+    title: "FlipScan AI",
+    titleLead: "FlipScan",
+    titleAccent: "AI",
+    description: "Resale price estimator for the US market — eBay, Poshmark, Depop.",
+    tag: "SaaS Product",
+    status: "Growing",
+    live: false,
+    tint: "--cover-flipscan",
+    role: "Design, development, growth",
+    stack: "Lovable · Supabase · Dodo Payments",
+    statusLong: "Growing — early users",
+    category: "SaaS product",
     brief:
-      "A growing nighties and sarees label with real products and no storefront to match them. They didn't want a template store — they wanted the label to look premium in a category where most competitors look like a catalogue dump.",
+      "Resellers guess at pricing constantly, and a wrong guess costs either the sale or the margin. FlipScan needed to turn a photo and a few details into a defensible number, fast enough to use while standing in a thrift aisle.",
     approach:
-      "Logo first, then the storefront itself — designed and built by me, page by page, around large product photography and the client's own maroon-and-gold. Shopify sits behind it doing what it's genuinely good at: checkout, inventory, variants, COD and payments. The look is custom; the plumbing is battle-tested, so the owner runs the whole store alone.",
-    result:
-      "Live at srivastrika.store — the owner adds products and runs orders without a developer.",
-    quote:
-      "Premium isn't a colour palette. It's how much space you're willing to give the product.",
-    client: {
-      serviceLine: "Custom storefront design & build · Shopify backend",
-      platform: "Shopify",
-      logo: vastrikaLogo,
-      delivered: [
-        "Logo & brand identity",
-        "Storefront designed and coded by me — not a bought theme",
-        "Shopify backend: inventory, variants, orders",
-        "Checkout, COD, payments & shipping rules configured",
-        "On-page SEO from day one",
-      ],
-      outcomes: [
-        "A label that finally looks as premium as its products",
-        "Owner adds products and runs orders without a developer",
-        "Collections built to be found on search, not just browsed",
-      ],
+      "Built the scan flow mobile-first with a single input step, then layered comparable listings underneath the estimate so the number always shows its work. The whole flow was designed for one-handed use in the real world, not for a demo desk.",
+    result: "Growing with early users — the estimate flow is live and iterating.",
+    quote: "A price is only useful if the person reading it believes where it came from.",
+    concept: {
+      src: flipscanConcept,
+      caption:
+        "Scan on the left, comparable listings on the right — the number always shows its work.",
     },
-    hero: vastrikaHome,
-    gallery: [
-      {
-        label: "Product page — Rosewood Rose Kanchipuram",
-        size: "Detail, care & COD",
-        src: vastrikaProduct,
-      },
-      { label: "New arrivals grid", size: "Collection view", src: vastrikaArrivals },
-      { label: "Brand mark", size: "Logo & wordmark", src: vastrikaLogo, fit: "contain" },
-    ],
-    closing: {
-      src: vastrikaLogo,
-      caption: "The mark the whole storefront was built around.",
-    },
+    gallery: [],
   },
 ];
 

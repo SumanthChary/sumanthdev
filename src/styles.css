@@ -292,6 +292,63 @@
   &:hover::after {
     transform: translateX(130%);
   }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* soft light that follows the cursor — position is set by PointerFx */
+@utility glow-card {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-soft);
+    background: radial-gradient(
+      340px circle at var(--gx, 50%) var(--gy, 50%),
+      oklch(0.618 0.203 34 / 0.1),
+      transparent 65%
+    );
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Luffy's toggle: a pixel head that wakes up when you hover it */
+.luffy-face {
+  background-repeat: no-repeat;
+  background-size: 691.2px 842.4px;
+  background-position: -13px 1px;
+  image-rendering: pixelated;
+  animation: luffy-idle 0.9s steps(6) infinite paused;
+}
+.luffy-toggle:hover .luffy-face,
+.luffy-toggle:focus-visible .luffy-face {
+  animation-play-state: running;
+}
+@keyframes luffy-idle {
+  from {
+    background-position: -13px 1px;
+  }
+  to {
+    background-position: -531.4px 1px;
+  }
+}
+
+/* page-to-page cross-fade (Chromium View Transitions) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: var(--ease-out-soft);
 }
 
 /* scroll reveal */

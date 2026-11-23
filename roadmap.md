@@ -4,6 +4,20 @@
 - [x] ⌘K palette, mobile sticky CTA, prefilled WhatsApp, live IST clock, availability pill
 - [x] FAQ / offer structured data + `llms.txt` (GEO)
 
+## Shipped (visual pass)
+- [x] New avatar everywhere: site, favicon, apple-touch icon, share cards
+- [x] three.js hero: the five case studies as a 3D deck (lazy-loaded, static fallback)
+- [x] Redesigned FlipScan / LegalDeep / AirWrite visuals (labelled concept interfaces)
+- [x] Micro-interactions: cursor glow on cards, scroll progress, image tilt, page cross-fade, Luffy peek toggle
+- [x] Projects re-ordered so the most verifiable proof leads
+
+## Which projects to showcase
+1. **PostPro AI** — live, real screenshots. Lead with it.
+2. **Sri Vastrika** — the client proof: a real business, a live store, real screenshots.
+3. **LegalDeep AI** — the founder story (built and sold). Strongest once there's public evidence of the sale.
+4. **AirWrite** — the delight. Becomes a top-3 the moment there's a live, tryable demo.
+5. **FlipScan AI** — keep last until it has a live URL or real screenshots; "early users" alone is thin.
+
 ## Next — highest leverage first
 - [ ] Real testimonial from the Sri Vastrika owner (quote + name + link) — biggest missing proof
 - [ ] Public evidence for the LegalDeep acquisition (announcement, buyer quote, or handover screenshot)
@@ -12,6 +26,8 @@
 - [ ] 30-second screen recording per case study (autoplay, muted) for X/LinkedIn
 - [ ] Free "3-minute site teardown" lead magnet → WhatsApp
 - [ ] Analytics (privacy-friendly) on CTA clicks so changes can be judged on data
+- [ ] Confirm the canonical PostPro domain (GitHub README mentions both postproai.app and a lovable.app URL)
+- [ ] Confirm the public repo count (GitHub shows a different total than the curated list) before quoting a number
 - [ ] Dark mode
 
 ## Editorial rules (keep the site confident, not needy)

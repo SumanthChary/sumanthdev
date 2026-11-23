@@ -42,6 +42,12 @@ const STORAGE_KEY = "luffy-pet-on";
 
 export function LuffyPet() {
   const [on, setOn] = useState(false);
+  // the label shows briefly so the toggle is discoverable, then tucks away
+  const [hint, setHint] = useState(true);
+  useEffect(() => {
+    const id = window.setTimeout(() => setHint(false), 6000);
+    return () => window.clearTimeout(id);
+  }, []);
   const spriteRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -214,13 +220,30 @@ export function LuffyPet() {
         type="button"
         onClick={toggle}
         aria-pressed={on}
-        className="luffy-toggle fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/90 px-3.5 py-2 font-mono text-[0.6rem] sm:bottom-5 sm:left-5 sm:px-4 sm:py-2.5 sm:text-[0.64rem] uppercase tracking-[0.1em] text-brown shadow-[var(--shadow-float)] backdrop-blur transition-colors duration-300 hover:border-primary hover:text-primary"
+        aria-label={on ? "Send Luffy home" : "Summon Luffy"}
+        className="luffy-toggle group fixed bottom-4 left-4 z-40 flex items-center gap-3 sm:bottom-5 sm:left-5"
       >
-        <span aria-hidden="true" className="text-primary">
-          {on ? "✕" : "✦"}
+        <span className="relative block size-14 transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-1 group-hover:-rotate-6 group-active:scale-95">
+          <span className="block size-full overflow-hidden rounded-full border border-border-strong bg-background shadow-[var(--shadow-float)]">
+            <span
+              className="luffy-face block size-full"
+              style={{ backgroundImage: `url(${sheet})` }}
+            />
+          </span>
+          <span
+            aria-hidden="true"
+            className="absolute -right-0.5 -top-0.5 grid size-5 place-items-center rounded-full bg-primary font-mono text-[0.6rem] leading-none text-primary-foreground"
+          >
+            {on ? "✕" : "✦"}
+          </span>
         </span>
-        <span className="sm:hidden">{on ? "Bye" : "Luffy"}</span>
-        <span className="hidden sm:inline">{on ? "Send Luffy home" : "Summon Luffy"}</span>
+        <span
+          className={`pointer-events-none whitespace-nowrap rounded-full border border-border-strong bg-background/90 px-3.5 py-2 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-brown backdrop-blur transition-all duration-500 ease-[var(--ease-out-soft)] group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 ${
+            hint ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+          }`}
+        >
+          {on ? "Send Luffy home" : "Summon Luffy"}
+        </span>
       </button>
 
       {on && (
