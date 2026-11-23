@@ -4,7 +4,7 @@ import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
 /**
- * Hero 3D moment — the five case studies as a deck of cards in real perspective.
+ * Hero 3D moment — the case studies as a deck of cards in real perspective.
  *
  * - three.js is imported dynamically, so it never touches SSR or the first paint
  * - the pointer tilts the deck; hovering a card lifts it and slides the cards in front
@@ -25,7 +25,7 @@ const cards = projects.map((p) => ({
 
 const CARD_W = 3.2;
 const CARD_H = 1.85;
-const STEP = { x: 0.36, y: 0.42, z: 0.8 };
+const STEP = { x: 0.32, y: 0.38, z: 0.72 };
 
 const VERT = /* glsl */ `
   varying vec2 vUv;
@@ -366,7 +366,7 @@ export function HeroStage({ chip }: { chip: ReactNode }) {
               Math.sin(t * 0.9 + i * 1.3) * 0.03,
             -i * STEP.z + h * 1.0,
           );
-          holder.rotation.set(0, -ry * 0.55 * h, (i - 2) * 0.012 * (1 - h));
+          holder.rotation.set(0, -ry * 0.55 * h, (i - (N - 1) / 2) * 0.012 * (1 - h));
           holder.scale.setScalar(0.94 + 0.06 * intro + h * 0.03);
 
           const order = (N - i) * 3 + (h > 0.4 ? 60 : 0);
@@ -441,7 +441,7 @@ export function HeroStage({ chip }: { chip: ReactNode }) {
     <div
       ref={wrapRef}
       role="group"
-      aria-label="Selected work — five case studies"
+      aria-label={`Selected work — ${cards.length} case studies`}
       className="relative h-[390px] w-full select-none sm:h-[520px] lg:h-[600px]"
     >
       {/* static stack: server render, reduced motion, no WebGL — and the first paint before three loads */}

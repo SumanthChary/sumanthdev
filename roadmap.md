@@ -22,7 +22,13 @@
 - [x] Case study rewritten around hand tracking, verified against the app's source (MediaPipe HandLandmarker, index-finger gesture, One Euro filter, dwell click, PNG/WebM export, in-browser)
 - [x] "What it does" grid and a live smoothing demo that uses the app's real filter constants
 
+## Shipped (Galley + Luffy)
+- [x] Galley Resume added as case study 03 (copy taken from its landing page)
+- [x] Luffy no longer runs backwards: the sprite sheet's row 2 is a left-facing run, and the code was mirroring it again
+
 ## Next — highest leverage first
+- [ ] Galley Resume: add its live URL (`liveUrl` in `src/data/projects.ts`) and confirm the status, role and stack wording — until then it isn't counted in 'live right now'
+- [ ] Decide whether to show the ₹60,000 store price — only with Bhaskar's OK
 - [ ] Push `docs/airwrite-README.md` to the AirWrite repo as its README (the current one describes a generic writing app)
 - [ ] Give AirWrite a deployed URL so visitors can try it with their own camera — the most shareable thing you own
 - [x] Sri Vastrika client line is live (home + case study), named (Bhaskar) with a real WhatsApp message beside it

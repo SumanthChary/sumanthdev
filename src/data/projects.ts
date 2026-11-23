@@ -11,6 +11,7 @@ import { addOns } from "./site";
 import flipscanHero from "@/assets/media/flipscan-hero.webp";
 import flipscanScan from "@/assets/media/flipscan-scan.webp";
 import flipscanSplash from "@/assets/media/flipscan-splash.webp";
+import galleyHero from "@/assets/media/galley-hero.webp";
 import legaldeepLanding from "@/assets/media/legaldeep-landing.webp";
 import bhaskarMessage from "@/assets/media/bhaskar-message.webp";
 import legaldeepConcept from "@/assets/media/legaldeep-concept.webp";
@@ -229,8 +230,34 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "legaldeep-ai",
+    slug: "galley-resume",
     index: "03",
+    title: "Galley Resume",
+    titleLead: "Galley",
+    titleAccent: "Resume",
+    description: "Resume builder with taste — one good design and an AI that edits it with you.",
+    tag: "SaaS Product",
+    status: "Launched",
+    live: true,
+    tint: "--cover-galley",
+    role: "Design, development",
+    stack: "Web app · AI editing · Claude skill",
+    statusLong: "Launched — free to try, $9 once or $29 for life",
+    category: "SaaS product",
+    brief:
+      "Galley started with one frustration: I couldn't find a resume builder with taste. So I made one good design, and an AI that edits it with you.",
+    approach:
+      "One template, on purpose. Instead of a gallery of mediocre layouts, the design effort went into a single page — well typeset, so it looks like someone cared. The AI works alongside you rather than writing for you, and a free ATS check shows how a resume reads to applicant-tracking systems before you send it.",
+    result:
+      "Launched with simple pricing: free to try with no account, then $9 once or $29 for life. No subscription.",
+    quote: "A resume should look like someone cared.",
+    hero: galleyHero,
+    heroCaption: "Galley's landing page — free to try, no account.",
+    gallery: [],
+  },
+  {
+    slug: "legaldeep-ai",
+    index: "04",
     title: "LegalDeep AI",
     titleLead: "LegalDeep",
     titleAccent: "AI",
@@ -280,7 +307,7 @@ export const projects: Project[] = [
   },
   {
     slug: "airwrite",
-    index: "04",
+    index: "05",
     title: "AirWrite",
     titleLead: "Air",
     titleAccent: "Write",
@@ -341,7 +368,7 @@ export const projects: Project[] = [
   },
   {
     slug: "flipscan-ai",
-    index: "05",
+    index: "06",
     title: "FlipScan AI",
     titleLead: "FlipScan",
     titleAccent: "AI",

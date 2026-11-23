@@ -33,6 +33,13 @@ const CLIPS: Record<ClipName, Clip> = {
   dash: { row: 7, frames: 6, fps: 10, oneShot: 1400 },
   flex: { row: 8, frames: 6, fps: 6, oneShot: 2600 },
 };
+/**
+ * Which way each clip faces *as drawn in the sheet* (+1 right, -1 left). Row 2 ("sprint") is the
+ * kit's running-LEFT row, so it must not be mirrored again when he runs left — mirroring it was
+ * making him run backwards.
+ */
+const NATIVE_FACING: Partial<Record<ClipName, 1 | -1>> = { sprint: -1 };
+
 type Phase = "enter" | "play" | "leave" | "bye";
 
 const HOME_X = 26;
@@ -100,7 +107,7 @@ export function LuffyPet() {
 
     const draw = () => {
       const c = CLIPS[clip];
-      el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(baseY)}px, 0) scaleX(${dir})`;
+      el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(baseY)}px, 0) scaleX(${dir * (NATIVE_FACING[clip] ?? 1)})`;
       el.style.backgroundPosition = `${-frame * FRAME_W}px ${-c.row * FRAME_H}px`;
     };
 
@@ -129,6 +136,7 @@ export function LuffyPet() {
           x += dir * 0.24 * dt;
           if (x <= HOME_X) {
             x = HOME_X;
+            dir = 1;
             phase = "play";
             setClip("jump");
           }
@@ -156,6 +164,7 @@ export function LuffyPet() {
           x += dir * 0.17 * dt;
           if ((dir === -1 && x <= HOME_X) || (dir === 1 && x >= HOME_X)) {
             x = HOME_X;
+            dir = 1;
             phase = "bye";
             setClip("wave");
           }

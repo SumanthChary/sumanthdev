@@ -89,6 +89,7 @@
   --cover-flipscan: linear-gradient(135deg, oklch(0.51 0.07 55), oklch(0.22 0.02 50));
   --cover-legaldeep: linear-gradient(135deg, oklch(0.27 0.02 60), oklch(0.16 0.01 60));
   --cover-airwrite: linear-gradient(135deg, oklch(0.78 0.11 45), oklch(0.5 0.09 45));
+  --cover-galley: linear-gradient(135deg, oklch(0.2 0.012 60), oklch(0.66 0.16 48));
   --cover-vastrika: linear-gradient(135deg, oklch(0.42 0.14 15), oklch(0.72 0.11 80));
 
   --shadow-float: 0 30px 60px -20px oklch(0.192 0.011 60 / 0.35);

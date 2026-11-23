@@ -19,7 +19,7 @@ function PhoneStage({ title, items }: { title: string; items: GalleryItem[] }) {
             {items.map((g, i) => (
               <figure
                 key={g.label}
-                className={`m-0 w-[46%] max-w-[260px] ${i % 2 === 1 ? "mt-10 sm:mt-16" : ""}`}
+                className={`m-0 w-[46%] max-w-[230px] ${i % 2 === 1 ? "mt-10 sm:mt-16" : ""}`}
               >
                 <img
                   src={g.src}

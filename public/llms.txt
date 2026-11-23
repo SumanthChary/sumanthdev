@@ -12,6 +12,7 @@ Contact: sumanthcharyy@gmail.com · WhatsApp +91 81252 28079 · 30-minute call: 
 
 ## Work (each has a case study)
 - PostPro AI — LinkedIn voice-matching writer, live: https://postproai.app — https://sumanthdev.me/work/postpro-ai
+- Galley Resume — resume builder with one template on purpose and an AI that edits it with you; free ATS check; free to try, $9 once or $29 for life — https://sumanthdev.me/work/galley-resume
 - FlipScan AI — sneaker resale price estimator for US resellers, early users — https://sumanthdev.me/work/flipscan-ai
 - LegalDeep AI — AI contract analyzer, founded, built and sold — acquired by Darren Gill on 11 October 2026; the sale was announced publicly (links on the case study) — https://sumanthdev.me/work/legaldeep-ai
 - AirWrite — hand-tracking drawing app (MediaPipe HandLandmarker): raise your index finger at the webcam and draw in the air; One Euro filter smoothing, hover-to-click UI, PNG export and recording; runs in the browser, nothing uploaded; open source: https://github.com/SumanthChary/airwrite — https://sumanthdev.me/work/airwrite
