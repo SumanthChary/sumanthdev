@@ -15,7 +15,6 @@ import legaldeepLanding from "@/assets/media/legaldeep-landing.webp";
 import bhaskarMessage from "@/assets/media/bhaskar-message.webp";
 import legaldeepConcept from "@/assets/media/legaldeep-concept.webp";
 import airwriteHero from "@/assets/media/airwrite-hero.webp";
-import airwriteReadme from "@/assets/media/airwrite-readme.webp";
 
 /**
  * More photos of AirWrite in use: drop files named airwrite-photo-1.jpg, airwrite-photo-2.png …
@@ -74,6 +73,10 @@ export type Project = {
     included: { title: string; items: string[] }[];
     separate: { name: string; note: string }[];
   };
+  /** short feature cards shown under the story ("What it does") */
+  features?: { title: string; note: string }[];
+  /** an interactive, code-built demo shown in the case study */
+  demo?: "smoothing";
   /** one line under the hero image, e.g. what exactly the screenshot shows */
   heroCaption?: string;
   /** "phones": portrait app screenshots shown at natural size on a device stage */
@@ -281,27 +284,54 @@ export const projects: Project[] = [
     title: "AirWrite",
     titleLead: "Air",
     titleAccent: "Write",
-    description: "Webcam hand-tracking drawing app — draw in thin air, no mouse.",
+    description:
+      "Hand-tracking drawing app — point your index finger at the webcam and draw in thin air. No mouse, no touchscreen.",
     tag: "Experiment",
     status: "Launched",
     live: true,
     tint: "--cover-airwrite",
     role: "Design, development",
-    stack: "TanStack Start · TypeScript · MediaPipe · Canvas",
+    stack: "TanStack Start · TypeScript · MediaPipe HandLandmarker · Canvas",
     statusLong: "Launched — code on GitHub",
     category: "Experiment",
     repo: "https://github.com/SumanthChary/airwrite",
     brief:
-      "An experiment in input: what happens when the cursor is your fingertip? AirWrite tracks a hand through the webcam and turns pinch gestures into strokes on a canvas.",
+      "An experiment in input: what happens when the cursor is your fingertip? AirWrite tracks your hand through the webcam with MediaPipe and turns a raised index finger into a pen — no mouse, no touchscreen, nothing to hold.",
     approach:
-      "Smoothing was the whole project. Raw landmark data is jittery, so the stroke path runs through a velocity-aware filter before it ever hits the canvas — the difference between a toy and something that feels like drawing.",
+      "Smoothing was the whole project. Raw landmark data jitters, so every point runs through a One Euro filter — heavy smoothing when your hand is slow, light when it's fast — and then a second easing pass at your screen's refresh rate, so the ink follows your hand, not the camera's frame rate. Try the demo below: it uses the app's real filter constants.",
     result: "Launched — the full source is public on GitHub.",
     quote: "Most novel interfaces fail on latency, not on the idea.",
     hero: airwriteHero,
     heroCaption:
       "AirWrite running on a webcam — the camera feed is the canvas, the fingertip is the pen.",
+    demo: "smoothing",
+    features: [
+      {
+        title: "Draw with one finger",
+        note: "Raise just your index finger and the pen follows the fingertip. Open or close your hand and the pen lifts.",
+      },
+      {
+        title: "Hover to click",
+        note: "Every button works by holding a fingertip over it — a ring fills in 0.6 seconds, then it clicks.",
+      },
+      {
+        title: "Smooth by design",
+        note: "A One Euro filter plus an easing pass at screen refresh rate keeps strokes steady even when tracking jitters.",
+      },
+      {
+        title: "A real drawing toolbox",
+        note: "Pen and eraser, colours, brush size, undo and redo, clear and pause — all controllable by hand.",
+      },
+      {
+        title: "Save and record",
+        note: "Export your drawing as a PNG, or record the session as a WebM screen capture.",
+      },
+      {
+        title: "Private by default",
+        note: "The camera is requested only after you click start. Tracking runs in your browser and nothing is uploaded.",
+      },
+    ],
     gallery: [
-      { label: "README on GitHub", size: "The source is public", src: airwriteReadme },
       ...airwritePhotos.map((src, i) => ({
         label: `AirWrite in use — ${i + 1}`,
         size: "Photo",

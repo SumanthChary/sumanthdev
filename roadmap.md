@@ -18,7 +18,13 @@
 4. **AirWrite** — the delight. Becomes a top-3 the moment there's a live, tryable demo.
 5. **FlipScan AI** — keep last until it has a live URL or real screenshots; "early users" alone is thin.
 
+## Shipped (AirWrite)
+- [x] Case study rewritten around hand tracking, verified against the app's source (MediaPipe HandLandmarker, index-finger gesture, One Euro filter, dwell click, PNG/WebM export, in-browser)
+- [x] "What it does" grid and a live smoothing demo that uses the app's real filter constants
+
 ## Next — highest leverage first
+- [ ] Push `docs/airwrite-README.md` to the AirWrite repo as its README (the current one describes a generic writing app)
+- [ ] Give AirWrite a deployed URL so visitors can try it with their own camera — the most shareable thing you own
 - [x] Sri Vastrika client line is live (home + case study), named (Bhaskar) with a real WhatsApp message beside it
 - [ ] Replace the one-line testimonial with a longer quote once the client can give one
 - [x] LegalDeep public record linked (2 posts on X, LinkedIn, TrustMRR)

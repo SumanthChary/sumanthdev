@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { ShareRow } from "@/components/ShareRow";
 import { Tilt } from "@/components/Tilt";
 import { CaseGallery } from "@/components/CaseGallery";
+import { SmoothingDemo } from "@/components/SmoothingDemo";
 import { CALENDLY, Wordmark, whatsappLink } from "@/components/SiteChrome";
 import { getProject, projects } from "@/data/projects";
 
@@ -243,6 +244,31 @@ function CaseStudy() {
               </span>
             </p>
           </Reveal>
+        )}
+
+        {p.features && (
+          <Reveal className="pb-12 md:pb-16">
+            <p className="mono-label m-0 text-brown-soft">What it does</p>
+            <div className="mt-6 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+              {p.features.map((f, i) => (
+                <div key={f.title} className="glow-card bg-background p-6">
+                  <span className="font-mono text-[0.62rem] tracking-[0.12em] text-primary">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="m-0 mt-3 font-serif text-[1.35rem] leading-tight text-foreground">
+                    {f.title}
+                  </h3>
+                  <p className="m-0 mt-2 text-[0.92rem] leading-relaxed text-brown">{f.note}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        )}
+
+        {p.demo === "smoothing" && (
+          <div className="pb-12 md:pb-16">
+            <SmoothingDemo />
+          </div>
         )}
 
         <CaseGallery title={p.title} items={p.gallery} layout={p.galleryLayout} />

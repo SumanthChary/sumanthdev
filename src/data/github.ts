@@ -57,7 +57,7 @@ export const repos: Repo[] = [
   {
     name: "airwrite",
     featured: true,
-    blurb: "Draw in air via webcam",
+    blurb: "Hand-tracked drawing — point and draw in the air",
     kind: "Experiment",
     language: "TypeScript",
   },
